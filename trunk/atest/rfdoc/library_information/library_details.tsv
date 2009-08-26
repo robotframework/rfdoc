@@ -1,0 +1,40 @@
+*** Settings ***
+Suite Setup	Given some libraries exist in RFDoc
+Test Setup	When user opens library details
+
+
+*** Test Cases ***
+
+Library details are visible
+	[Setup]	When user opens library with version information
+	Then library name, version and documentation are shown
+
+Library version is not visible
+	[Setup]	When user opens library without version information
+	Then library name and documentation are shown
+	and no version information is shown
+
+Library initialization is visible
+	[Setup]	When user opens library with initialization information
+	Then library initialization is shown
+
+Library initialization is not visible
+	[Setup]	When user opens library without initialization information
+	Then library initialization is not shown
+
+Keyword details are visible
+	Then keywords are listed with name, argument and documentation information
+
+Total number of keywords is visible
+	Then total number of keywords in library is shown
+	
+Shortcut links exist
+	Then list of keywords linking to the keyword details is shown
+
+Keyword documentation can contain keyword-to-keyword links 
+	Then link exist from keyword documentation to another keyword
+
+
+*** Settings ***
+Resource	library_information.tsv
+Force Tags	Req-Library 2	Sprint-1

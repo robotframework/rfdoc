@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% comment %}
+Copyright 2009 Nokia Siemens Networks Oyj
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+{% endcomment %}
+
+
+{% block title %}Welcome{% endblock title %}
+{% block navi %}[<a href="/upload/">upload</a>]{% endblock navi %}
+{% block content %}
+<h2>Welcome</h2>
+<p class="info">
+  RFDoc is a system for storing and searching Robot Framework test
+  library and resource file documentations.
+</p>
+<div class="hr"><hr /></div>
+{% include "search_form.html" %}
+<div class="hr"><hr /></div>
+<h2>Libraries</h2>
+{% if libs %}
+<ul class="libraries">
+  {% for lib in libs %}
+  <li><a href="/lib/{{ lib.name }}">{{ lib.name }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="info">
+  No libraries in the system. Why don't you <a href="/upload/">upload</a> one?
+</p>
+{%endif %}
+{% endblock content %}
+
