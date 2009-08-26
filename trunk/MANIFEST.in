@@ -1,0 +1,8 @@
+include src/rfdoc/*.tmpl
+prune src/rfdoc/rfdocsettings.py
+include src/rfdoc/rfdocapp/templates/*.html
+recursive-include atest *.tsv *.txt *.xml *.py *.db
+prune atest/results
+include MANIFEST.in
+include COPYRIGHT.txt
+include LICENSE.txt

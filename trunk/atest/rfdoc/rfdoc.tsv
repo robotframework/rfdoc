@@ -1,0 +1,115 @@
+**** Settings ***
+Library	SeleniumLibrary			${SELENIUM PORT}
+Library	OperatingSystem
+Library	RFDocDataBase
+
+
+*** Variables ***
+${RFDOC PORT} =	8000
+${SELENIUM PORT} =	4444
+${HOST} =	localhost:${RFDOC PORT}
+${BASE URL} =	http://${HOST}/
+${UPLOAD URL} =	${BASE URL}upload/
+${SEARCH URL} =	${BASE URL}search/
+${LIBRARY URL} =	${BASE URL}lib/
+${BROWSER} =	firefox
+@{BUILTIN KEYWORDS} =
+...	Convert To Integer	item	Converts the given item to an integer number.
+...	No Operation	${EMPTY}	Does absolutely nothing.
+@{INITIAL KEYWORDS} =
+...	First Keyword	first, second=default, *args	First KW doc
+...	My Second Keyword	some	Second KW doc
+@{UPDATED KEYWORDS} =
+...	First Keyword Updated	first, second=default updated, *args	Updated KW doc
+...	My Second Keyword	some	Second KW doc
+...	Third Keyword	third	Third KW doc
+
+
+*** Keywords ***	for common preconditions
+
+Given no libraries exist in RFDoc
+	Clear RFDoc Database
+
+Given some libraries exist in RFDoc
+	Copy file	${CURDIR}/../testdata/libraries.db	${CURDIR}/../results/rfdoc.db
+
+*** Keywords ***	for navigating
+
+and main page is open
+	Navigate to main page
+
+Navigate to main page
+	Navigate to and check title	${BASE URL}	Welcome
+	
+Navigate to upload page
+	Navigate to and check title	${UPLOAD URL}	Upload
+
+Navigate to search page
+	Navigate to and check title	${SEARCH URL}	Search
+	
+Navigate to library
+	[Arguments]	${library name}
+	Navigate to and check title	${LIBRARY URL}${library name}	${library name}
+
+Navigate to and check title
+	[Arguments]	${url}	${title}
+	Go to	${url}
+	Title should be	RFDoc | ${title}
+
+
+*** Keywords ***	for upload
+
+Upload file
+	[Arguments]	${file}	${library name}=
+	Comment	Need to be suite level as this keyword is used in suite setup
+	Set suite variable	${UPLOADED LIBRARY}	${library name}
+	Input text	file	${CURDIR}${/}..${/}testdata${/}${file}
+	Click button	Upload
+
+Upload page should contain success information
+	[Arguments]	${library name}
+	Log Source
+	Page should contain	Successfully uploaded library ${library name}
+	
+Navigate to uploaded library
+	Click link	/lib/${UPLOADED LIBRARY}
+	Title should be	RFDoc | ${UPLOADED LIBRARY}
+	
+Upload library and check library and keywords are uploaded correctly
+	[Arguments]	${library xml}	${library name}	@{keywords}
+	Navigate to upload page
+	Upload file	${library xml}	${library name}
+	Library upload should be successful	${library name}
+	Library should contain keywords	@{keywords}
+
+Library upload should be successful
+	[Arguments]	${library name}
+	Upload page should contain success information	${library name}
+	Navigate to uploaded library
+
+
+*** Keywords ***	for checking library details
+
+Library should contain keywords
+	[Arguments]	@{keywords}
+	${source} =	Get source
+	:FOR	${name}	${args}	${doc}	IN	@{keywords}
+		Source should contain keyword	${source}	${name}	${args}	${doc}
+					
+Source should contain keyword
+	[Arguments]	${source}	${name}	${args}	${doc}
+	${match}	${group1}	${group2} =	Should Match Regexp	${source}	(?s)<td class="kw" id="${name}">${name}</td>\\s*<td class="arg">(.*?)</td>\\s*<td class="doc">(.+?)</td>
+	Should Be Equal	${group1}	${args}	
+	Should Be Equal	${group2}	${doc}
+
+
+*** Keywords ***	utilities
+
+Log Source
+	${source} =	Get source
+	Log	${source}	debug
+
+Error should be shown
+	[Arguments]	${message}
+	Element should contain	xpath=//ul[@class='errorlist']	${message}
+	
