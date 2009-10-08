@@ -1,0 +1,84 @@
+[08/Oct/2009 11:59:13] "GET / HTTP/1.1" 200 6218
+[08/Oct/2009 11:59:13] "GET / HTTP/1.1" 200 6110
+[08/Oct/2009 11:59:13] "GET / HTTP/1.1" 200 6218
+[08/Oct/2009 11:59:13] "GET /lib/BuiltIn HTTP/1.1" 200 68012
+[08/Oct/2009 11:59:14] "GET /lib/ExampleLibrary HTTP/1.1" 200 6526
+[08/Oct/2009 11:59:14] "GET /lib/ExampleLibrary HTTP/1.1" 200 6526
+[08/Oct/2009 11:59:15] "GET /lib/BuiltIn HTTP/1.1" 200 68012
+[08/Oct/2009 11:59:15] "GET /lib/BuiltIn HTTP/1.1" 200 68012
+[08/Oct/2009 11:59:15] "GET /lib/BuiltIn HTTP/1.1" 200 68012
+[08/Oct/2009 11:59:16] "GET /lib/BuiltIn HTTP/1.1" 200 68012
+[08/Oct/2009 11:59:16] "GET /lib/BuiltIn HTTP/1.1" 200 68012
+[08/Oct/2009 11:59:16] "GET /search/ HTTP/1.1" 200 5777
+[08/Oct/2009 11:59:17] "POST /search/ HTTP/1.1" 200 6363
+[08/Oct/2009 11:59:17] "GET /search/ HTTP/1.1" 200 5777
+[08/Oct/2009 11:59:17] "POST /search/ HTTP/1.1" 200 6631
+[08/Oct/2009 11:59:17] "GET /search/ HTTP/1.1" 200 5777
+[08/Oct/2009 11:59:17] "POST /search/ HTTP/1.1" 200 5941
+[08/Oct/2009 11:59:17] "GET /search/ HTTP/1.1" 200 5777
+[08/Oct/2009 11:59:17] "POST /search/ HTTP/1.1" 200 5836
+[08/Oct/2009 11:59:18] "GET / HTTP/1.1" 200 6218
+[08/Oct/2009 11:59:18] "GET / HTTP/1.1" 200 6218
+[08/Oct/2009 11:59:18] "POST /search/ HTTP/1.1" 200 6631
+[08/Oct/2009 11:59:18] "GET / HTTP/1.1" 200 6218
+[08/Oct/2009 11:59:18] "GET /search/ HTTP/1.1" 200 5777
+[08/Oct/2009 11:59:18] "POST /search/ HTTP/1.1" 200 6631
+[08/Oct/2009 11:59:19] "GET / HTTP/1.1" 200 6218
+[08/Oct/2009 11:59:19] "GET /search/ HTTP/1.1" 200 5777
+[08/Oct/2009 11:59:19] "POST /search/ HTTP/1.1" 200 6363
+[08/Oct/2009 11:59:19] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:19] "POST /upload/ HTTP/1.1" 200 6039
+[08/Oct/2009 11:59:19] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:19] "POST /upload/ HTTP/1.1" 200 6049
+[08/Oct/2009 11:59:19] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:20] "POST /upload/ HTTP/1.1" 200 6045
+[08/Oct/2009 11:59:20] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:20] "POST /upload/ HTTP/1.1" 200 6049
+[08/Oct/2009 11:59:20] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:20] "POST /upload/ HTTP/1.1" 200 6049
+[08/Oct/2009 11:59:20] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:20] "POST /upload/ HTTP/1.1" 200 6049
+[08/Oct/2009 11:59:20] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:20] "POST /upload/ HTTP/1.1" 200 6049
+[08/Oct/2009 11:59:21] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:21] "POST /upload/ HTTP/1.1" 200 6049
+[08/Oct/2009 11:59:21] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:21] "POST /upload/ HTTP/1.1" 200 6049
+[08/Oct/2009 11:59:21] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:21] "POST /upload/ HTTP/1.1" 200 6049
+[08/Oct/2009 11:59:22] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:22] "POST /upload/ HTTP/1.1" 200 6057
+[08/Oct/2009 11:59:22] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:22] "POST /upload/ HTTP/1.1" 200 6057
+[08/Oct/2009 11:59:22] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:22] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:23] "POST /upload/ HTTP/1.1" 200 6055
+[08/Oct/2009 11:59:23] "GET /lib/ExampleLibrary HTTP/1.1" 200 6526
+[08/Oct/2009 11:59:23] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:23] "POST /upload/ HTTP/1.1" 200 6130
+[08/Oct/2009 11:59:23] "GET /lib/ExampleLibrary HTTP/1.1" 200 6846
+[08/Oct/2009 11:59:24] "GET /upload/ HTTP/1.1" 200 5981
+[08/Oct/2009 11:59:24] "POST /upload/ HTTP/1.1" 200 6087
+[08/Oct/2009 11:59:24] "GET /lib/BuiltIn HTTP/1.1" 200 68012
+Unhandled exception in thread started by <function inner_run at 0x9846844>
+Validating models...
+0 errors found
+
+Django version 1.0.2 final, using settings 'atest_settings'
+Development server is running at http://127.0.0.1:8001/
+Quit the server with CONTROL-C.
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/dist-packages/apport_python_hook.py", line 38, in apport_excepthook
+    from apport.packaging_impl import impl as packaging
+ImportError: No module named apport.packaging_impl
+
+Original exception was:
+Traceback (most recent call last):
+  File "/var/lib/python-support/python2.6/django/core/management/commands/runserver.py", line 60, in inner_run
+    run(addr, int(port), handler)
+  File "/var/lib/python-support/python2.6/django/core/servers/basehttp.py", line 697, in run
+    httpd.serve_forever()
+  File "/usr/lib/python2.6/SocketServer.py", line 224, in serve_forever
+    r, w, e = select.select([self], [], [], poll_interval)
+AttributeError: 'NoneType' object has no attribute 'select'
