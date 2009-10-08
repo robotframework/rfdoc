@@ -142,13 +142,11 @@ class RegressionRunner(DevelRunner):
 class CiRunner(RegressionRunner):
 
     def run_tests(self, options):
-        ci_opts = ['--log', 'NONE', '--report', ' NONE', '--monitorcolors', 'off']
-        RegressionRunner.run_tests(self, ci_opts + options)
-
+        RegressionRunner.run_tests(self, ['--monitorcolors', 'off'] + options)
 
     def _kill_rfdoc_on_posix(self):
         os.system('pkill -9 -P %d' % self._rfdoc_pid)
-        
+
 
 class StartUpError(Exception):
     pass
