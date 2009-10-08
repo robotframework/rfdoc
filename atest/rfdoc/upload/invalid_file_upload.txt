@@ -1,0 +1,55 @@
+*** Settings ***
+Suite Setup      Navigate to upload page
+Test Teardown    Navigate to upload page
+Force Tags       Req-Upload 3   Sprint-1
+Resource         upload.txt
+
+*** Variables ***
+${NON XML FILE MESSAGE}   Given file is not XML.
+${INVALID XML FILE MESSAGE}   Given file contains invalid XML.
+${NON EXISTING FILE MESSAGE}   The submitted file is empty.
+${MISSING KEYWORDS MESSAGE}   Given test library contains no keywords.
+
+*** Test Cases ***
+Non XML File
+    Uploading file fails   text_file.txt   ${NON XML FILE MESSAGE}
+
+Wrong XML Content
+    Uploading file fails   invalid_content.xml   ${INVALID XML FILE MESSAGE}
+
+Non Existing File
+    Uploading file fails   non_existing_file.xml   ${NON EXISTING FILE MESSAGE}
+
+Empty Library Name
+    Uploading file fails   empty_library_name.xml   ${INVALID XML FILE MESSAGE}
+
+Missing Library Name
+    Uploading file fails   missing_library_name.xml   ${INVALID XML FILE MESSAGE}
+
+Missing Library Documentation
+    Uploading file fails   missing_library_doc.xml   ${INVALID XML FILE MESSAGE}
+
+Empty Keyword Name
+    Uploading file fails   empty_keyword_name.xml   ${INVALID XML FILE MESSAGE}
+
+Missing Keyword Name
+    Uploading file fails   missing_keyword_name.xml   ${INVALID XML FILE MESSAGE}
+
+Missing Keyword Documentation
+    Uploading file fails   missing_keyword_doc.xml   ${INVALID XML FILE MESSAGE}
+
+Empty Keyword
+    Uploading file fails   empty_keyword.xml   ${INVALID XML FILE MESSAGE}
+
+Empty Keywords
+    Uploading file fails   empty_keywords.xml   ${MISSING KEYWORDS MESSAGE}
+
+Missing Keywords
+    Uploading file fails   missing_keywords.xml   ${MISSING KEYWORDS MESSAGE}
+
+*** Keywords ***
+Uploading File Fails
+    [Arguments]   ${file name}   ${message}
+    Upload file   invalid${/}${file name}
+    Error should be shown   ${message}
+

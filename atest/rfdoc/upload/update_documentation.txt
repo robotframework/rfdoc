@@ -1,0 +1,21 @@
+*** Settings ***
+Force Tags       Req-Upload 2   Sprint-1
+Resource         upload.txt
+
+*** Test Cases ***
+Existing Library Is Not Overridden By Default
+    Given some libraries exist in RFDoc
+    and upload page is open
+    When user tries to upload already existing library
+    Then an error that library already exists is shown
+    and library data is not updated in the database
+
+User Can Update Library Documentation
+    Given some libraries exist in RFDoc
+    and upload page is open
+    When user selects "override existing library" option
+    and uploads existing library documentation
+    Then a notification that a library was successfully updated is shown
+    and the notification contains a link to library details
+    and the library is updated in the database
+
