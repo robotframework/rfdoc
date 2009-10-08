@@ -1,0 +1,14 @@
+*** Test Cases ***
+
+User can upload library documentation
+	Given no libraries exist in RFDoc
+	and upload page is open
+	When user uploads new library XML
+	Then a notification that a library was successfully uploaded is shown 
+	and the notification contains a link to library details
+	and the library is stored into the database
+
+
+*** Settings ***
+Resource	upload.tsv
+Force Tags	Req-Upload 1	Sprint-1

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load rfdoc_filters %}
+
+{% comment %}
+Copyright 2009 Nokia Siemens Networks Oyj
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+{% endcomment %}
+
+
+{% block title %}Search{% endblock title %}
+{% block content %}
+{% include "search_form.html" %}
+{% if search_performed %}
+<div class="hr"><hr /></div>
+<h2>Search results</h2>
+<p class="info">
+  {% if not kws %}No{% else %}{{ kws|length }}{% endif %}
+  matching keyword{{ kws|length|pluralize }} found.
+</p>
+{% if kws %}
+<table class="keywords results">
+  {% for kw in kws %}
+  <tr>
+    <td><a href="/lib/{{ kw.library.name }}#{{ kw.name }}">{{ kw.name }}</a></td>
+    <td><a href="/lib/{{ kw.library.name }}">{{ kw.library.name }}</a></td>
+    <td>{{ kw.doc|first_line }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% endif %}
+{% endblock content %}
+
+

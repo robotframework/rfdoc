@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20090505 15:40:11.633" generator="Robot 2.1 (Python 2.5.2 on linux2)">
+<suite source="/home/rantanen/code/rfdoc/atest/rfdoc" name="Rfdoc">
+<doc></doc>
+<metadata>
+</metadata>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" doc="Rfdoc" pass="1">Rfdoc</stat>
+<stat fail="0" doc="Rfdoc.Upload" pass="1">Rfdoc.Upload</stat>
+<stat fail="0" doc="Rfdoc.Upload.Invalid File Upload" pass="1">Rfdoc.Upload.Invalid File Upload</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
