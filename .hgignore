@@ -1,1 +1,7 @@
+syntax: glob
+
+*.pyc
+*~
+.project
+.pydevproject
 atest/results
