@@ -1,0 +1,15 @@
+*** Settings ***
+Force Tags       Req-Library 1   Sprint-1
+Resource         library_information.txt
+
+*** Test Cases ***
+Main Page Contains Info That No Libraries Exist In RFDoc
+    Given no libraries exist in RFDoc
+    When user opens main page
+    Then information that there is no libraries in RFDoc is shown
+
+Libraries In RFDoc Are Listed On Main Page
+    Given some libraries exist in RFDoc
+    When user opens main page
+    Then existing libraries are listed on the main page
+

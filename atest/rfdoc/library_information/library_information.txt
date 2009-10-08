@@ -1,0 +1,86 @@
+*** Settings ***
+Resource         ../rfdoc.txt
+
+*** Keywords ***
+When User Opens Main Page
+    Navigate to main page
+
+Then Information That There Is No Libraries In RFDoc Is Shown
+    Page should contain   No libraries in the system.
+
+Then Existing Libraries Are Listed On The Main Page
+    Main page should contain libraries   BuiltIn   ExampleLibrary   SeleniumLibrary
+
+Main Page Should Contain Libraries
+    [Arguments]   @{libraries}
+    ${regexp} =   Set Variable   <h2>Libraries</h2>\\s+<ul class="libraries">\\s+
+    :: FOR   ${library}   IN   @{libraries}
+    \   ${regexp} =   Set Variable   ${regexp}<li><a href="/lib/${library}">${library}</a></li>\\s+
+    ${regexp} =   Set Variable   ${regexp}</ul>
+    ${source} =   Get source
+    Should match regexp   ${source}   ${regexp}
+
+When User Opens Library Details
+    Navigate to library   BuiltIn
+
+When User Opens Library With Version Information
+    When user opens library details
+
+Then Library Name, Version And Documentation Are Shown
+    Library name should be   BuiltIn
+    Page should contain   Version: 2.1
+    Page should contain   An always available standard library with often needed keywords.
+
+When User Opens Library Without Version Information
+    Navigate to library   ExampleLibrary
+
+Then Library Name And Documentation Are Shown
+    Library name should be   ExampleLibrary
+    Page should contain   First Library Doc
+
+Library Name Should Be
+    [Arguments]   ${name}
+    Element should contain   xpath=//h2   ${name}
+
+And No Version Information Is Shown
+    Page should not contain   Version:
+
+When User Opens Library With Initialization Information
+    Navigate to library   ExampleLibrary
+
+Then Library Initialization Is Shown
+    Element should contain   importing   Importing
+    Page should contain   Library can be imported with optional arguments.
+    Page should contain   timeout=3.0, is_regexp=False
+
+When User Opens Library Without Initialization Information
+    When user opens library details
+
+Then Library Initialization Is Not Shown
+    Page should not contain element   importing
+
+Then Keywords Are Listed With Name, Argument And Documentation Information
+    Library should contain keywords   @{BUILTIN KEYWORDS}
+
+Then Total Number Of Keywords In Library Is Shown
+    Page should contain   Altogether 72 keywords.
+
+Then List Of Keywords Linking To The Keyword Details Is Shown
+    Should contain link to keyword with short documentation   Sleep   Pauses the test executed for the given time.
+    Should contain link to keyword with short documentation   Fail   Fails the test immediately with the given (optional) message.
+
+Should Contain Link To Keyword With Short Documentation
+    [Arguments]   ${name}   ${short doc}
+    ${source} =   Get source
+    Should Contain   ${source}   <a href="#${name}" title="${short doc}">${name}</a>
+    Keyword should contain anchor   ${source}   ${name}
+
+Keyword Should Contain Anchor
+    [Arguments]   ${source}   ${name}
+    Should contain   ${source}   <td class="kw" id="${name}">${name}</td>
+
+Then Link Exist From Keyword Documentation To Another Keyword
+    ${source} =   Get source
+    Should contain   ${source}   <a href="#Get%20Length" class="name">Get Length</a>
+    Keyword should contain anchor   ${source}   Get Length
+

@@ -1,0 +1,31 @@
+*** Settings ***
+Force Tags       Req-Search 1   Sprint-2
+Resource         search.txt
+
+*** Test Cases ***
+User Can Search Using Keyword Name Only
+    Given some libraries exist in RFDoc
+    and search page is open
+    When user searches using keyword name
+    Then keywords whose name contain search term case insensitively are displayed
+    and number of matching keywords is displayed
+
+User Can Search Using Keyword Name And Documentation
+    Given some libraries exist in RFDoc
+    and search page is open
+    When user searches using keyword name and documentation
+    Then keywords whose name or documentation contain search term case insensitively are displayed
+    and number of matching keywords is displayed
+
+Message Is Displayed When Search Matches No Keywords
+    Given some libraries exist in RFDoc
+    and search page is open
+    When user searches with non-matching search term
+    Then message "No matching keywords found." is shown
+
+Error Is Displayed When Searching Without Search Term
+    Given some libraries exist in RFDoc
+    and search page is open
+    When user searches without entering search term
+    Then error message "This field is required." is shown
+
