@@ -1,89 +1,89 @@
 *** Settings ***
-Library          SeleniumLibrary   ${EMPTY}   ${EMPTY}   ${SELENIUM PORT}
-Library          OperatingSystem
-Library          RFDocDataBase
+Library         SeleniumLibrary  ${EMPTY}  ${EMPTY}  ${SELENIUM PORT}
+Library         OperatingSystem
+Library         RFDocDataBase
 
 *** Variables ***
-${RFDOC PORT}   8000
-${SELENIUM PORT}   4444
-${HOST}   localhost:${RFDOC PORT}
-${BASE URL}   http://${HOST}/
-${UPLOAD URL}   ${BASE URL}upload/
-${SEARCH URL}   ${BASE URL}search/
-${LIBRARY URL}   ${BASE URL}lib/
-${BROWSER}   firefox
-@{BUILTIN KEYWORDS}   Convert To Integer   item   Converts the given item to an integer number.   No Operation   ${EMPTY}   Does absolutely nothing.
-@{INITIAL KEYWORDS}   First Keyword   first, second=default, *args   First KW doc   My Second Keyword   some   Second KW doc
-@{UPDATED KEYWORDS}   First Keyword Updated   first, second=default updated, *args   Updated KW doc   My Second Keyword   some   Second KW doc   Third Keyword
-...   third   Third KW doc
+${RFDOC PORT}  8000
+${SELENIUM PORT}  4444
+${HOST}  localhost:${RFDOC PORT}
+${BASE URL}  http://${HOST}/
+${UPLOAD URL}  ${BASE URL}upload/
+${SEARCH URL}  ${BASE URL}search/
+${LIBRARY URL}  ${BASE URL}lib/
+${BROWSER}  firefox
+@{BUILTIN KEYWORDS}  Convert To Integer  item  Converts the given item to an integer number.  No Operation  ${EMPTY}  Does absolutely nothing.
+@{INITIAL KEYWORDS}  First Keyword  first, second=default, *args  First KW doc  My Second Keyword  some  Second KW doc
+@{UPDATED KEYWORDS}  First Keyword Updated  first, second=default updated, *args  Updated KW doc  My Second Keyword  some  Second KW doc  Third Keyword
+...  third  Third KW doc
 
 *** Keywords ***
 Given No Libraries Exist In RFDoc
     Clear RFDoc Database
 
 Given Some Libraries Exist In RFDoc
-    Copy file   ${CURDIR}/../testdata/libraries.db   ${CURDIR}/../results/rfdoc.db
+    Copy file  ${CURDIR}/../testdata/libraries.db  ${CURDIR}/../results/rfdoc.db
 
 Navigate To Main Page
-    Navigate to and check title   ${BASE URL}   Welcome
+    Navigate to and check title  ${BASE URL}  Welcome
 
 Navigate To Upload Page
-    Navigate to and check title   ${UPLOAD URL}   Upload
+    Navigate to and check title  ${UPLOAD URL}  Upload
 
 Navigate To Library
-    [Arguments]   ${library name}
-    Navigate to and check title   ${LIBRARY URL}${library name}   ${library name}
+    [Arguments]  ${library name}
+    Navigate to and check title  ${LIBRARY URL}${library name}  ${library name}
 
 Navigate To And Check Title
-    [Arguments]   ${url}   ${title}
-    Go to   ${url}
-    Title should be   RFDoc | ${title}
+    [Arguments]  ${url}  ${title}
+    Go to  ${url}
+    Title should be  RFDoc | ${title}
 
 Upload File
-    [Arguments]   ${file}   ${library name}=
-    Comment   Need to be suite level as this keyword is used in suite setup
-    Set suite variable   ${UPLOADED LIBRARY}   ${library name}
-    Input text   file   ${CURDIR}${/}..${/}testdata${/}${file}
-    Click button   Upload
+    [Arguments]  ${file}  ${library name}=
+    Comment  Need to be suite level as this keyword is used in suite setup
+    Set suite variable  ${UPLOADED LIBRARY}  ${library name}
+    Input text  file  ${CURDIR}${/}..${/}testdata${/}${file}
+    Click button  Upload
 
 Upload Page Should Contain Success Information
-    [Arguments]   ${library name}
+    [Arguments]  ${library name}
     Log Source
-    Page should contain   Successfully uploaded library ${library name}
+    Page should contain  Successfully uploaded library ${library name}
 
 Navigate To Uploaded Library
-    Click link   /lib/${UPLOADED LIBRARY}
-    Title should be   RFDoc | ${UPLOADED LIBRARY}
+    Click link  /lib/${UPLOADED LIBRARY}
+    Title should be  RFDoc | ${UPLOADED LIBRARY}
 
 Upload Library And Check Library And Keywords Are Uploaded Correctly
-    [Arguments]   ${library xml}   ${library name}   @{keywords}
+    [Arguments]  ${library xml}  ${library name}  @{keywords}
     Navigate to upload page
-    Upload file   ${library xml}   ${library name}
-    Library upload should be successful   ${library name}
-    Library should contain keywords   @{keywords}
+    Upload file  ${library xml}  ${library name}
+    Library upload should be successful  ${library name}
+    Library should contain keywords  @{keywords}
 
 Library Upload Should Be Successful
-    [Arguments]   ${library name}
-    Upload page should contain success information   ${library name}
+    [Arguments]  ${library name}
+    Upload page should contain success information  ${library name}
     Navigate to uploaded library
 
 Library Should Contain Keywords
-    [Arguments]   @{keywords}
-    ${source} =   Get source
-    :: FOR   ${name}   ${args}   ${doc}   IN   @{keywords}
-    \   Source should contain keyword   ${source}   ${name}   ${args}   ${doc}
+    [Arguments]  @{keywords}
+    ${source} =  Get source
+    :FOR  ${name}  ${args}  ${doc}  IN  @{keywords}
+    \  Source should contain keyword  ${source}  ${name}  ${args}  ${doc}
 
 Source Should Contain Keyword
-    [Arguments]   ${source}   ${name}   ${args}   ${doc}
-    ${match}   ${group1}   ${group2} =   Should Match Regexp   ${source}   (?s)<td class="kw" id="${name}">${name}</td>\\s*<td class="arg">(.*?)</td>\\s*<td class="doc">(.+?)</td>
-    Should Be Equal   ${group1}   ${args}
-    Should Be Equal   ${group2}   ${doc}
+    [Arguments]  ${source}  ${name}  ${args}  ${doc}
+    ${match}  ${group1}  ${group2} =  Should Match Regexp  ${source}  (?s)<td class="kw" id="${name}">${name}</td>\\s*<td class="arg">(.*?)</td>\\s*<td class="doc">(.+?)</td>
+    Should Be Equal  ${group1}  ${args}
+    Should Be Equal  ${group2}  ${doc}
 
 Log Source
-    ${source} =   Get source
-    Log   ${source}   debug
+    ${source} =  Get source
+    Log  ${source}  debug
 
 Error Should Be Shown
-    [Arguments]   ${message}
-    Element should contain   xpath=//ul[@class='errorlist']   ${message}
+    [Arguments]  ${message}
+    Element should contain  xpath=//ul[@class='errorlist']  ${message}
 

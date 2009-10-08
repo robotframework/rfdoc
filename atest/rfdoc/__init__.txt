@@ -1,13 +1,13 @@
 *** Settings ***
-Suite Setup      Open browser and set demo delay
-Suite Teardown   Close All Browsers
-Resource         rfdoc.txt
+Suite Setup     Open browser and set demo delay
+Suite Teardown  Close All Browsers
+Resource        rfdoc.txt
 
 *** Variables ***
-${DEMO DELAY}   0 seconds
+${DEMO DELAY}  0 seconds
 
 *** Keywords ***
 Open Browser And Set Demo Delay
-    Open Browser   ${BASE URL}   ${BROWSER}
-    Set selenium speed   ${DEMO DELAY}
+    Open Browser  ${BASE URL}  ${BROWSER}
+    Set selenium speed  ${DEMO DELAY}
 

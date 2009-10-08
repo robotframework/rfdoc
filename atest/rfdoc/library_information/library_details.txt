@@ -1,25 +1,25 @@
 *** Settings ***
-Suite Setup      Given some libraries exist in RFDoc
-Test Setup       When user opens library details
-Force Tags       Req-Library 2   Sprint-1
-Resource         library_information.txt
+Suite Setup     Given some libraries exist in RFDoc
+Test Setup      When user opens library details
+Force Tags      Req-Library 2  Sprint-1
+Resource        library_information.txt
 
 *** Test Cases ***
 Library Details Are Visible
-    [Setup]   When user opens library with version information
+    [Setup]  When user opens library with version information
     Then library name, version and documentation are shown
 
 Library Version Is Not Visible
-    [Setup]   When user opens library without version information
+    [Setup]  When user opens library without version information
     Then library name and documentation are shown
     and no version information is shown
 
 Library Initialization Is Visible
-    [Setup]   When user opens library with initialization information
+    [Setup]  When user opens library with initialization information
     Then library initialization is shown
 
 Library Initialization Is Not Visible
-    [Setup]   When user opens library without initialization information
+    [Setup]  When user opens library without initialization information
     Then library initialization is not shown
 
 Keyword Details Are Visible

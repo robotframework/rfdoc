@@ -1,6 +1,6 @@
 *** Settings ***
-Force Tags       Req-Library 1   Sprint-1
-Resource         library_information.txt
+Force Tags      Req-Library 1  Sprint-1
+Resource        library_information.txt
 
 *** Test Cases ***
 Main Page Contains Info That No Libraries Exist In RFDoc
