@@ -1,6 +1,6 @@
 *** Settings ***
-Force Tags       Req-Search 1   Sprint-2
-Resource         search.txt
+Force Tags      Req-Search 1  Sprint-2
+Resource        search.txt
 
 *** Test Cases ***
 User Can Search Using Keyword Name Only

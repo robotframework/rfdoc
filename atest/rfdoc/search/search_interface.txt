@@ -1,9 +1,9 @@
 *** Settings ***
-Suite Setup      Given some libraries exist in RFDoc
-Test Setup       and main page is open
-Force Tags       Sprint-2
-Default Tags     Req-Search 2
-Resource         search.txt
+Suite Setup     Given some libraries exist in RFDoc
+Test Setup      and main page is open
+Force Tags      Sprint-2
+Default Tags    Req-Search 2
+Resource        search.txt
 
 *** Test Cases ***
 It Is Possible To Search From Main Page
@@ -19,7 +19,7 @@ It Is Possible To Search From Search Page
     Then results are shown on search page
 
 Search Results Contain Relevant Information
-    [Tags]   Req-Search 3
+    [Tags]  Req-Search 3
     Given user has searched keywords successfully
     Then search results contain keyword and library names as links and keyword documentation
 

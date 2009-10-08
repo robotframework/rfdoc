@@ -1,6 +1,6 @@
 *** Settings ***
-Force Tags       Req-Upload 2   Sprint-1
-Resource         upload.txt
+Force Tags      Req-Upload 2  Sprint-1
+Resource        upload.txt
 
 *** Test Cases ***
 Existing Library Is Not Overridden By Default
