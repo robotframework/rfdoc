@@ -7,15 +7,15 @@ Resource        search.txt
 
 *** Test Cases ***
 It Is Possible To Search From Main Page
-    Given some libraries exist in RFDoc
+    Given SeleniumLibrary exists in RFDoc
     and main page is open
-    When user searches using keyword name and documentation
+    When user searches with "title"
     Then results are shown on search page
 
 It Is Possible To Search From Search Page
-    Given some libraries exist in RFDoc
+    Given SeleniumLibrary exists in RFDoc
     and search page is open
-    When user searches using keyword name and documentation
+    When user searches with "title"
     Then results are shown on search page
 
 Search Results Contain Relevant Information
