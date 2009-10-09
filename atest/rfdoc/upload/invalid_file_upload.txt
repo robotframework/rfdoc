@@ -4,12 +4,6 @@ Test Teardown   When upload page is open
 Force Tags      Req-Upload 3  Sprint-1
 Resource        ../rfdoc.txt
 
-*** Variables ***
-${NON XML FILE MESSAGE}  Given file is not XML.
-${INVALID XML FILE MESSAGE}  Given file contains invalid XML.
-${NON EXISTING FILE MESSAGE}  The submitted file is empty.
-${MISSING KEYWORDS MESSAGE}  Given test library contains no keywords.
-
 *** Test Cases ***
 Non XML File
     Uploading "text_file.txt" fails with message "Given file is not XML."

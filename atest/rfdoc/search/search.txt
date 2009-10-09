@@ -7,16 +7,14 @@ ${When }user searches with "${search term}"${include documentation}
     Input text  search_term  ${search term}
     Click Button  search_button
 
-Then ${keywords} keyword${s} are displayed
-    @{keywords} =  Get keyword names  ${keywords}
+${When }user searches with "${search term}" including documentation
+Then "${keywords}" keyword${s} are displayed
+    @{keywords} =  Get names  ${keywords}
     :FOR  ${name}  IN  @{keywords}
     \  Search Result Should Contain ${name}
 
 Search Result Should Contain ${name}
     Page should contain element  //td/a[text()='${name}']
-
-When User Searches Without Entering Search Term
-    User searches with "${EMPTY}"
 
 Given User Has Searched Keywords Successfully
     Given SeleniumLibrary exists in RFDoc

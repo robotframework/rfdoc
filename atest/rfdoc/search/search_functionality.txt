@@ -13,7 +13,7 @@ User Can Search Using Keyword Name Only
 User Can Search Using Keyword Name And Documentation
     Given SeleniumLibrary exists in RFDoc
     and search page is open
-    When user searches with "TITLE" including search from documentation
+    When user searches with "title" including documentation
     Then "Get Title", "Title Should Be" and "Select Window" keywords are displayed
     and message "3 matching keywords found." is shown
 
@@ -26,6 +26,6 @@ Message Is Displayed When Search Matches No Keywords
 Error Is Displayed When Searching Without Search Term
     Given SeleniumLibrary exists in RFDoc
     and search page is open
-    When user searches without entering search term
+    When user searches with "" 
     Then an error "This field is required." is shown
 
