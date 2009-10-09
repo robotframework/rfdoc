@@ -2,14 +2,9 @@
 Resource        ../rfdoc.txt
 
 *** Keywords ***
-When User Opens Main Page
-    Navigate to main page
-
-Then Information That There Is No Libraries In RFDoc Is Shown
-    Page should contain  No libraries in the system.
-
-Then Existing Libraries Are Listed On The Main Page
-    Main page should contain libraries  BuiltIn  ExampleLibrary  SeleniumLibrary
+Then "${libraries}" Are Listed On The Main Page
+    @{libraries} =  Get names  ${libraries}
+    Main page should contain libraries  @{libraries}
 
 Main Page Should Contain Libraries
     [Arguments]  @{libraries}

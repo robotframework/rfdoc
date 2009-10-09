@@ -10,7 +10,8 @@ It Is Possible To Search From Main Page
     Given SeleniumLibrary exists in RFDoc
     and main page is open
     When user searches with "title"
-    Then results are shown on search page
+    Then search page is opened
+    And "Get Title" and "Title Should Be" keywords are displayed
 
 It Is Possible To Search From Search Page
     Given SeleniumLibrary exists in RFDoc

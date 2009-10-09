@@ -22,12 +22,6 @@ Given No Libraries Exist In RFDoc
 Given ${some libraries} Exist${s} In RFDoc
     Copy file  ${CURDIR}/../testdata/libraries.db  ${CURDIR}/../results/rfdoc.db
 
-Navigate To Main Page
-    Navigate to and check title  ${BASE URL}  Welcome
-
-Navigate To Upload Page
-    Navigate to and check title  ${UPLOAD URL}  Upload
-
 And main page is open
     Go to  ${BASE URL}
 
