@@ -7,21 +7,18 @@ Library         RFDocDataBase
 ${RFDOC PORT}  8000
 ${SELENIUM PORT}  4444
 ${HOST}  localhost:${RFDOC PORT}
-${BASE URL}  http://${HOST}/
-${UPLOAD URL}  ${BASE URL}upload/
-${SEARCH URL}  ${BASE URL}search/
-${LIBRARY URL}  ${BASE URL}lib/
+${BASE URL}  http://${HOST}
 ${BROWSER}  firefox
 @{BUILTIN KEYWORDS}  Convert To Integer  item  Converts the given item to an integer number.  No Operation  ${EMPTY}  Does absolutely nothing.
-@{INITIAL KEYWORDS}  First Keyword  first, second=default, *args  First KW doc  My Second Keyword  some  Second KW doc
-@{UPDATED KEYWORDS}  First Keyword Updated  first, second=default updated, *args  Updated KW doc  My Second Keyword  some  Second KW doc  Third Keyword
+@{EXAMPLELIBRARY VERSION 1 KEYWORDS}  First Keyword  first, second=default, *args  First KW doc  My Second Keyword  some  Second KW doc
+@{EXAMPLELIBRARY VERSION 2 KEYWORDS}  First Keyword Updated  first, second=default updated, *args  Updated KW doc  My Second Keyword  some  Second KW doc  Third Keyword
 ...  third  Third KW doc
 
 *** Keywords ***
 Given No Libraries Exist In RFDoc
     Clear RFDoc Database
 
-Given Some Libraries Exist In RFDoc
+Given ${some libraries} Exist${s} In RFDoc
     Copy file  ${CURDIR}/../testdata/libraries.db  ${CURDIR}/../results/rfdoc.db
 
 Navigate To Main Page
@@ -30,26 +27,21 @@ Navigate To Main Page
 Navigate To Upload Page
     Navigate to and check title  ${UPLOAD URL}  Upload
 
+${When/And} ${name} Page Is Open
+    Go to  ${BASE URL}/${name}
+
 Navigate To Library
-    [Arguments]  ${library name}
-    Navigate to and check title  ${LIBRARY URL}${library name}  ${library name}
+    [Arguments]  ${name}
+    Go to  ${BASE URL}/lib/${name}
+    Title should be  RFDoc | ${name}
 
-Navigate To And Check Title
-    [Arguments]  ${url}  ${title}
-    Go to  ${url}
-    Title should be  RFDoc | ${title}
+${When/And} user uploads ${library}
+    ${file} =  Set Variable  ${library.replace(' ', '_')}.xml
+    Upload ${file}
 
-Upload File
-    [Arguments]  ${file}  ${library name}=
-    Comment  Need to be suite level as this keyword is used in suite setup
-    Set suite variable  ${UPLOADED LIBRARY}  ${library name}
+Upload ${file}
     Input text  file  ${CURDIR}${/}..${/}testdata${/}${file}
     Click button  Upload
-
-Upload Page Should Contain Success Information
-    [Arguments]  ${library name}
-    Log Source
-    Page should contain  Successfully uploaded library ${library name}
 
 Navigate To Uploaded Library
     Click link  /lib/${UPLOADED LIBRARY}
@@ -67,9 +59,11 @@ Library Upload Should Be Successful
     Upload page should contain success information  ${library name}
     Navigate to uploaded library
 
-Library Should Contain Keywords
-    [Arguments]  @{keywords}
+And RFDoc contains ${library}
+    ${name w/o version} =  Set Variable  ${library.split()[0]}
+    Navigate to library  ${name w/o version}
     ${source} =  Get source
+    @{keywords} =  Set variable  @{${library} KEYWORDS}
     :FOR  ${name}  ${args}  ${doc}  IN  @{keywords}
     \  Source should contain keyword  ${source}  ${name}  ${args}  ${doc}
 
@@ -79,11 +73,16 @@ Source Should Contain Keyword
     Should Be Equal  ${group1}  ${args}
     Should Be Equal  ${group2}  ${doc}
 
-Log Source
-    ${source} =  Get source
-    Log  ${source}  debug
-
-Error Should Be Shown
-    [Arguments]  ${message}
+Then an error "${message}" is shown
     Element should contain  xpath=//ul[@class='errorlist']  ${message}
 
+Then a notification "${message}" is shown
+    Page should contain  ${message}
+
+When User Selects "${name}" Option
+    Select checkbox  ${name}
+
+and the notification contains a link to ${library}
+    Page Should Contain Link  /lib/${library}  ${library}
+#    Successfully uploaded library <a href="/lib/BuiltIn">BuiltIn</a>.
+    
