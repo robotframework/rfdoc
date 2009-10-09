@@ -2,6 +2,7 @@
 Library         SeleniumLibrary  ${EMPTY}  ${EMPTY}  ${SELENIUM PORT}
 Library         OperatingSystem
 Library         RFDocDataBase
+Library         NameParser
 
 *** Variables ***
 ${RFDOC PORT}  8000
@@ -26,6 +27,9 @@ Navigate To Main Page
 
 Navigate To Upload Page
     Navigate to and check title  ${UPLOAD URL}  Upload
+
+And main page is open
+    Go to  ${BASE URL}
 
 ${When/And} ${name} Page Is Open
     Go to  ${BASE URL}/${name}
@@ -77,6 +81,9 @@ Then an error "${message}" is shown
     Element should contain  xpath=//ul[@class='errorlist']  ${message}
 
 Then a notification "${message}" is shown
+    Page should contain  ${message}
+
+${Then/and} message "${message}" is shown
     Page should contain  ${message}
 
 When User Selects "${name}" Option
