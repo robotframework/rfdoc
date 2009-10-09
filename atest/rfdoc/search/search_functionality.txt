@@ -4,28 +4,28 @@ Resource        search.txt
 
 *** Test Cases ***
 User Can Search Using Keyword Name Only
-    Given some libraries exist in RFDoc
+    Given SeleniumLibrary exists in RFDoc
     and search page is open
-    When user searches using keyword name
-    Then keywords whose name contain search term case insensitively are displayed
-    and number of matching keywords is displayed
+    When user searches with "title"
+    Then "Get Title" and "Title Should Be" keywords are displayed
+    and message "2 matching keywords found." is shown
 
 User Can Search Using Keyword Name And Documentation
-    Given some libraries exist in RFDoc
+    Given SeleniumLibrary exists in RFDoc
     and search page is open
-    When user searches using keyword name and documentation
-    Then keywords whose name or documentation contain search term case insensitively are displayed
-    and number of matching keywords is displayed
+    When user searches with "TITLE" including search from documentation
+    Then "Get Title", "Title Should Be" and "Select Window" keywords are displayed
+    and message "3 matching keywords found." is shown
 
 Message Is Displayed When Search Matches No Keywords
-    Given some libraries exist in RFDoc
+    Given SeleniumLibrary exists in RFDoc
     and search page is open
-    When user searches with non-matching search term
+    When user searches with "non-matching" 
     Then message "No matching keywords found." is shown
 
 Error Is Displayed When Searching Without Search Term
-    Given some libraries exist in RFDoc
+    Given SeleniumLibrary exists in RFDoc
     and search page is open
     When user searches without entering search term
-    Then error message "This field is required." is shown
+    Then an error "This field is required." is shown
 

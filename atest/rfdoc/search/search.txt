@@ -2,51 +2,26 @@
 Resource        ../rfdoc.txt
 
 *** Keywords ***
-And Main Page Is Open
-    Navigate to main page
+${When }user searches with "${search term}"${include documentation}
+    Run Keyword If  '${include documentation}' != ''  Select Checkbox  include_doc
+    Input text  search_term  ${search term}
+    Click Button  search_button
 
-Navigate To Search Page
-    Navigate to and check title  ${SEARCH URL}  Search
+Then ${keywords} keyword${s} are displayed
+    @{keywords} =  Get keyword names  ${keywords}
+    :FOR  ${name}  IN  @{keywords}
+    \  Search Result Should Contain ${name}
 
-And Search Page Is Open
-    Navigate to search page
-
-When User Searches Using Keyword Name
-    Search keywords  title
-
-Then Keywords Whose Name Contain Search Term Case Insensitively Are Displayed
-    Search result should contain keyword name  Get Title
-    Search result should contain keyword name  Title Should Be
-    Set Test Variable  ${NUMBER OF MATCHES}  2
-
-When User Searches Using Keyword Name And Documentation
-    Search keywords  TITLE  search documentation
-
-Then Keywords Whose Name Or Documentation Contain Search Term Case Insensitively Are Displayed
-    Search result should contain keyword name  Get Title
-    Search result should contain keyword name  Title Should Be
-    Search result should contain keyword name  Select Window
-    Set Test Variable  ${NUMBER OF MATCHES}  3
-
-And Number Of Matching Keywords Is Displayed
-    Page Should Contain  ${NUMBER OF MATCHES} matching keywords found.
-
-When User Searches With Non-matching Search Term
-    Search keywords  non-matching term  search documentation
-
-Then Message "No Matching Keywords Found." Is Shown
-    Page should contain  No matching keywords found.
+Search Result Should Contain ${name}
+    Page should contain element  //td/a[text()='${name}']
 
 When User Searches Without Entering Search Term
-    Search keywords  ${EMPTY}
-
-Then Error Message "This Field Is Required." Is Shown
-    Error Should Be Shown  This field is required.
+    User searches with "${EMPTY}"
 
 Given User Has Searched Keywords Successfully
-    Given some libraries exist in RFDoc
+    Given SeleniumLibrary exists in RFDoc
     and search page is open
-    When user searches using keyword name
+    When user searches with "title"
 
 Then Search Results Contain Keyword And Library Names As Links And Keyword Documentation
     ${expected} =  Catenate  SEPARATOR=\\s*  <table class="keywords results">  <tbody>  <tr>  <td><a href="/lib/SeleniumLibrary#Get%20Title">Get Title</a></td>  <td><a href="/lib/SeleniumLibrary">SeleniumLibrary</a></td>
@@ -56,17 +31,5 @@ Then Search Results Contain Keyword And Library Names As Links And Keyword Docum
     Should Match Regexp  ${source}  ${expected}
 
 Then Results Are Shown On Search Page
-    Location Should Be  ${SEARCH URL}
-    Then keywords whose name or documentation contain search term case insensitively are displayed
-    and number of matching keywords is displayed
-
-Search Keywords
-    [Arguments]  ${search term}  ${include doc}=NO
-    Run Keyword If  '${include doc}' != 'NO'  Select Checkbox  include_doc
-    Input text  search_term  ${search term}
-    Click Button  search_button
-
-Search Result Should Contain Keyword Name
-    [Arguments]  ${keyword name}
-    Page should contain element  //td/a[text()='${keyword name}']
-
+    Then "Get Title" and "Title Should Be" keywords are displayed
+    Location Should Be  ${BASE URL}/search/
