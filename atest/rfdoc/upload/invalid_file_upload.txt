@@ -15,44 +15,40 @@ Non XML File
     Uploading "text_file.txt" fails with message "Given file is not XML."
 
 Wrong XML Content
-    Uploading file fails  invalid_content.xml  ${INVALID XML FILE MESSAGE}
+    Uploading "invalid_content.xml" fails with message "Given file contains invalid XML."
 
 Non Existing File
-    Uploading file fails  non_existing_file.xml  ${NON EXISTING FILE MESSAGE}
+    Uploading "non_existing_file.xml" fails with message "The submitted file is empty."
 
 Empty Library Name
-    Uploading file fails  empty_library_name.xml  ${INVALID XML FILE MESSAGE}
+    Uploading "empty_library_name.xml" fails with message "Given file contains invalid XML."
 
 Missing Library Name
-    Uploading file fails  missing_library_name.xml  ${INVALID XML FILE MESSAGE}
+    Uploading "missing_library_name.xml" fails with message "Given file contains invalid XML."
 
 Missing Library Documentation
-    Uploading file fails  missing_library_doc.xml  ${INVALID XML FILE MESSAGE}
+    Uploading "missing_library_doc.xml" fails with message "Given file contains invalid XML."
 
 Empty Keyword Name
-    Uploading file fails  empty_keyword_name.xml  ${INVALID XML FILE MESSAGE}
+    Uploading "empty_keyword_name.xml" fails with message "Given file contains invalid XML."
 
 Missing Keyword Name
-    Uploading file fails  missing_keyword_name.xml  ${INVALID XML FILE MESSAGE}
+    Uploading "missing_keyword_name.xml" fails with message "Given file contains invalid XML."
 
 Missing Keyword Documentation
-    Uploading file fails  missing_keyword_doc.xml  ${INVALID XML FILE MESSAGE}
+    Uploading "missing_keyword_doc.xml" fails with message "Given file contains invalid XML."
 
 Empty Keyword
-    Uploading file fails  empty_keyword.xml  ${INVALID XML FILE MESSAGE}
+    Uploading "empty_keyword.xml" fails with message "Given file contains invalid XML."
 
 Empty Keywords
-    Uploading file fails  empty_keywords.xml  ${MISSING KEYWORDS MESSAGE}
+    Uploading "empty_keywords.xml" fails with message "Given test library contains no keywords."
 
 Missing Keywords
-    Uploading file fails  missing_keywords.xml  ${MISSING KEYWORDS MESSAGE}
+    Uploading "missing_keywords.xml" fails with message "Given test library contains no keywords."
 
 *** Keywords ***
 Uploading "${file}" fails with message "${message}"
-    Uploading File Fails  ${file}  ${message}
-
-Uploading File Fails
-    [Arguments]  ${file name}  ${message}
-    Upload invalid${/}${file name}
+    Upload invalid${/}${file}
     Then an error "${message}" is shown
 
