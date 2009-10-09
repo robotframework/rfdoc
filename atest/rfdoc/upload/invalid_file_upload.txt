@@ -1,8 +1,8 @@
 *** Settings ***
-Suite Setup     Navigate to upload page
-Test Teardown   Navigate to upload page
+Suite Setup     When upload page is open
+Test Teardown   When upload page is open
 Force Tags      Req-Upload 3  Sprint-1
-Resource        upload.txt
+Resource        ../rfdoc.txt
 
 *** Variables ***
 ${NON XML FILE MESSAGE}  Given file is not XML.
@@ -12,7 +12,7 @@ ${MISSING KEYWORDS MESSAGE}  Given test library contains no keywords.
 
 *** Test Cases ***
 Non XML File
-    Uploading file fails  text_file.txt  ${NON XML FILE MESSAGE}
+    Uploading "text_file.txt" fails with message "Given file is not XML."
 
 Wrong XML Content
     Uploading file fails  invalid_content.xml  ${INVALID XML FILE MESSAGE}
@@ -48,8 +48,11 @@ Missing Keywords
     Uploading file fails  missing_keywords.xml  ${MISSING KEYWORDS MESSAGE}
 
 *** Keywords ***
+Uploading "${file}" fails with message "${message}"
+    Uploading File Fails  ${file}  ${message}
+
 Uploading File Fails
     [Arguments]  ${file name}  ${message}
-    Upload file  invalid${/}${file name}
-    Error should be shown  ${message}
+    Upload invalid${/}${file name}
+    Then an error "${message}" is shown
 

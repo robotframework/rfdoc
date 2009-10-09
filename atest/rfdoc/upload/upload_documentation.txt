@@ -1,13 +1,13 @@
 *** Settings ***
 Force Tags      Req-Upload 1  Sprint-1
-Resource        upload.txt
+Resource        ../rfdoc.txt
 
 *** Test Cases ***
 User Can Upload Library Documentation
     Given no libraries exist in RFDoc
     and upload page is open
-    When user uploads new library XML
-    Then a notification that a library was successfully uploaded is shown
-    and the notification contains a link to library details
-    and the library is stored into the database
+    When user uploads BuiltIn
+    Then a notification "Successfully uploaded library BuiltIn" is shown
+    and the notification contains a link to BuiltIn
+    and RFDoc contains BuiltIn
 
