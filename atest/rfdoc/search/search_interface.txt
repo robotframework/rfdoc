@@ -1,6 +1,7 @@
 *** Settings ***
 Suite Setup     Given some libraries exist in RFDoc
-Test Setup      and main page is open
+Test Setup      and "main" page is open
+Test Teardown   Sleep  10
 Force Tags      Sprint-2
 Default Tags    Req-Search 2
 Resource        search.txt
@@ -8,19 +9,22 @@ Resource        search.txt
 *** Test Cases ***
 It Is Possible To Search From Main Page
     Given SeleniumLibrary exists in RFDoc
-    and main page is open
+    and "main" page is open
     When user searches with "title"
-    Then search page is opened
+    Then "search" page is opened
     And "Get Title" and "Title Should Be" keywords are displayed
 
 It Is Possible To Search From Search Page
     Given SeleniumLibrary exists in RFDoc
-    and search page is open
+    and "search" page is open
     When user searches with "title"
-    Then results are shown on search page
+    Then "search" page is opened
+    And "Get Title" and "Title Should Be" keywords are displayed
 
 Search Results Contain Relevant Information
     [Tags]  Req-Search 3
-    Given user has searched keywords successfully
-    Then search results contain keyword and library names as links and keyword documentation
+    Given SeleniumLibrary exists in RFDoc
+    And "search" page is open
+    And user searches with "title"
+    Then search results contain keyword "Get Title" with link to "SeleniumLibrary" and with documentation
 

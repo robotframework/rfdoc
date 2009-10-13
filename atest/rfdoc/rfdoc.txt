@@ -16,16 +16,17 @@ ${BROWSER}  firefox
 ...  third  Third KW doc
 
 *** Keywords ***
-Given No Libraries Exist In RFDoc
+No Libraries Exist In RFDoc
     Clear RFDoc Database
 
-Given ${some libraries} Exist${s} In RFDoc
+${some libraries} Exist${s} In RFDoc
     Copy file  ${CURDIR}/../testdata/libraries.db  ${CURDIR}/../results/rfdoc.db
 
-And main page is open
+"Main" page is open
     Go to  ${BASE URL}
 
-${When/And} ${name} Page Is Open
+"${name}" Page Is Open
+    ${name} =  Set variable  ${name.lower()}
     Go to  ${BASE URL}/${name}
 
 Navigate To Library
@@ -33,7 +34,7 @@ Navigate To Library
     Go to  ${BASE URL}/lib/${name}
     Title should be  RFDoc | ${name}
 
-${When/And} user uploads ${library}
+User uploads ${library}
     ${file} =  Set Variable  ${library.replace(' ', '_')}.xml
     Upload ${file}
 
@@ -57,7 +58,7 @@ Library Upload Should Be Successful
     Upload page should contain success information  ${library name}
     Navigate to uploaded library
 
-And RFDoc contains ${library}
+RFDoc contains ${library}
     ${name w/o version} =  Set Variable  ${library.split()[0]}
     Navigate to library  ${name w/o version}
     ${source} =  Get source
@@ -71,19 +72,19 @@ Source Should Contain Keyword
     Should Be Equal  ${group1}  ${args}
     Should Be Equal  ${group2}  ${doc}
 
-Then an error "${message}" is shown
+An error "${message}" is shown
     Element should contain  xpath=//ul[@class='errorlist']  ${message}
 
-Then a notification "${message}" is shown
+A notification "${message}" is shown
     Page should contain  ${message}
 
-${Then/and} message "${message}" is shown
+Message "${message}" is shown
     Page should contain  ${message}
 
 When User Selects "${name}" Option
     Select checkbox  ${name}
 
-and the notification contains a link to ${library}
+The notification contains a link to ${library}
     Page Should Contain Link  /lib/${library}  ${library}
 #    Successfully uploaded library <a href="/lib/BuiltIn">BuiltIn</a>.
     
