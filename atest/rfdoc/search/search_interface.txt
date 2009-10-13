@@ -1,7 +1,6 @@
 *** Settings ***
 Suite Setup     Given some libraries exist in RFDoc
 Test Setup      and "main" page is open
-Test Teardown   Sleep  10
 Force Tags      Sprint-2
 Default Tags    Req-Search 2
 Resource        search.txt

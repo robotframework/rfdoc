@@ -5,7 +5,7 @@ Resource        ../rfdoc.txt
 *** Test Cases ***
 User Can Upload Library Documentation
     Given no libraries exist in RFDoc
-    and upload page is open
+    and "upload" page is open
     When user uploads BuiltIn
     Then a notification "Successfully uploaded library BuiltIn" is shown
     and the notification contains a link to BuiltIn

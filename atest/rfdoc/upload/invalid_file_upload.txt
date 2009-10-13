@@ -1,6 +1,6 @@
 *** Settings ***
-Suite Setup     When upload page is open
-Test Teardown   When upload page is open
+Suite Setup     "Upload" page is open
+Test Teardown   "Upload" page is open
 Force Tags      Req-Upload 3  Sprint-1
 Resource        ../rfdoc.txt
 
@@ -44,5 +44,5 @@ Missing Keywords
 *** Keywords ***
 Uploading "${file}" fails with message "${message}"
     Upload invalid${/}${file}
-    Then an error "${message}" is shown
+    An error "${message}" is shown
 

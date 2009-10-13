@@ -5,11 +5,11 @@ Resource        library_information.txt
 *** Test Cases ***
 Main Page Contains Info That No Libraries Exist In RFDoc
     Given no libraries exist in RFDoc
-    And main page is open
+    And "main" page is open
     Then a notification "No libraries in the system." is shown
 
 Libraries In RFDoc Are Listed On Main Page
     Given "BuiltIn", "ExampleLibrary" and "SeleniumLibrary" exist in RFDoc
-    And main page is open
+    And "main" page is open
     Then "BuiltIn", "ExampleLibrary" and "SeleniumLibrary" are listed on the main page
 

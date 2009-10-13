@@ -16,7 +16,7 @@ ${BROWSER}  firefox
 ...  third  Third KW doc
 
 *** Keywords ***
-No Libraries Exist In RFDoc
+Given No Libraries Exist In RFDoc
     Clear RFDoc Database
 
 ${some libraries} Exist${s} In RFDoc
@@ -61,8 +61,12 @@ Library Upload Should Be Successful
 RFDoc contains ${library}
     ${name w/o version} =  Set Variable  ${library.split()[0]}
     Navigate to library  ${name w/o version}
-    ${source} =  Get source
     @{keywords} =  Set variable  @{${library} KEYWORDS}
+    Library should contain keywords  @{keywords}
+
+Library should contain keywords 
+    [Arguments]  @{keywords}
+    ${source} =  Get source
     :FOR  ${name}  ${args}  ${doc}  IN  @{keywords}
     \  Source should contain keyword  ${source}  ${name}  ${args}  ${doc}
 
