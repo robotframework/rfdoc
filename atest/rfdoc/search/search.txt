@@ -2,13 +2,15 @@
 Resource        ../rfdoc.txt
 
 *** Keywords ***
-${When }user searches with "${search term}"${include documentation}
-    Run Keyword If  '${include documentation}' != ''  Select Checkbox  include_doc
+User searches with "${search term}"
     Input text  search_term  ${search term}
     Click Button  search_button
 
-${When }user searches with "${search term}" including documentation
-Then "${keywords}" keyword${s} are displayed
+User searches with "${search term}" including documentation
+    Select Checkbox  include_doc
+    User searches with "${search term}"
+
+"${keywords}" keywords are displayed
     @{keywords} =  Get names  ${keywords}
     :FOR  ${name}  IN  @{keywords}
     \  Search Result Should Contain ${name}
@@ -16,18 +18,12 @@ Then "${keywords}" keyword${s} are displayed
 Search Result Should Contain ${name}
     Page should contain element  //td/a[text()='${name}']
 
-Given User Has Searched Keywords Successfully
-    Given SeleniumLibrary exists in RFDoc
-    and search page is open
-    When user searches with "title"
-
-Then Search Results Contain Keyword And Library Names As Links And Keyword Documentation
+Then search results contain keyword "Get Title" with link to "SeleniumLibrary" and with documentation
     ${expected} =  Catenate  SEPARATOR=\\s*  <table class="keywords results">  <tbody>  <tr>  <td><a href="/lib/SeleniumLibrary#Get%20Title">Get Title</a></td>  <td><a href="/lib/SeleniumLibrary">SeleniumLibrary</a></td>
     ...  <td>Returns title of current page.</td>  </tr>  <tr>  <td><a href="/lib/SeleniumLibrary#Title%20Should%20Be">Title Should Be</a></td>  <td><a href="/lib/SeleniumLibrary">SeleniumLibrary</a></td>  <td>Verifies that current page title equals `title`.</td>  </tr>
     ...  </tbody>  </table>
     ${source} =  Get Source
     Should Match Regexp  ${source}  ${expected}
 
-Then Results Are Shown On Search Page
-    Then "Get Title" and "Title Should Be" keywords are displayed
-    Location Should Be  ${BASE URL}/search/
+"${name}" page is opened
+    Location Should Be  ${BASE URL}/${name}/
