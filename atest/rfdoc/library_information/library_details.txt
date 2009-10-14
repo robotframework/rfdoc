@@ -1,10 +1,5 @@
-*** Settings ***
-Suite Setup     Given some libraries exist in RFDoc
-Test Setup      When user opens library details
-Force Tags      Req-Library 2  Sprint-1
-Resource        library_information.txt
-
 *** Test Cases ***
+
 Library Details Are Visible
     [Setup]  When user opens library with version information
     Then library name, version and documentation are shown
@@ -33,4 +28,11 @@ Shortcut Links Exist
 
 Keyword Documentation Can Contain Keyword-to-keyword Links
     Then link exist from keyword documentation to another keyword
+
+
+*** Settings ***
+Suite Setup     Given some libraries exist in RFDoc
+Test Setup      When user opens library details
+Force Tags      Req-Library 2  Sprint-1
+Resource        library_information.txt
 

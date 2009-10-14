@@ -1,5 +1,5 @@
 *** Settings ***
-Suite Setup     Set selenium timeout  60 seconds
-Suite Teardown  Set selenium timeout  5 seconds
+Suite Setup     Set Selenium timeout  60 seconds
+Suite Teardown  Set Selenium timeout  5 seconds
 Resource        ../rfdoc.txt
 
