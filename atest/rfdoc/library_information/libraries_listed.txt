@@ -9,7 +9,7 @@ Main Page Contains Info That No Libraries Exist In RFDoc
     Then a notification "No libraries in the system." is shown
 
 Libraries In RFDoc Are Listed On Main Page
-    Given "BuiltIn", "ExampleLibrary" and "SeleniumLibrary" exist in RFDoc
+    Given "BuiltIn", "ExampleLibrary" and "SeleniumLibrary" exists in RFDoc
     And "main" page is open
     Then "BuiltIn", "ExampleLibrary" and "SeleniumLibrary" are listed on the main page
 

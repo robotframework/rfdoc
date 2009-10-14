@@ -24,6 +24,3 @@ Then search results contain keyword "Get Title" with link to "SeleniumLibrary" a
     ...  </tbody>  </table>
     ${source} =  Get Source
     Should Match Regexp  ${source}  ${expected}
-
-"${name}" page is opened
-    Location Should Be  ${BASE URL}/${name}/
