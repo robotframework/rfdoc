@@ -12,27 +12,38 @@ ${BASE URL}  http://${HOST}
 ${BROWSER}  firefox
 @{BUILTIN KEYWORDS}  Convert To Integer  item  Converts the given item to an integer number.  No Operation  ${EMPTY}  Does absolutely nothing.
 @{EXAMPLELIBRARY VERSION 1 KEYWORDS}  First Keyword  first, second=default, *args  First KW doc  My Second Keyword  some  Second KW doc
-@{EXAMPLELIBRARY VERSION 2 KEYWORDS}  First Keyword Updated  first, second=default updated, *args  Updated KW doc  My Second Keyword  some  Second KW doc  Third Keyword
-...  third  Third KW doc
+@{EXAMPLELIBRARY VERSION 2 KEYWORDS}  First Keyword Updated  first, second=default updated, *args  Updated KW doc  My Second Keyword  some  Second KW doc  Third Keyword  third  Third KW doc
 
 *** Keywords ***
-Given No Libraries Exist In RFDoc
+
+Given no libraries exist in RFDoc
     Clear RFDoc Database
 
-${some libraries} Exist${s} In RFDoc
+${Some libraries} exist${s} in RFDoc
     Copy file  ${CURDIR}/../testdata/libraries.db  ${CURDIR}/../results/rfdoc.db
 
 "Main" page is open
     Go to  ${BASE URL}
 
-"${name}" Page Is Open
-    ${name} =  Set variable  ${name.lower()}
-    Go to  ${BASE URL}/${name}
+"${name}" page is open
+    Go to  ${BASE URL}/${name.lower()}
 
 "${name}" page is opened
-    Location Should Be  ${BASE URL}/${name}/
+    Location should be  ${BASE URL}/${name}/
 
-Navigate To Library "${name}"
+Error "${message}" is shown
+    Element should contain  xpath=//ul[@class='errorlist']  ${message}
+
+User selects "${name}" option
+    Select checkbox  ${name}
+
+Notification "${message}" is shown
+    Page should contain  ${message}
+
+Notification contains a link to ${library}
+    Page should contain link  /lib/${library}  ${library}
+
+Navigate to library "${name}"
     Go to  ${BASE URL}/lib/${name}
     Title should be  RFDoc | ${name}
 
@@ -50,29 +61,13 @@ RFDoc contains ${library name with possible version}
     @{keywords} =  Set variable  @{${library name with possible version} KEYWORDS}
     Library should contain keywords  @{keywords}
 
-Library should contain keywords 
-    [Arguments]  @{keywords}
+Library should contain keywords  [Arguments]  @{keywords}
     ${source} =  Get source
     :FOR  ${name}  ${args}  ${doc}  IN  @{keywords}
     \  Source should contain keyword  ${source}  ${name}  ${args}  ${doc}
 
-Source Should Contain Keyword
-    [Arguments]  ${source}  ${name}  ${args}  ${doc}
+Source should contain keyword  [Arguments]  ${source}  ${name}  ${args}  ${doc}
     ${match}  ${group1}  ${group2} =  Should Match Regexp  ${source}  (?s)<td class="kw" id="${name}">${name}</td>\\s*<td class="arg">(.*?)</td>\\s*<td class="doc">(.+?)</td>
-    Should Be Equal  ${group1}  ${args}
-    Should Be Equal  ${group2}  ${doc}
+    Should be equal  ${group1}  ${args}
+    Should be equal  ${group2}  ${doc}
 
-An error "${message}" is shown
-    Element should contain  xpath=//ul[@class='errorlist']  ${message}
-
-A notification "${message}" is shown
-    Page should contain  ${message}
-
-Message "${message}" is shown
-    Page should contain  ${message}
-
-When User Selects "${name}" Option
-    Select checkbox  ${name}
-
-The notification contains a link to ${library}
-    Page Should Contain Link  /lib/${library}  ${library}
