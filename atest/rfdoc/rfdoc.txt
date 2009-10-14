@@ -29,8 +29,10 @@ ${some libraries} Exist${s} In RFDoc
     ${name} =  Set variable  ${name.lower()}
     Go to  ${BASE URL}/${name}
 
-Navigate To Library
-    [Arguments]  ${name}
+"${name}" page is opened
+    Location Should Be  ${BASE URL}/${name}/
+
+Navigate To Library "${name}"
     Go to  ${BASE URL}/lib/${name}
     Title should be  RFDoc | ${name}
 
@@ -42,26 +44,10 @@ Upload ${file}
     Input text  file  ${CURDIR}${/}..${/}testdata${/}${file}
     Click button  Upload
 
-Navigate To Uploaded Library
-    Click link  /lib/${UPLOADED LIBRARY}
-    Title should be  RFDoc | ${UPLOADED LIBRARY}
-
-Upload Library And Check Library And Keywords Are Uploaded Correctly
-    [Arguments]  ${library xml}  ${library name}  @{keywords}
-    Navigate to upload page
-    Upload file  ${library xml}  ${library name}
-    Library upload should be successful  ${library name}
-    Library should contain keywords  @{keywords}
-
-Library Upload Should Be Successful
-    [Arguments]  ${library name}
-    Upload page should contain success information  ${library name}
-    Navigate to uploaded library
-
-RFDoc contains ${library}
-    ${name w/o version} =  Set Variable  ${library.split()[0]}
-    Navigate to library  ${name w/o version}
-    @{keywords} =  Set variable  @{${library} KEYWORDS}
+RFDoc contains ${library name with possible version}
+    ${name} =  Get library name  ${library name with possible version}
+    Navigate to library "${name}"
+    @{keywords} =  Set variable  @{${library name with possible version} KEYWORDS}
     Library should contain keywords  @{keywords}
 
 Library should contain keywords 
@@ -90,5 +76,3 @@ When User Selects "${name}" Option
 
 The notification contains a link to ${library}
     Page Should Contain Link  /lib/${library}  ${library}
-#    Successfully uploaded library <a href="/lib/BuiltIn">BuiltIn</a>.
-    

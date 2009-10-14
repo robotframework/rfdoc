@@ -16,7 +16,7 @@ Main Page Should Contain Libraries
     Should match regexp  ${source}  ${regexp}
 
 User Opens Library Details
-    Navigate to library  BuiltIn
+    Navigate to library "BuiltIn"
 
 User Opens Library With Version Information
     User opens library details
@@ -27,7 +27,7 @@ Library Name, Version And Documentation Are Shown
     Page should contain  An always available standard library with often needed keywords.
 
 User Opens Library Without Version Information
-    Navigate to library  ExampleLibrary
+    Navigate to library "ExampleLibrary"
 
 Library Name And Documentation Are Shown
     Library name should be  ExampleLibrary
@@ -41,7 +41,7 @@ No Version Information Is Shown
     Page should not contain  Version:
 
 User Opens Library With Initialization Information
-    Navigate to library  ExampleLibrary
+    Navigate to library "ExampleLibrary"
 
 Library Initialization Is Shown
     Element should contain  importing  Importing
@@ -49,7 +49,7 @@ Library Initialization Is Shown
     Page should contain  timeout=3.0, is_regexp=False
 
 User Opens Library Without Initialization Information
-    When user opens library details
+    User opens library details
 
 Library Initialization Is Not Shown
     Page should not contain element  importing
