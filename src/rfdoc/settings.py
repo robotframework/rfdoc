@@ -1,9 +1,8 @@
 # Django settings for RFDoc project.
-# 
+#
 # Local configuration should be done in `rfdocsettings.py` file as explained
 # in `rfdocsettings_defaults.py`. More settings can be made configurable that
 # way if there is a need.
-
 
 import os
 
