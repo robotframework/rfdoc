@@ -1,11 +1,11 @@
-# Copyright 2009 Nokia Siemens Networks Oyj
-# 
+# Copyright 2009-2013 Nokia Siemens Networks Oyj
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,7 +27,7 @@ def upload(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            libname = form.parse_kw_spec(request.FILES['file'], 
+            libname = form.parse_kw_spec(request.FILES['file'],
                                          form.cleaned_data['override'])
     else:
         form = UploadFileForm()
@@ -60,7 +60,7 @@ class UploadFileForm(forms.Form):
 
 
 class LibraryData(object):
-    
+
     def __init__(self, fileobj):
         root = self._get_root(fileobj)
         try:
@@ -99,7 +99,7 @@ class LibraryData(object):
 
     def _get_inits(self, elem):
         return elem.findall('init')
-    
+
     def _get_keywords(self, elem):
         # 'keywords/kw' is backwards compatibility for libdoc.py 2.1 and earlier
         kws = elem.findall('keywords/kw') + elem.findall('kw')
