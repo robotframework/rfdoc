@@ -5,3 +5,4 @@ syntax: glob
 .project
 .pydevproject
 atest/results
+.idea
