@@ -3,12 +3,11 @@
 # `rfdocsettings_defaults.py` contains the default values to use. It should
 # not be edited directly, however, but first copied to `rfdocsettings.py`.
 # All values are looked first from `rfdocsettings.py` and then from
-# `rfdocsettings_defaults.py`, and thus the former only needs to have 
+# `rfdocsettings_defaults.py`, and thus the former only needs to have
 # settings that are different to defaults.
 #
 # Notice that `rfdocsettings.py` can be anywhere in the file system as long
 # it is in the PYTHONPATH.
-
 
 import os
 import tempfile
