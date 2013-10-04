@@ -192,7 +192,6 @@ Content-Type: text/xml
         if 'Successfully uploaded library' not in html:
             raise DataError('\n'.join(self._ErrorParser(html).errors))
 
-
     class _ErrorParser(HTMLParser):
 
         def __init__(self, html):
