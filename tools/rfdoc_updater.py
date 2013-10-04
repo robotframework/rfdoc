@@ -29,6 +29,7 @@ from urlparse import urlparse
 
 from robot.errors import DataError
 from robot.libdocpkg import LibraryDocumentation
+from robot.parsing.populators import READERS
 
 
 class RFDocUpdater(object):
@@ -65,6 +66,7 @@ class RFDocUpdater(object):
 
 
 class CommandlineUI(object):
+    valid_lib_exts = tuple(READERS.keys() + ['py', 'java', 'xml'])
     default_url = 'localhost:8000'
     help_text = """usage: %prog [options] PATH ...'
 
@@ -103,8 +105,8 @@ as target.""" % self.default_url
     def _get_validated_options(self):
         if len(sys.argv) < 2:
             self._exit_with_help()
-        options, paths = self._parser.parse_args()
-        options.libraries = self._traverse_path_for_libraries(paths)
+        options, libraries = self._parser.parse_args()
+        options.libraries = self._traverse_path_for_libraries(libraries)
         options.target_host = self._host_from_url(options.target_host)
         return options
 
@@ -121,7 +123,7 @@ as target.""" % self.default_url
                 if self._is_library_file(filename)]
 
     def _is_library_file(self, filename):
-        return filename.endswith('.py') or filename.endswith('.java')
+        return any(filename.endswith(ext) for ext in self.valid_lib_exts)
 
     def _host_from_url(self, url):
         if not match(r'http(s?)\:', url):
