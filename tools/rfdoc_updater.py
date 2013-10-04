@@ -113,8 +113,8 @@ as target.""" % self.default_url
     def _traverse_targets_for_libraries(self, targets):
         libraries = []
         for directory in self._only_directories(targets):
-            for path, _, files in os.walk(directory):
-                for filename in self._only_library_files(files):
+            for path, _, filenames in os.walk(directory):
+                for filename in self._only_library_files(filenames):
                     libraries.append(os.path.join(path, filename))
         return libraries
 
@@ -123,8 +123,8 @@ as target.""" % self.default_url
             if os.path.isdir(target):
                 yield target
 
-    def _only_library_files(self, files):
-        for filename in files:
+    def _only_library_files(self, filenames):
+        for filename in filenames:
             if self._is_library_file(filename):
                 yield filename
 
