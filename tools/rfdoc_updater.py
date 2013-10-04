@@ -105,22 +105,28 @@ as target.""" % self.default_url
     def _get_validated_options(self):
         if len(sys.argv) < 2:
             self._exit_with_help()
-        options, libraries = self._parser.parse_args()
-        options.libraries = self._traverse_path_for_libraries(libraries)
+        options, targets = self._parser.parse_args()
+        options.libraries = self._traverse_targets_for_libraries(targets)
         options.target_host = self._host_from_url(options.target_host)
         return options
 
-    def _traverse_path_for_libraries(self, paths):
-        for path in paths:
-            if os.path.isdir(path):
-                for root, dirs, files in os.walk(path):
-                    paths += self._add_library_files(root, files)
-                paths.remove(path)
-        return paths
+    def _traverse_targets_for_libraries(self, targets):
+        libraries = []
+        for directory in self._only_directories(targets):
+            for path, _, files in os.walk(directory):
+                for filename in self._only_library_files(files):
+                    libraries.append(os.path.join(path, filename))
+        return libraries
 
-    def _add_library_files(self, root, files):
-        return [os.path.join(root, filename) for filename in files
-                if self._is_library_file(filename)]
+    def _only_directories(self, targets):
+        for target in targets:
+            if os.path.isdir(target):
+                yield target
+
+    def _only_library_files(self, files):
+        for filename in files:
+            if self._is_library_file(filename):
+                yield filename
 
     def _is_library_file(self, filename):
         return any(filename.endswith(ext) for ext in self.valid_lib_exts)
