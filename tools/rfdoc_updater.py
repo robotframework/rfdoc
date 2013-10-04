@@ -23,7 +23,6 @@ from contextlib import closing
 from HTMLParser import HTMLParser
 from httplib import HTTPConnection
 from optparse import OptionParser
-from os.path import basename, exists, isdir
 from re import match
 from StringIO import StringIO
 from urlparse import urlparse
@@ -104,9 +103,9 @@ as target.""" % self.default_url
 
     def _traverse_path_for_libraries(self, paths):
         for path in paths:
-            if not exists(path):
+            if not os.path.exists(path):
                 self._parser.error('file or directory %s not exists' % path)
-            if isdir(path):
+            if os.path.isdir(path):
                 for root, dirs, files in os.walk(path):
                     for filename in files:
                         if filename.endswith('.py'):
