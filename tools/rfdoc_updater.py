@@ -111,11 +111,16 @@ as target.""" % self.default_url
                 self._parser.error('file or directory %s not exists' % path)
             if os.path.isdir(path):
                 for root, dirs, files in os.walk(path):
-                    for filename in files:
-                        if filename.endswith('.py'):
-                            paths.append(os.path.join(root, filename))
+                    paths += self._add_library_files(root, files)
                 paths.remove(path)
         return paths
+
+    def _add_library_files(self, root, files):
+        return [os.path.join(root, filename) for filename in files
+                if self._is_library_file(filename)]
+
+    def _is_library_file(self, filename):
+        return filename.endswith('.py') or filename.endswith('.java')
 
     def _host_from_url(self, url):
         if not match(r'http(s?)\:', url):
