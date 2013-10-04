@@ -57,8 +57,7 @@ class RFDocUpdater(object):
                     raise
                 finally:
                     xml_doc.original_close()
-                sys.stdout.write("Updated documentation for '%s'.\n"
-                                 % library)
+                sys.stdout.write("Updated documentation for '%s'.\n" % library)
         except DataError, e:
             sys.stderr.write('%s: error: %s\n' % (os.path.basename(__file__),
                                                   e.message))
