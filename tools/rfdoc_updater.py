@@ -39,7 +39,7 @@ class RFDocUpdater(object):
 
     def run(self):
         try:
-            for lib_file in self._options.libraries:
+            for library in self._options.libraries:
                 xml_doc = StringIO()
                 # LibraryDocumentation().save() calls close() for the underlying
                 # file, which in case of StringIO object means that its data is
@@ -47,17 +47,20 @@ class RFDocUpdater(object):
                 xml_doc.original_close = xml_doc.close
                 xml_doc.close = lambda: None
                 try:
-                    lib_doc = LibraryDocumentation(lib_file)
-                    lib_doc.save(xml_doc, 'xml')
-                    xml_doc.name = lib_doc.name + '.xml'
+                    LibraryDocumentation(library).save(xml_doc, 'xml')
+                    xml_doc.name = library + '.xml'
                     self._uploader.upload_file(xml_doc)
+                except DataError, e:
+                    if 'ImportError' in e.message:
+                        raise DataError("Library '%s' not found'" % library)
+                    raise
                 finally:
                     xml_doc.original_close()
                 sys.stdout.write("Updated documentation for '%s'.\n"
-                                 % lib_doc.name)
-        except DataError, message:
+                                 % library)
+        except DataError, e:
             sys.stderr.write('%s: error: %s\n' % (os.path.basename(__file__),
-                                                  message))
+                                                  e.message))
             exit(1)
 
 
@@ -107,8 +110,6 @@ as target.""" % self.default_url
 
     def _traverse_path_for_libraries(self, paths):
         for path in paths:
-            if not os.path.exists(path):
-                self._parser.error('file or directory %s not exists' % path)
             if os.path.isdir(path):
                 for root, dirs, files in os.walk(path):
                     paths += self._add_library_files(root, files)
