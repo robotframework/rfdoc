@@ -56,7 +56,8 @@ class RFDocUpdater(object):
                 sys.stdout.write("Updated documentation for '%s'.\n"
                                  % lib_doc.name)
         except DataError, message:
-            sys.stderr.write('%s: error: %s\n' % (basename(__file__), message))
+            sys.stderr.write('%s: error: %s\n' % (os.path.basename(__file__),
+                                                  message))
             exit(1)
 
 
