@@ -41,8 +41,11 @@ class RFDocUpdater(object):
         try:
             for lib_file in self._options.libraries:
                 xml_doc = StringIO()
+                # LibraryDocumentation().save() calls close() for the underlying
+                # file, which in case of StringIO object means that its data is
+                # discarded. This is why close() is overridden.
                 xml_doc.original_close = xml_doc.close
-                xml_doc.close = lambda : None
+                xml_doc.close = lambda: None
                 try:
                     lib_doc = LibraryDocumentation(lib_file)
                     lib_doc.save(xml_doc, 'xml')
