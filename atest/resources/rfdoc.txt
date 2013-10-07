@@ -1,26 +1,23 @@
 *** Settings ***
-Library         SeleniumLibrary  ${EMPTY}  ${EMPTY}  ${SELENIUM PORT}
+Library         Selenium2Library  run_on_failure=Nothing
 Library         OperatingSystem
-Library         RFDocDataBase
-Library         NameParser
+Library         ${CURDIR}/../lib/NameParser.py
 
 *** Variables ***
-${RFDOC PORT}  8000
-${SELENIUM PORT}  4444
-${HOST}  localhost:${RFDOC PORT}
-${BASE URL}  http://${HOST}
+${HOST}  localhost
+${RFDOC_PORT}  7000
+${BASE URL}  http://${HOST}:${RFDOC_PORT}
 ${BROWSER}  firefox
 @{BUILTIN KEYWORDS}  Convert To Integer  item  Converts the given item to an integer number.  No Operation  ${EMPTY}  Does absolutely nothing.
 @{EXAMPLELIBRARY VERSION 1 KEYWORDS}  First Keyword  first, second=default, *args  First KW doc  My Second Keyword  some  Second KW doc
 @{EXAMPLELIBRARY VERSION 2 KEYWORDS}  First Keyword Updated  first, second=default updated, *args  Updated KW doc  My Second Keyword  some  Second KW doc  Third Keyword  third  Third KW doc
 
 *** Keywords ***
-
 Given no libraries exist in RFDoc
-    Clear RFDoc Database
+    Copy file  ${CURDIR}${/}..${/}testdata/empty.db  ${CURDIR}${/}..${/}results${/}rfdoc.db
 
 ${Some libraries} exist${s} in RFDoc
-    Copy file  ${CURDIR}/../testdata/libraries.db  ${CURDIR}/../results/rfdoc.db
+    Copy file  ${CURDIR}${/}..${/}testdata/libraries.db  ${CURDIR}${/}..${/}results${/}rfdoc.db
 
 "Main" page is open
     Go to  ${BASE URL}
@@ -52,7 +49,7 @@ User uploads ${library}
     Upload ${file}
 
 Upload ${file}
-    Input text  file  ${CURDIR}${/}..${/}testdata${/}${file}
+    Choose File  file  ${CURDIR}${/}..${/}testdata${/}${file}
     Click button  Upload
 
 RFDoc contains ${library name with possible version}
@@ -67,7 +64,6 @@ Library should contain keywords  [Arguments]  @{keywords}
     \  Source should contain keyword  ${source}  ${name}  ${args}  ${doc}
 
 Source should contain keyword  [Arguments]  ${source}  ${name}  ${args}  ${doc}
-    ${match}  ${group1}  ${group2} =  Should Match Regexp  ${source}  (?s)<td class="kw" id="${name}">${name}</td>\\s*<td class="arg">(.*?)</td>\\s*<td class="doc">(.+?)</td>
+    ${match}  ${group1}  ${group2} =  Should Match Regexp  ${source}  (?s)<td id="${name}" class="kw">${name}</td>\\s*<td class="arg">(.*?)</td>\\s*<td class="doc">(.+?)</td>
     Should be equal  ${group1}  ${args}
     Should be equal  ${group2}  ${doc}
-

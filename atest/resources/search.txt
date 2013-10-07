@@ -1,5 +1,5 @@
 *** Settings ***
-Resource        ../rfdoc.txt
+Resource        rfdoc.txt
 
 *** Keywords ***
 User searches with "${search term}"

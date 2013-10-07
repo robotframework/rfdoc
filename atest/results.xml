@@ -1,0 +1,3490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20131007 15:11:52.134" generator="Robot trunk 20130913 (Python 2.7.3 on darwin)">
+<suite source="/Users/asyrjasalo/eficode/robot/rfdoc/atest" id="s1" name="Atest">
+<kw type="setup" name="Open Browser And Set Demo Delay">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Open Browser">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${BASE URL}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:52.268" level="INFO">Opening browser 'firefox' to base url 'http://localhost:7000'</msg>
+<status status="PASS" endtime="20131007 15:11:54.760" starttime="20131007 15:11:52.268"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>${DEMO DELAY}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:54.761" starttime="20131007 15:11:54.760"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:54.762" starttime="20131007 15:11:52.267"></status>
+</kw>
+<suite source="/Users/asyrjasalo/eficode/robot/rfdoc/atest/invalid_file_upload.txt" id="s1-s1" name="Invalid File Upload">
+<test id="s1-s1-t1" name="Non XML file">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:54.776" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:54.823" starttime="20131007 15:11:54.776"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:54.824" starttime="20131007 15:11:54.775"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>text_file.txt</arg>
+<arg>${NON XML FILE}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:54.876" starttime="20131007 15:11:54.826"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:54.876" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:54.974" starttime="20131007 15:11:54.876"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:54.974" starttime="20131007 15:11:54.825"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:54.975" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'Given file is not XML.'.</msg>
+<status status="PASS" endtime="20131007 15:11:55.008" starttime="20131007 15:11:54.975"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.008" starttime="20131007 15:11:54.974"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.008" starttime="20131007 15:11:54.824"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:55.008" critical="yes" starttime="20131007 15:11:54.774"></status>
+</test>
+<test id="s1-s1-t2" name="Wrong XML content">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.011" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:55.038" starttime="20131007 15:11:55.011"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.039" starttime="20131007 15:11:55.010"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>invalid_content.xml</arg>
+<arg>${INVALID XML FILE}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:55.073" starttime="20131007 15:11:55.041"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.074" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:55.157" starttime="20131007 15:11:55.074"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.157" starttime="20131007 15:11:55.040"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.158" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'Given file contains invalid XML.'.</msg>
+<status status="PASS" endtime="20131007 15:11:55.188" starttime="20131007 15:11:55.158"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.188" starttime="20131007 15:11:55.157"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.188" starttime="20131007 15:11:55.039"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:55.188" critical="yes" starttime="20131007 15:11:55.009"></status>
+</test>
+<test id="s1-s1-t3" name="Non existing file">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.191" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:55.232" starttime="20131007 15:11:55.190"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.232" starttime="20131007 15:11:55.190"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>non_existing_file.xml</arg>
+<arg>${NON EXISTING FILE}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.234" level="INFO">File '/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources/../testdata/invalid/non_existing_file.xml' does not exist on the local file system</msg>
+<status status="PASS" endtime="20131007 15:11:55.254" starttime="20131007 15:11:55.234"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.255" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:55.341" starttime="20131007 15:11:55.254"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.342" starttime="20131007 15:11:55.233"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.343" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'The submitted file is empty.'.</msg>
+<status status="PASS" endtime="20131007 15:11:55.364" starttime="20131007 15:11:55.343"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.364" starttime="20131007 15:11:55.342"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.365" starttime="20131007 15:11:55.232"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:55.365" critical="yes" starttime="20131007 15:11:55.189"></status>
+</test>
+<test id="s1-s1-t4" name="Empty library name">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.368" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:55.408" starttime="20131007 15:11:55.367"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.408" starttime="20131007 15:11:55.366"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>empty_library_name.xml</arg>
+<arg>${INVALID XML FILE}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:55.437" starttime="20131007 15:11:55.411"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.437" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:55.521" starttime="20131007 15:11:55.437"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.521" starttime="20131007 15:11:55.410"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.523" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'Given file contains invalid XML.'.</msg>
+<status status="PASS" endtime="20131007 15:11:55.546" starttime="20131007 15:11:55.523"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.547" starttime="20131007 15:11:55.521"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.547" starttime="20131007 15:11:55.408"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:55.547" critical="yes" starttime="20131007 15:11:55.365"></status>
+</test>
+<test id="s1-s1-t5" name="Missing library name">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.550" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:55.577" starttime="20131007 15:11:55.549"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.577" starttime="20131007 15:11:55.549"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>missing_library_name.xml</arg>
+<arg>${INVALID XML FILE}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:55.609" starttime="20131007 15:11:55.580"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.609" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:55.690" starttime="20131007 15:11:55.609"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.690" starttime="20131007 15:11:55.579"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.691" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'Given file contains invalid XML.'.</msg>
+<status status="PASS" endtime="20131007 15:11:55.722" starttime="20131007 15:11:55.691"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.722" starttime="20131007 15:11:55.690"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.722" starttime="20131007 15:11:55.577"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:55.723" critical="yes" starttime="20131007 15:11:55.548"></status>
+</test>
+<test id="s1-s1-t6" name="Missing library doc">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.725" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:55.756" starttime="20131007 15:11:55.725"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.756" starttime="20131007 15:11:55.724"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>missing_library_doc.xml</arg>
+<arg>${INVALID XML FILE}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:55.788" starttime="20131007 15:11:55.759"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.789" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:55.875" starttime="20131007 15:11:55.789"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.875" starttime="20131007 15:11:55.758"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.876" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'Given file contains invalid XML.'.</msg>
+<status status="PASS" endtime="20131007 15:11:55.905" starttime="20131007 15:11:55.876"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.905" starttime="20131007 15:11:55.875"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.905" starttime="20131007 15:11:55.757"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:55.906" critical="yes" starttime="20131007 15:11:55.723"></status>
+</test>
+<test id="s1-s1-t7" name="Empty keyword name">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.908" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:55.948" starttime="20131007 15:11:55.908"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:55.948" starttime="20131007 15:11:55.907"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>empty_keyword_name.xml</arg>
+<arg>${INVALID XML FILE}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:55.970" starttime="20131007 15:11:55.950"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:55.971" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.061" starttime="20131007 15:11:55.970"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.062" starttime="20131007 15:11:55.949"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.064" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'Given file contains invalid XML.'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.082" starttime="20131007 15:11:56.063"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.082" starttime="20131007 15:11:56.062"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.083" starttime="20131007 15:11:55.948"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:56.083" critical="yes" starttime="20131007 15:11:55.906"></status>
+</test>
+<test id="s1-s1-t8" name="Missing keyword name">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.086" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:56.112" starttime="20131007 15:11:56.085"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.113" starttime="20131007 15:11:56.085"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>missing_keyword_name.xml</arg>
+<arg>${INVALID XML FILE}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:56.143" starttime="20131007 15:11:56.115"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.143" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.225" starttime="20131007 15:11:56.143"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.225" starttime="20131007 15:11:56.115"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.226" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'Given file contains invalid XML.'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.256" starttime="20131007 15:11:56.226"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.256" starttime="20131007 15:11:56.225"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.257" starttime="20131007 15:11:56.113"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:56.257" critical="yes" starttime="20131007 15:11:56.084"></status>
+</test>
+<test id="s1-s1-t9" name="Missing keyword doc">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.259" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:56.297" starttime="20131007 15:11:56.259"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.297" starttime="20131007 15:11:56.258"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>missing_keyword_doc.xml</arg>
+<arg>${INVALID XML FILE}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:56.321" starttime="20131007 15:11:56.299"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.321" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.394" starttime="20131007 15:11:56.321"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.395" starttime="20131007 15:11:56.298"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.396" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'Given file contains invalid XML.'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.423" starttime="20131007 15:11:56.396"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.423" starttime="20131007 15:11:56.395"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.423" starttime="20131007 15:11:56.297"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:56.423" critical="yes" starttime="20131007 15:11:56.257"></status>
+</test>
+<test id="s1-s1-t10" name="Empty keyword">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.426" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:56.463" starttime="20131007 15:11:56.425"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.463" starttime="20131007 15:11:56.425"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>empty_keyword.xml</arg>
+<arg>${INVALID XML FILE}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:56.484" starttime="20131007 15:11:56.465"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.485" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.558" starttime="20131007 15:11:56.485"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.558" starttime="20131007 15:11:56.464"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.560" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'Given file contains invalid XML.'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.589" starttime="20131007 15:11:56.560"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.589" starttime="20131007 15:11:56.558"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.589" starttime="20131007 15:11:56.463"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:56.590" critical="yes" starttime="20131007 15:11:56.424"></status>
+</test>
+<test id="s1-s1-t11" name="Empty keywords">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.592" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:56.623" starttime="20131007 15:11:56.591"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.624" starttime="20131007 15:11:56.591"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>empty_keywords.xml</arg>
+<arg>${MISSING KEYWORDS}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:56.657" starttime="20131007 15:11:56.626"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.658" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.751" starttime="20131007 15:11:56.657"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.752" starttime="20131007 15:11:56.625"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.753" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'Given test library contains no keywords.'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.771" starttime="20131007 15:11:56.752"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.771" starttime="20131007 15:11:56.752"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.771" starttime="20131007 15:11:56.624"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:56.771" critical="yes" starttime="20131007 15:11:56.590"></status>
+</test>
+<test id="s1-s1-t12" name="Missing keywords">
+<kw type="setup" name="rfdoc.&quot;Upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.775" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:11:56.810" starttime="20131007 15:11:56.774"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.811" starttime="20131007 15:11:56.773"></status>
+</kw>
+<kw type="kw" name="Uploading fails">
+<doc></doc>
+<arguments>
+<arg>missing_keywords.xml</arg>
+<arg>${MISSING KEYWORDS}</arg>
+</arguments>
+<kw type="kw" name="rfdoc.Upload invalid${/}${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:56.832" starttime="20131007 15:11:56.813"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.833" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.908" starttime="20131007 15:11:56.832"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.908" starttime="20131007 15:11:56.812"></status>
+</kw>
+<kw type="kw" name="rfdoc.Error &quot;${message}&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.909" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'Given test library contains no keywords.'.</msg>
+<status status="PASS" endtime="20131007 15:11:56.939" starttime="20131007 15:11:56.909"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.939" starttime="20131007 15:11:56.908"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.939" starttime="20131007 15:11:56.811"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:56.939" critical="yes" starttime="20131007 15:11:56.772"></status>
+</test>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20131007 15:11:56.941" starttime="20131007 15:11:54.762"></status>
+</suite>
+<suite source="/Users/asyrjasalo/eficode/robot/rfdoc/atest/libraries_listed.txt" id="s1-s2" name="Libraries Listed">
+<test id="s1-s2-t1" name="Main Page Contains Info That No Libraries Exist In RFDoc">
+<kw type="kw" name="rfdoc.Given no libraries exist in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/empty.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.962" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/empty.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/empty.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:11:56.962" starttime="20131007 15:11:56.961"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.963" starttime="20131007 15:11:56.961"></status>
+</kw>
+<kw type="kw" name="rfdoc.and &quot;main&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:56.964" level="INFO">Opening url 'http://localhost:7000'</msg>
+<status status="PASS" endtime="20131007 15:11:56.996" starttime="20131007 15:11:56.964"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:56.996" starttime="20131007 15:11:56.963"></status>
+</kw>
+<kw type="kw" name="rfdoc.Then notification &quot;No libraries in the system.&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.023" level="INFO">Current page contains text 'No libraries in the system.'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.023" starttime="20131007 15:11:56.998"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.024" starttime="20131007 15:11:56.997"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:57.024" critical="yes" starttime="20131007 15:11:56.960"></status>
+</test>
+<test id="s1-s2-t2" name="Libraries In RFDoc Are Listed On Main Page">
+<kw type="kw" name="rfdoc.Given &quot;BuiltIn&quot;, &quot;ExampleLibrary&quot; and &quot;SeleniumLibrary&quot; exist in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.027" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:11:57.027" starttime="20131007 15:11:57.026"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.027" starttime="20131007 15:11:57.025"></status>
+</kw>
+<kw type="kw" name="rfdoc.and &quot;main&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.028" level="INFO">Opening url 'http://localhost:7000'</msg>
+<status status="PASS" endtime="20131007 15:11:57.061" starttime="20131007 15:11:57.028"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.061" starttime="20131007 15:11:57.028"></status>
+</kw>
+<kw type="kw" name="library_information.Then &quot;BuiltIn&quot;, &quot;ExampleLibrary&quot; and &quot;SeleniumLibrary&quot; are listed on the main page">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="@{libraries} = NameParser.Get Names">
+<doc></doc>
+<arguments>
+<arg>${libraries}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.063" level="INFO">@{libraries} = [ BuiltIn | ExampleLibrary | SeleniumLibrary ]</msg>
+<status status="PASS" endtime="20131007 15:11:57.063" starttime="20131007 15:11:57.062"></status>
+</kw>
+<kw type="kw" name="library_information.Main Page Should Contain Libraries">
+<doc></doc>
+<arguments>
+<arg>@{libraries}</arg>
+</arguments>
+<kw type="kw" name="${regexp} = BuiltIn.Set Variable">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>&lt;h2&gt;Libraries&lt;/h2&gt;\\s+&lt;ul class="libraries"&gt;\\s+</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.064" level="INFO">${regexp} = &lt;h2&gt;Libraries&lt;/h2&gt;\s+&lt;ul class="libraries"&gt;\s+</msg>
+<status status="PASS" endtime="20131007 15:11:57.064" starttime="20131007 15:11:57.064"></status>
+</kw>
+<kw type="for" name="${library} IN [ @{libraries} ]">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="foritem" name="${library} = BuiltIn">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${regexp} = BuiltIn.Set Variable">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${regexp}&lt;li&gt;&lt;a href="/lib/${library}"&gt;${library}&lt;/a&gt;&lt;/li&gt;\\s+</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.065" level="INFO">${regexp} = &lt;h2&gt;Libraries&lt;/h2&gt;\s+&lt;ul class="libraries"&gt;\s+&lt;li&gt;&lt;a href="/lib/BuiltIn"&gt;BuiltIn&lt;/a&gt;&lt;/li&gt;\s+</msg>
+<status status="PASS" endtime="20131007 15:11:57.065" starttime="20131007 15:11:57.064"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.065" starttime="20131007 15:11:57.064"></status>
+</kw>
+<kw type="foritem" name="${library} = ExampleLibrary">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${regexp} = BuiltIn.Set Variable">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${regexp}&lt;li&gt;&lt;a href="/lib/${library}"&gt;${library}&lt;/a&gt;&lt;/li&gt;\\s+</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.066" level="INFO">${regexp} = &lt;h2&gt;Libraries&lt;/h2&gt;\s+&lt;ul class="libraries"&gt;\s+&lt;li&gt;&lt;a href="/lib/BuiltIn"&gt;BuiltIn&lt;/a&gt;&lt;/li&gt;\s+&lt;li&gt;&lt;a href="/lib/ExampleLibrary"&gt;ExampleLibrary&lt;/a&gt;&lt;/li&gt;\s+</msg>
+<status status="PASS" endtime="20131007 15:11:57.066" starttime="20131007 15:11:57.065"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.066" starttime="20131007 15:11:57.065"></status>
+</kw>
+<kw type="foritem" name="${library} = SeleniumLibrary">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${regexp} = BuiltIn.Set Variable">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${regexp}&lt;li&gt;&lt;a href="/lib/${library}"&gt;${library}&lt;/a&gt;&lt;/li&gt;\\s+</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.066" level="INFO">${regexp} = &lt;h2&gt;Libraries&lt;/h2&gt;\s+&lt;ul class="libraries"&gt;\s+&lt;li&gt;&lt;a href="/lib/BuiltIn"&gt;BuiltIn&lt;/a&gt;&lt;/li&gt;\s+&lt;li&gt;&lt;a href="/lib/ExampleLibrary"&gt;ExampleLibrary&lt;/a&gt;&lt;/li&gt;\s+&lt;li&gt;&lt;a href="/lib/SeleniumLibrary"&gt;SeleniumLibra...</msg>
+<status status="PASS" endtime="20131007 15:11:57.066" starttime="20131007 15:11:57.066"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.067" starttime="20131007 15:11:57.066"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.067" starttime="20131007 15:11:57.064"></status>
+</kw>
+<kw type="kw" name="${regexp} = BuiltIn.Set Variable">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${regexp}&lt;/ul&gt;</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.067" level="INFO">${regexp} = &lt;h2&gt;Libraries&lt;/h2&gt;\s+&lt;ul class="libraries"&gt;\s+&lt;li&gt;&lt;a href="/lib/BuiltIn"&gt;BuiltIn&lt;/a&gt;&lt;/li&gt;\s+&lt;li&gt;&lt;a href="/lib/ExampleLibrary"&gt;ExampleLibrary&lt;/a&gt;&lt;/li&gt;\s+&lt;li&gt;&lt;a href="/lib/SeleniumLibrary"&gt;SeleniumLibra...</msg>
+<status status="PASS" endtime="20131007 15:11:57.067" starttime="20131007 15:11:57.067"></status>
+</kw>
+<kw type="kw" name="${source} = Selenium2Library.Get Source">
+<doc>Returns the entire html source of the current page or frame.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20131007 15:11:57.093" level="INFO">${source} = &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+&lt;!--
+Copyright 2009-2013 Nokia Siemens Networks Oyj
+
+Licensed under the Apache License, Version 2.0 (the "Lic...</msg>
+<status status="PASS" endtime="20131007 15:11:57.093" starttime="20131007 15:11:57.067"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Match Regexp">
+<doc>Fails if `string` does not match `pattern` as a regular expression.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${regexp}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:57.095" starttime="20131007 15:11:57.093"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.095" starttime="20131007 15:11:57.063"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.095" starttime="20131007 15:11:57.062"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:57.095" critical="yes" starttime="20131007 15:11:57.024"></status>
+</test>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20131007 15:11:57.096" starttime="20131007 15:11:56.942"></status>
+</suite>
+<suite source="/Users/asyrjasalo/eficode/robot/rfdoc/atest/library_details.txt" id="s1-s3" name="Library Details">
+<kw type="setup" name="rfdoc.Given some libraries exist in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.108" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:11:57.108" starttime="20131007 15:11:57.107"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.108" starttime="20131007 15:11:57.106"></status>
+</kw>
+<test id="s1-s3-t1" name="Library Details Are Visible">
+<kw type="setup" name="library_information.When user opens library with version information">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="library_information.User Opens Library Details">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Navigate to library &quot;BuiltIn&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/lib/${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.111" level="INFO">Opening url 'http://localhost:7000/lib/BuiltIn'</msg>
+<status status="PASS" endtime="20131007 15:11:57.271" starttime="20131007 15:11:57.111"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>RFDoc | ${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.277" level="INFO">Page title is 'RFDoc | BuiltIn'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.277" starttime="20131007 15:11:57.271"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.278" starttime="20131007 15:11:57.110"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.278" starttime="20131007 15:11:57.109"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.278" starttime="20131007 15:11:57.109"></status>
+</kw>
+<kw type="kw" name="library_information.Then library name, version and documentation are shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="library_information.Library Name Should Be">
+<doc></doc>
+<arguments>
+<arg>BuiltIn</arg>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//h2</arg>
+<arg>${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.280" level="INFO">Verifying element 'xpath=//h2' contains text 'BuiltIn'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.294" starttime="20131007 15:11:57.280"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.295" starttime="20131007 15:11:57.279"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>Version: 2.1</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.311" level="INFO">Current page contains text 'Version: 2.1'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.311" starttime="20131007 15:11:57.295"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>An always available standard library with often needed keywords.</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.327" level="INFO">Current page contains text 'An always available standard library with often needed keywords.'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.327" starttime="20131007 15:11:57.311"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.327" starttime="20131007 15:11:57.278"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:57.328" critical="yes" starttime="20131007 15:11:57.108"></status>
+</test>
+<test id="s1-s3-t2" name="Library Version Is Not Visible">
+<kw type="setup" name="library_information.When user opens library without version information">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Navigate to library &quot;ExampleLibrary&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/lib/${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.331" level="INFO">Opening url 'http://localhost:7000/lib/ExampleLibrary'</msg>
+<status status="PASS" endtime="20131007 15:11:57.380" starttime="20131007 15:11:57.331"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>RFDoc | ${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.391" level="INFO">Page title is 'RFDoc | ExampleLibrary'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.392" starttime="20131007 15:11:57.380"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.392" starttime="20131007 15:11:57.330"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.392" starttime="20131007 15:11:57.329"></status>
+</kw>
+<kw type="kw" name="library_information.Then library name and documentation are shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="library_information.Library Name Should Be">
+<doc></doc>
+<arguments>
+<arg>ExampleLibrary</arg>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//h2</arg>
+<arg>${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.394" level="INFO">Verifying element 'xpath=//h2' contains text 'ExampleLibrary'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.410" starttime="20131007 15:11:57.394"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.411" starttime="20131007 15:11:57.393"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>First Library Doc</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.423" level="INFO">Current page contains text 'First Library Doc'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.423" starttime="20131007 15:11:57.411"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.423" starttime="20131007 15:11:57.392"></status>
+</kw>
+<kw type="kw" name="library_information.and no version information is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Not Contain">
+<doc>Verifies the current page does not contain `text`.</doc>
+<arguments>
+<arg>Version:</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.443" level="INFO">Current page does not contain text 'Version:'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.443" starttime="20131007 15:11:57.424"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.444" starttime="20131007 15:11:57.424"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:57.444" critical="yes" starttime="20131007 15:11:57.328"></status>
+</test>
+<test id="s1-s3-t3" name="Library Initialization Is Visible">
+<kw type="setup" name="library_information.When user opens library with initialization information">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Navigate to library &quot;ExampleLibrary&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/lib/${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.447" level="INFO">Opening url 'http://localhost:7000/lib/ExampleLibrary'</msg>
+<status status="PASS" endtime="20131007 15:11:57.476" starttime="20131007 15:11:57.447"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>RFDoc | ${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.489" level="INFO">Page title is 'RFDoc | ExampleLibrary'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.490" starttime="20131007 15:11:57.477"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.490" starttime="20131007 15:11:57.446"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.490" starttime="20131007 15:11:57.445"></status>
+</kw>
+<kw type="kw" name="library_information.Then library initialization is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>importing</arg>
+<arg>Importing</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.492" level="INFO">Verifying element 'importing' contains text 'Importing'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.517" starttime="20131007 15:11:57.491"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>Library can be imported with optional arguments.</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.537" level="INFO">Current page contains text 'Library can be imported with optional arguments.'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.537" starttime="20131007 15:11:57.517"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>timeout=3.0, is_regexp=False</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.556" level="INFO">Current page contains text 'timeout=3.0, is_regexp=False'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.556" starttime="20131007 15:11:57.538"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.556" starttime="20131007 15:11:57.490"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:57.557" critical="yes" starttime="20131007 15:11:57.444"></status>
+</test>
+<test id="s1-s3-t4" name="Library Initialization Is Not Visible">
+<kw type="setup" name="library_information.When user opens library without initialization information">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="library_information.User Opens Library Details">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Navigate to library &quot;BuiltIn&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/lib/${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.560" level="INFO">Opening url 'http://localhost:7000/lib/BuiltIn'</msg>
+<status status="PASS" endtime="20131007 15:11:57.689" starttime="20131007 15:11:57.560"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>RFDoc | ${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.701" level="INFO">Page title is 'RFDoc | BuiltIn'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.701" starttime="20131007 15:11:57.689"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.701" starttime="20131007 15:11:57.559"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.702" starttime="20131007 15:11:57.559"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.702" starttime="20131007 15:11:57.558"></status>
+</kw>
+<kw type="kw" name="library_information.Then library initialization is not shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Not Contain Element">
+<doc>Verifies element identified by `locator` is not found on the current page.</doc>
+<arguments>
+<arg>importing</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.712" level="INFO">Current page does not contain element 'importing'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.712" starttime="20131007 15:11:57.703"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.712" starttime="20131007 15:11:57.702"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:57.712" critical="yes" starttime="20131007 15:11:57.557"></status>
+</test>
+<test id="s1-s3-t5" name="Keyword Details Are Visible">
+<kw type="setup" name="library_information.When user opens library details">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Navigate to library &quot;BuiltIn&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/lib/${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.716" level="INFO">Opening url 'http://localhost:7000/lib/BuiltIn'</msg>
+<status status="PASS" endtime="20131007 15:11:57.847" starttime="20131007 15:11:57.716"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>RFDoc | ${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.857" level="INFO">Page title is 'RFDoc | BuiltIn'.</msg>
+<status status="PASS" endtime="20131007 15:11:57.857" starttime="20131007 15:11:57.847"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.857" starttime="20131007 15:11:57.715"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.857" starttime="20131007 15:11:57.714"></status>
+</kw>
+<kw type="kw" name="library_information.Then keywords are listed with name, argument and documentation information">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Library should contain keywords">
+<doc></doc>
+<arguments>
+<arg>@{BUILTIN KEYWORDS}</arg>
+</arguments>
+<kw type="kw" name="${source} = Selenium2Library.Get Source">
+<doc>Returns the entire html source of the current page or frame.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20131007 15:11:57.886" level="INFO">${source} = &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+&lt;!--
+Copyright 2009-2013 Nokia Siemens Networks Oyj
+
+Licensed under the Apache License, Version 2.0 (the "Lic...</msg>
+<status status="PASS" endtime="20131007 15:11:57.886" starttime="20131007 15:11:57.859"></status>
+</kw>
+<kw type="for" name="${name} | ${args} | ${doc} IN [ @{keywords} ]">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="foritem" name="${name} = Convert To Integer, ${args} = item, ${doc} = Converts the given item to an integer number.">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Source should contain keyword">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${name}</arg>
+<arg>${args}</arg>
+<arg>${doc}</arg>
+</arguments>
+<kw type="kw" name="${match}, ${group1}, ${group2} = BuiltIn.Should Match Regexp">
+<doc>Fails if `string` does not match `pattern` as a regular expression.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>(?s)&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;\\s*&lt;td class="arg"&gt;(.*?)&lt;/td&gt;\\s*&lt;td class="doc"&gt;(.+?)&lt;/td&gt;</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.889" level="INFO">${match} = &lt;td id="Convert To Integer" class="kw"&gt;Convert To Integer&lt;/td&gt;
+    &lt;td class="arg"&gt;item&lt;/td&gt;
+    &lt;td class="doc"&gt;Converts the given item to an integer number.&lt;/td&gt;</msg>
+<msg timestamp="20131007 15:11:57.889" level="INFO">${group1} = item</msg>
+<msg timestamp="20131007 15:11:57.890" level="INFO">${group2} = Converts the given item to an integer number.</msg>
+<status status="PASS" endtime="20131007 15:11:57.889" starttime="20131007 15:11:57.888"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group1}</arg>
+<arg>${args}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.890" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:11:57.890" starttime="20131007 15:11:57.890"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group2}</arg>
+<arg>${doc}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.891" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:11:57.891" starttime="20131007 15:11:57.890"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.891" starttime="20131007 15:11:57.887"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.891" starttime="20131007 15:11:57.887"></status>
+</kw>
+<kw type="foritem" name="${name} = No Operation, ${args} = , ${doc} = Does absolutely nothing.">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Source should contain keyword">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${name}</arg>
+<arg>${args}</arg>
+<arg>${doc}</arg>
+</arguments>
+<kw type="kw" name="${match}, ${group1}, ${group2} = BuiltIn.Should Match Regexp">
+<doc>Fails if `string` does not match `pattern` as a regular expression.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>(?s)&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;\\s*&lt;td class="arg"&gt;(.*?)&lt;/td&gt;\\s*&lt;td class="doc"&gt;(.+?)&lt;/td&gt;</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.894" level="INFO">${match} = &lt;td id="No Operation" class="kw"&gt;No Operation&lt;/td&gt;
+    &lt;td class="arg"&gt;&lt;/td&gt;
+    &lt;td class="doc"&gt;Does absolutely nothing.&lt;/td&gt;</msg>
+<msg timestamp="20131007 15:11:57.894" level="INFO">${group1} = </msg>
+<msg timestamp="20131007 15:11:57.894" level="INFO">${group2} = Does absolutely nothing.</msg>
+<status status="PASS" endtime="20131007 15:11:57.894" starttime="20131007 15:11:57.893"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group1}</arg>
+<arg>${args}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.895" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'str'&gt;</msg>
+<status status="PASS" endtime="20131007 15:11:57.895" starttime="20131007 15:11:57.895"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group2}</arg>
+<arg>${doc}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.895" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:11:57.895" starttime="20131007 15:11:57.895"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.896" starttime="20131007 15:11:57.891"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.896" starttime="20131007 15:11:57.891"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.896" starttime="20131007 15:11:57.887"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.896" starttime="20131007 15:11:57.859"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:57.896" starttime="20131007 15:11:57.858"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:57.896" critical="yes" starttime="20131007 15:11:57.713"></status>
+</test>
+<test id="s1-s3-t6" name="Total Number Of Keywords Is Visible">
+<kw type="setup" name="library_information.When user opens library details">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Navigate to library &quot;BuiltIn&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/lib/${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:57.899" level="INFO">Opening url 'http://localhost:7000/lib/BuiltIn'</msg>
+<status status="PASS" endtime="20131007 15:11:58.025" starttime="20131007 15:11:57.898"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>RFDoc | ${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.034" level="INFO">Page title is 'RFDoc | BuiltIn'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.034" starttime="20131007 15:11:58.025"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.034" starttime="20131007 15:11:57.898"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.035" starttime="20131007 15:11:57.897"></status>
+</kw>
+<kw type="kw" name="library_information.Then total number of keywords in library is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>Altogether 72 keywords.</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.051" level="INFO">Current page contains text 'Altogether 72 keywords.'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.051" starttime="20131007 15:11:58.036"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.051" starttime="20131007 15:11:58.035"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:58.052" critical="yes" starttime="20131007 15:11:57.896"></status>
+</test>
+<test id="s1-s3-t7" name="Shortcut Links Exist">
+<kw type="setup" name="library_information.When user opens library details">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Navigate to library &quot;BuiltIn&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/lib/${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.055" level="INFO">Opening url 'http://localhost:7000/lib/BuiltIn'</msg>
+<status status="PASS" endtime="20131007 15:11:58.184" starttime="20131007 15:11:58.054"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>RFDoc | ${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.194" level="INFO">Page title is 'RFDoc | BuiltIn'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.194" starttime="20131007 15:11:58.184"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.194" starttime="20131007 15:11:58.054"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.194" starttime="20131007 15:11:58.053"></status>
+</kw>
+<kw type="kw" name="library_information.Then list of keywords linking to the keyword details is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="library_information.Should Contain Link To Keyword With Short Documentation">
+<doc></doc>
+<arguments>
+<arg>Sleep</arg>
+<arg>Pauses the test executed for the given time.</arg>
+</arguments>
+<kw type="kw" name="${source} = Selenium2Library.Get Source">
+<doc>Returns the entire html source of the current page or frame.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20131007 15:11:58.224" level="INFO">${source} = &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+&lt;!--
+Copyright 2009-2013 Nokia Siemens Networks Oyj
+
+Licensed under the Apache License, Version 2.0 (the "Lic...</msg>
+<status status="PASS" endtime="20131007 15:11:58.224" starttime="20131007 15:11:58.196"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Contain">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>&lt;a title="${short_doc}" href="#${name}"&gt;${name}&lt;/a&gt;</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:58.225" starttime="20131007 15:11:58.224"></status>
+</kw>
+<kw type="kw" name="library_information.Keyword Should Contain Anchor">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${name}</arg>
+</arguments>
+<kw type="kw" name="BuiltIn.Should Contain">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:58.226" starttime="20131007 15:11:58.226"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.227" starttime="20131007 15:11:58.225"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.227" starttime="20131007 15:11:58.196"></status>
+</kw>
+<kw type="kw" name="library_information.Should Contain Link To Keyword With Short Documentation">
+<doc></doc>
+<arguments>
+<arg>Fail</arg>
+<arg>Fails the test immediately with the given (optional) message.</arg>
+</arguments>
+<kw type="kw" name="${source} = Selenium2Library.Get Source">
+<doc>Returns the entire html source of the current page or frame.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20131007 15:11:58.255" level="INFO">${source} = &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+&lt;!--
+Copyright 2009-2013 Nokia Siemens Networks Oyj
+
+Licensed under the Apache License, Version 2.0 (the "Lic...</msg>
+<status status="PASS" endtime="20131007 15:11:58.255" starttime="20131007 15:11:58.228"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Contain">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>&lt;a title="${short_doc}" href="#${name}"&gt;${name}&lt;/a&gt;</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:58.256" starttime="20131007 15:11:58.256"></status>
+</kw>
+<kw type="kw" name="library_information.Keyword Should Contain Anchor">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${name}</arg>
+</arguments>
+<kw type="kw" name="BuiltIn.Should Contain">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:58.258" starttime="20131007 15:11:58.257"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.258" starttime="20131007 15:11:58.256"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.258" starttime="20131007 15:11:58.227"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.258" starttime="20131007 15:11:58.195"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:58.258" critical="yes" starttime="20131007 15:11:58.052"></status>
+</test>
+<test id="s1-s3-t8" name="Keyword Documentation Can Contain Keyword-to-keyword Links">
+<kw type="setup" name="library_information.When user opens library details">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Navigate to library &quot;BuiltIn&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/lib/${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.261" level="INFO">Opening url 'http://localhost:7000/lib/BuiltIn'</msg>
+<status status="PASS" endtime="20131007 15:11:58.392" starttime="20131007 15:11:58.261"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>RFDoc | ${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.398" level="INFO">Page title is 'RFDoc | BuiltIn'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.399" starttime="20131007 15:11:58.392"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.399" starttime="20131007 15:11:58.260"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.399" starttime="20131007 15:11:58.260"></status>
+</kw>
+<kw type="kw" name="library_information.Then link exist from keyword documentation to another keyword">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${source} = Selenium2Library.Get Source">
+<doc>Returns the entire html source of the current page or frame.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20131007 15:11:58.427" level="INFO">${source} = &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+&lt;!--
+Copyright 2009-2013 Nokia Siemens Networks Oyj
+
+Licensed under the Apache License, Version 2.0 (the "Lic...</msg>
+<status status="PASS" endtime="20131007 15:11:58.427" starttime="20131007 15:11:58.400"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Contain">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>&lt;a class="name" href="#Get%20Length"&gt;Get Length&lt;/a&gt;</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:58.428" starttime="20131007 15:11:58.427"></status>
+</kw>
+<kw type="kw" name="library_information.Keyword Should Contain Anchor">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>Get Length</arg>
+</arguments>
+<kw type="kw" name="BuiltIn.Should Contain">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:11:58.429" starttime="20131007 15:11:58.429"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.429" starttime="20131007 15:11:58.428"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.429" starttime="20131007 15:11:58.400"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:58.430" critical="yes" starttime="20131007 15:11:58.259"></status>
+</test>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20131007 15:11:58.431" starttime="20131007 15:11:57.097"></status>
+</suite>
+<suite source="/Users/asyrjasalo/eficode/robot/rfdoc/atest/search_functionality.txt" id="s1-s4" name="Search Functionality">
+<test id="s1-s4-t1" name="User Can Search Using Keyword Name Only">
+<kw type="kw" name="rfdoc.Given SeleniumLibrary exists in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.446" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:11:58.446" starttime="20131007 15:11:58.445"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.446" starttime="20131007 15:11:58.444"></status>
+</kw>
+<kw type="kw" name="rfdoc.and &quot;search&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.448" level="INFO">Opening url 'http://localhost:7000/search'</msg>
+<status status="PASS" endtime="20131007 15:11:58.484" starttime="20131007 15:11:58.447"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.485" starttime="20131007 15:11:58.447"></status>
+</kw>
+<kw type="kw" name="search.When user searches with &quot;title&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>search_term</arg>
+<arg>${search term}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.486" level="INFO">Typing text 'title' into text field 'search_term'</msg>
+<status status="PASS" endtime="20131007 15:11:58.544" starttime="20131007 15:11:58.486"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>search_button</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.545" level="INFO">Clicking button 'search_button'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.633" starttime="20131007 15:11:58.545"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.633" starttime="20131007 15:11:58.485"></status>
+</kw>
+<kw type="kw" name="search.Then &quot;Get Title&quot; and &quot;Title Should Be&quot; keywords are displayed">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="@{keywords} = NameParser.Get Names">
+<doc></doc>
+<arguments>
+<arg>${keywords}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.635" level="INFO">@{keywords} = [ Get Title | Title Should Be ]</msg>
+<status status="PASS" endtime="20131007 15:11:58.634" starttime="20131007 15:11:58.634"></status>
+</kw>
+<kw type="for" name="${name} IN [ @{keywords} ]">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="foritem" name="${name} = Get Title">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="search.Search Result Should Contain ${name}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain Element">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//td/a[text()='${name}']</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.649" level="INFO">Current page contains element '//td/a[text()='Get Title']'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.650" starttime="20131007 15:11:58.636"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.650" starttime="20131007 15:11:58.635"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.650" starttime="20131007 15:11:58.635"></status>
+</kw>
+<kw type="foritem" name="${name} = Title Should Be">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="search.Search Result Should Contain ${name}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain Element">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//td/a[text()='${name}']</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.661" level="INFO">Current page contains element '//td/a[text()='Title Should Be']'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.661" starttime="20131007 15:11:58.651"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.661" starttime="20131007 15:11:58.650"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.661" starttime="20131007 15:11:58.650"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.661" starttime="20131007 15:11:58.635"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.661" starttime="20131007 15:11:58.633"></status>
+</kw>
+<kw type="kw" name="rfdoc.and notification &quot;2 matching keywords found.&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.676" level="INFO">Current page contains text '2 matching keywords found.'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.676" starttime="20131007 15:11:58.663"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.676" starttime="20131007 15:11:58.662"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:58.676" critical="yes" starttime="20131007 15:11:58.443"></status>
+</test>
+<test id="s1-s4-t2" name="User Can Search Using Keyword Name And Documentation">
+<kw type="kw" name="rfdoc.Given SeleniumLibrary exists in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.679" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:11:58.679" starttime="20131007 15:11:58.678"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.680" starttime="20131007 15:11:58.678"></status>
+</kw>
+<kw type="kw" name="rfdoc.and &quot;search&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.681" level="INFO">Opening url 'http://localhost:7000/search'</msg>
+<status status="PASS" endtime="20131007 15:11:58.709" starttime="20131007 15:11:58.681"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.710" starttime="20131007 15:11:58.680"></status>
+</kw>
+<kw type="kw" name="search.When user searches with &quot;title&quot; including documentation">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Select Checkbox">
+<doc>Selects checkbox identified by `locator`.</doc>
+<arguments>
+<arg>include_doc</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.712" level="INFO">Selecting checkbox 'include_doc'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.807" starttime="20131007 15:11:58.712"></status>
+</kw>
+<kw type="kw" name="search.User searches with &quot;${search term}&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>search_term</arg>
+<arg>${search term}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.808" level="INFO">Typing text 'title' into text field 'search_term'</msg>
+<status status="PASS" endtime="20131007 15:11:58.858" starttime="20131007 15:11:58.808"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>search_button</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.859" level="INFO">Clicking button 'search_button'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.971" starttime="20131007 15:11:58.859"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.971" starttime="20131007 15:11:58.807"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.971" starttime="20131007 15:11:58.711"></status>
+</kw>
+<kw type="kw" name="search.Then &quot;Get Title&quot;, &quot;Title Should Be&quot; and &quot;Select Window&quot; keywords are displayed">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="@{keywords} = NameParser.Get Names">
+<doc></doc>
+<arguments>
+<arg>${keywords}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.973" level="INFO">@{keywords} = [ Get Title | Title Should Be | Select Window ]</msg>
+<status status="PASS" endtime="20131007 15:11:58.973" starttime="20131007 15:11:58.973"></status>
+</kw>
+<kw type="for" name="${name} IN [ @{keywords} ]">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="foritem" name="${name} = Get Title">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="search.Search Result Should Contain ${name}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain Element">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//td/a[text()='${name}']</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.981" level="INFO">Current page contains element '//td/a[text()='Get Title']'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.982" starttime="20131007 15:11:58.975"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.982" starttime="20131007 15:11:58.974"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.982" starttime="20131007 15:11:58.974"></status>
+</kw>
+<kw type="foritem" name="${name} = Title Should Be">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="search.Search Result Should Contain ${name}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain Element">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//td/a[text()='${name}']</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.989" level="INFO">Current page contains element '//td/a[text()='Title Should Be']'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.989" starttime="20131007 15:11:58.983"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.989" starttime="20131007 15:11:58.982"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.990" starttime="20131007 15:11:58.982"></status>
+</kw>
+<kw type="foritem" name="${name} = Select Window">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="search.Search Result Should Contain ${name}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain Element">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//td/a[text()='${name}']</arg>
+</arguments>
+<msg timestamp="20131007 15:11:58.996" level="INFO">Current page contains element '//td/a[text()='Select Window']'.</msg>
+<status status="PASS" endtime="20131007 15:11:58.997" starttime="20131007 15:11:58.990"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.997" starttime="20131007 15:11:58.990"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.997" starttime="20131007 15:11:58.990"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.997" starttime="20131007 15:11:58.973"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:58.997" starttime="20131007 15:11:58.972"></status>
+</kw>
+<kw type="kw" name="rfdoc.and notification &quot;3 matching keywords found.&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.012" level="INFO">Current page contains text '3 matching keywords found.'.</msg>
+<status status="PASS" endtime="20131007 15:11:59.012" starttime="20131007 15:11:58.998"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.012" starttime="20131007 15:11:58.998"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:59.013" critical="yes" starttime="20131007 15:11:58.677"></status>
+</test>
+<test id="s1-s4-t3" name="Message Is Displayed When Search Matches No Keywords">
+<kw type="kw" name="rfdoc.Given SeleniumLibrary exists in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.016" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:11:59.016" starttime="20131007 15:11:59.015"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.016" starttime="20131007 15:11:59.014"></status>
+</kw>
+<kw type="kw" name="rfdoc.and &quot;search&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.018" level="INFO">Opening url 'http://localhost:7000/search'</msg>
+<status status="PASS" endtime="20131007 15:11:59.047" starttime="20131007 15:11:59.017"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.047" starttime="20131007 15:11:59.017"></status>
+</kw>
+<kw type="kw" name="search.When user searches with &quot;non-matching&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>search_term</arg>
+<arg>${search term}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.050" level="INFO">Typing text 'non-matching' into text field 'search_term'</msg>
+<status status="PASS" endtime="20131007 15:11:59.116" starttime="20131007 15:11:59.049"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>search_button</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.116" level="INFO">Clicking button 'search_button'.</msg>
+<status status="PASS" endtime="20131007 15:11:59.217" starttime="20131007 15:11:59.116"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.217" starttime="20131007 15:11:59.048"></status>
+</kw>
+<kw type="kw" name="rfdoc.Then notification &quot;No matching keywords found.&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.233" level="INFO">Current page contains text 'No matching keywords found.'.</msg>
+<status status="PASS" endtime="20131007 15:11:59.233" starttime="20131007 15:11:59.219"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.234" starttime="20131007 15:11:59.218"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:59.234" critical="yes" starttime="20131007 15:11:59.013"></status>
+</test>
+<test id="s1-s4-t4" name="Error Is Displayed When Searching Without Search Term">
+<kw type="kw" name="rfdoc.Given SeleniumLibrary exists in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.237" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:11:59.237" starttime="20131007 15:11:59.236"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.237" starttime="20131007 15:11:59.235"></status>
+</kw>
+<kw type="kw" name="rfdoc.and &quot;search&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.239" level="INFO">Opening url 'http://localhost:7000/search'</msg>
+<status status="PASS" endtime="20131007 15:11:59.272" starttime="20131007 15:11:59.238"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.272" starttime="20131007 15:11:59.238"></status>
+</kw>
+<kw type="kw" name="search.When user searches with &quot;&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>search_term</arg>
+<arg>${search term}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.274" level="INFO">Typing text '' into text field 'search_term'</msg>
+<status status="PASS" endtime="20131007 15:11:59.331" starttime="20131007 15:11:59.274"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>search_button</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.332" level="INFO">Clicking button 'search_button'.</msg>
+<status status="PASS" endtime="20131007 15:11:59.426" starttime="20131007 15:11:59.332"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.426" starttime="20131007 15:11:59.273"></status>
+</kw>
+<kw type="kw" name="rfdoc.Then error &quot;This field is required.&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.429" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'This field is required.'.</msg>
+<status status="PASS" endtime="20131007 15:11:59.449" starttime="20131007 15:11:59.428"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.449" starttime="20131007 15:11:59.427"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:59.450" critical="yes" starttime="20131007 15:11:59.234"></status>
+</test>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20131007 15:11:59.451" starttime="20131007 15:11:58.432"></status>
+</suite>
+<suite source="/Users/asyrjasalo/eficode/robot/rfdoc/atest/search_interface.txt" id="s1-s5" name="Search Interface">
+<kw type="setup" name="rfdoc.Given some libraries exist in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.464" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:11:59.464" starttime="20131007 15:11:59.462"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.464" starttime="20131007 15:11:59.461"></status>
+</kw>
+<test id="s1-s5-t1" name="It Is Possible To Search From Main Page">
+<kw type="setup" name="rfdoc.and &quot;main&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.468" level="INFO">Opening url 'http://localhost:7000'</msg>
+<status status="PASS" endtime="20131007 15:11:59.512" starttime="20131007 15:11:59.468"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.513" starttime="20131007 15:11:59.466"></status>
+</kw>
+<kw type="kw" name="rfdoc.Given SeleniumLibrary exists in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.516" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:11:59.516" starttime="20131007 15:11:59.514"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.516" starttime="20131007 15:11:59.513"></status>
+</kw>
+<kw type="kw" name="rfdoc.and &quot;main&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.518" level="INFO">Opening url 'http://localhost:7000'</msg>
+<status status="PASS" endtime="20131007 15:11:59.547" starttime="20131007 15:11:59.517"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.547" starttime="20131007 15:11:59.517"></status>
+</kw>
+<kw type="kw" name="search.When user searches with &quot;title&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>search_term</arg>
+<arg>${search term}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.550" level="INFO">Typing text 'title' into text field 'search_term'</msg>
+<status status="PASS" endtime="20131007 15:11:59.613" starttime="20131007 15:11:59.549"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>search_button</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.613" level="INFO">Clicking button 'search_button'.</msg>
+<status status="PASS" endtime="20131007 15:11:59.719" starttime="20131007 15:11:59.613"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.719" starttime="20131007 15:11:59.548"></status>
+</kw>
+<kw type="kw" name="rfdoc.Then &quot;search&quot; page is opened">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Location Should Be">
+<doc>Verifies that current URL is exactly `url`.</doc>
+<arguments>
+<arg>${BASE URL}/${name}/</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.731" level="INFO">Current location is 'http://localhost:7000/search/'.</msg>
+<status status="PASS" endtime="20131007 15:11:59.731" starttime="20131007 15:11:59.721"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.732" starttime="20131007 15:11:59.720"></status>
+</kw>
+<kw type="kw" name="search.And &quot;Get Title&quot; and &quot;Title Should Be&quot; keywords are displayed">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="@{keywords} = NameParser.Get Names">
+<doc></doc>
+<arguments>
+<arg>${keywords}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.734" level="INFO">@{keywords} = [ Get Title | Title Should Be ]</msg>
+<status status="PASS" endtime="20131007 15:11:59.733" starttime="20131007 15:11:59.733"></status>
+</kw>
+<kw type="for" name="${name} IN [ @{keywords} ]">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="foritem" name="${name} = Get Title">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="search.Search Result Should Contain ${name}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain Element">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//td/a[text()='${name}']</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.741" level="INFO">Current page contains element '//td/a[text()='Get Title']'.</msg>
+<status status="PASS" endtime="20131007 15:11:59.741" starttime="20131007 15:11:59.734"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.742" starttime="20131007 15:11:59.734"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.742" starttime="20131007 15:11:59.734"></status>
+</kw>
+<kw type="foritem" name="${name} = Title Should Be">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="search.Search Result Should Contain ${name}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain Element">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//td/a[text()='${name}']</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.749" level="INFO">Current page contains element '//td/a[text()='Title Should Be']'.</msg>
+<status status="PASS" endtime="20131007 15:11:59.749" starttime="20131007 15:11:59.743"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.749" starttime="20131007 15:11:59.742"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.749" starttime="20131007 15:11:59.742"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.749" starttime="20131007 15:11:59.734"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.750" starttime="20131007 15:11:59.732"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:11:59.750" critical="yes" starttime="20131007 15:11:59.465"></status>
+</test>
+<test id="s1-s5-t2" name="It Is Possible To Search From Search Page">
+<kw type="setup" name="rfdoc.and &quot;main&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.752" level="INFO">Opening url 'http://localhost:7000'</msg>
+<status status="PASS" endtime="20131007 15:11:59.798" starttime="20131007 15:11:59.752"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.798" starttime="20131007 15:11:59.751"></status>
+</kw>
+<kw type="kw" name="rfdoc.Given SeleniumLibrary exists in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.800" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:11:59.800" starttime="20131007 15:11:59.799"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.800" starttime="20131007 15:11:59.798"></status>
+</kw>
+<kw type="kw" name="rfdoc.and &quot;search&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.802" level="INFO">Opening url 'http://localhost:7000/search'</msg>
+<status status="PASS" endtime="20131007 15:11:59.841" starttime="20131007 15:11:59.801"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.841" starttime="20131007 15:11:59.801"></status>
+</kw>
+<kw type="kw" name="search.When user searches with &quot;title&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>search_term</arg>
+<arg>${search term}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.843" level="INFO">Typing text 'title' into text field 'search_term'</msg>
+<status status="PASS" endtime="20131007 15:11:59.892" starttime="20131007 15:11:59.843"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>search_button</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.892" level="INFO">Clicking button 'search_button'.</msg>
+<status status="PASS" endtime="20131007 15:11:59.974" starttime="20131007 15:11:59.892"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.975" starttime="20131007 15:11:59.842"></status>
+</kw>
+<kw type="kw" name="rfdoc.Then &quot;search&quot; page is opened">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Location Should Be">
+<doc>Verifies that current URL is exactly `url`.</doc>
+<arguments>
+<arg>${BASE URL}/${name}/</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.988" level="INFO">Current location is 'http://localhost:7000/search/'.</msg>
+<status status="PASS" endtime="20131007 15:11:59.988" starttime="20131007 15:11:59.976"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:11:59.989" starttime="20131007 15:11:59.975"></status>
+</kw>
+<kw type="kw" name="search.And &quot;Get Title&quot; and &quot;Title Should Be&quot; keywords are displayed">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="@{keywords} = NameParser.Get Names">
+<doc></doc>
+<arguments>
+<arg>${keywords}</arg>
+</arguments>
+<msg timestamp="20131007 15:11:59.991" level="INFO">@{keywords} = [ Get Title | Title Should Be ]</msg>
+<status status="PASS" endtime="20131007 15:11:59.991" starttime="20131007 15:11:59.991"></status>
+</kw>
+<kw type="for" name="${name} IN [ @{keywords} ]">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="foritem" name="${name} = Get Title">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="search.Search Result Should Contain ${name}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain Element">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//td/a[text()='${name}']</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.000" level="INFO">Current page contains element '//td/a[text()='Get Title']'.</msg>
+<status status="PASS" endtime="20131007 15:12:00.001" starttime="20131007 15:11:59.993"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.001" starttime="20131007 15:11:59.992"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.001" starttime="20131007 15:11:59.992"></status>
+</kw>
+<kw type="foritem" name="${name} = Title Should Be">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="search.Search Result Should Contain ${name}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain Element">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//td/a[text()='${name}']</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.009" level="INFO">Current page contains element '//td/a[text()='Title Should Be']'.</msg>
+<status status="PASS" endtime="20131007 15:12:00.009" starttime="20131007 15:12:00.002"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.009" starttime="20131007 15:12:00.001"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.009" starttime="20131007 15:12:00.001"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.009" starttime="20131007 15:11:59.991"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.010" starttime="20131007 15:11:59.990"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:12:00.010" critical="yes" starttime="20131007 15:11:59.750"></status>
+</test>
+<test id="s1-s5-t3" name="Search Results Contain Relevant Information">
+<kw type="setup" name="rfdoc.and &quot;main&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.012" level="INFO">Opening url 'http://localhost:7000'</msg>
+<status status="PASS" endtime="20131007 15:12:00.050" starttime="20131007 15:12:00.012"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.050" starttime="20131007 15:12:00.011"></status>
+</kw>
+<kw type="kw" name="rfdoc.Given SeleniumLibrary exists in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.052" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:12:00.052" starttime="20131007 15:12:00.051"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.052" starttime="20131007 15:12:00.051"></status>
+</kw>
+<kw type="kw" name="rfdoc.And &quot;search&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.054" level="INFO">Opening url 'http://localhost:7000/search'</msg>
+<status status="PASS" endtime="20131007 15:12:00.106" starttime="20131007 15:12:00.054"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.106" starttime="20131007 15:12:00.053"></status>
+</kw>
+<kw type="kw" name="search.And user searches with &quot;title&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>search_term</arg>
+<arg>${search term}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.107" level="INFO">Typing text 'title' into text field 'search_term'</msg>
+<status status="PASS" endtime="20131007 15:12:00.168" starttime="20131007 15:12:00.107"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>search_button</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.168" level="INFO">Clicking button 'search_button'.</msg>
+<status status="PASS" endtime="20131007 15:12:00.260" starttime="20131007 15:12:00.168"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.261" starttime="20131007 15:12:00.106"></status>
+</kw>
+<kw type="kw" name="search.Then search results contain keyword &quot;Get Title&quot; with link to &quot;SeleniumLibrary&quot; and with documentation">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${expected} = BuiltIn.Catenate">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=\\s*</arg>
+<arg>&lt;table class="keywords results"&gt;</arg>
+<arg>&lt;tbody&gt;</arg>
+<arg>&lt;tr&gt;</arg>
+<arg>&lt;td&gt;&lt;a href="/lib/SeleniumLibrary#Get%20Title"&gt;Get Title&lt;/a&gt;&lt;/td&gt;</arg>
+<arg>&lt;td&gt;&lt;a href="/lib/SeleniumLibrary"&gt;SeleniumLibrary&lt;/a&gt;&lt;/td&gt;</arg>
+<arg>&lt;td&gt;Returns title of current page.&lt;/td&gt;</arg>
+<arg>&lt;/tr&gt;</arg>
+<arg>&lt;tr&gt;</arg>
+<arg>&lt;td&gt;&lt;a href="/lib/SeleniumLibrary#Title%20Should%20Be"&gt;Title Should Be&lt;/a&gt;&lt;/td&gt;</arg>
+<arg>&lt;td&gt;&lt;a href="/lib/SeleniumLibrary"&gt;SeleniumLibrary&lt;/a&gt;&lt;/td&gt;</arg>
+<arg>&lt;td&gt;Verifies that current page title equals `title`.&lt;/td&gt;</arg>
+<arg>&lt;/tr&gt;</arg>
+<arg>&lt;/tbody&gt;</arg>
+<arg>&lt;/table&gt;</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.262" level="INFO">${expected} = &lt;table class="keywords results"&gt;\s*&lt;tbody&gt;\s*&lt;tr&gt;\s*&lt;td&gt;&lt;a href="/lib/SeleniumLibrary#Get%20Title"&gt;Get Title&lt;/a&gt;&lt;/td&gt;\s*&lt;td&gt;&lt;a href="/lib/SeleniumLibrary"&gt;SeleniumLibrary&lt;/a&gt;&lt;/td&gt;\s*&lt;td&gt;Returns title ...</msg>
+<status status="PASS" endtime="20131007 15:12:00.262" starttime="20131007 15:12:00.262"></status>
+</kw>
+<kw type="kw" name="${source} = Selenium2Library.Get Source">
+<doc>Returns the entire html source of the current page or frame.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20131007 15:12:00.271" level="INFO">${source} = &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+&lt;!--
+Copyright 2009-2013 Nokia Siemens Networks Oyj
+
+Licensed under the Apache License, Version 2.0 (the "Lic...</msg>
+<status status="PASS" endtime="20131007 15:12:00.271" starttime="20131007 15:12:00.262"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Match Regexp">
+<doc>Fails if `string` does not match `pattern` as a regular expression.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:12:00.274" starttime="20131007 15:12:00.271"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.274" starttime="20131007 15:12:00.261"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>Req-Search 3</tag>
+</tags>
+<status status="PASS" endtime="20131007 15:12:00.274" critical="yes" starttime="20131007 15:12:00.010"></status>
+</test>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20131007 15:12:00.275" starttime="20131007 15:11:59.452"></status>
+</suite>
+<suite source="/Users/asyrjasalo/eficode/robot/rfdoc/atest/update_documentation.txt" id="s1-s6" name="Update Documentation">
+<test id="s1-s6-t1" name="Existing Library Is Not Overridden By Default">
+<kw type="kw" name="rfdoc.Given ExampleLibrary version 1 exists in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.287" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:12:00.287" starttime="20131007 15:12:00.286"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.288" starttime="20131007 15:12:00.284"></status>
+</kw>
+<kw type="kw" name="rfdoc.and &quot;upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.290" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:12:00.324" starttime="20131007 15:12:00.289"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.324" starttime="20131007 15:12:00.288"></status>
+</kw>
+<kw type="kw" name="rfdoc.When user uploads ExampleLibrary version 2">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${file} = BuiltIn.Set Variable">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${library.replace(' ', '_')}.xml</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.326" level="INFO">${file} = ExampleLibrary_version_2.xml</msg>
+<status status="PASS" endtime="20131007 15:12:00.326" starttime="20131007 15:12:00.325"></status>
+</kw>
+<kw type="kw" name="rfdoc.Upload ${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:12:00.353" starttime="20131007 15:12:00.328"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.354" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:12:00.436" starttime="20131007 15:12:00.354"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.436" starttime="20131007 15:12:00.327"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.436" starttime="20131007 15:12:00.325"></status>
+</kw>
+<kw type="kw" name="rfdoc.Then error &quot;ExampleLibrary already exists&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Element Should Contain">
+<doc>Verifies element identified by `locator` contains text `expected`.</doc>
+<arguments>
+<arg>xpath=//ul[@class='errorlist']</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.439" level="INFO">Verifying element 'xpath=//ul[@class='errorlist']' contains text 'ExampleLibrary already exists'.</msg>
+<status status="PASS" endtime="20131007 15:12:00.471" starttime="20131007 15:12:00.438"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.471" starttime="20131007 15:12:00.437"></status>
+</kw>
+<kw type="kw" name="rfdoc.and RFDoc contains ExampleLibrary version 1">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${name} = NameParser.Get Library Name">
+<doc></doc>
+<arguments>
+<arg>${library name with possible version}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.474" level="INFO">${name} = ExampleLibrary</msg>
+<status status="PASS" endtime="20131007 15:12:00.474" starttime="20131007 15:12:00.474"></status>
+</kw>
+<kw type="kw" name="rfdoc.Navigate to library &quot;${name}&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/lib/${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.475" level="INFO">Opening url 'http://localhost:7000/lib/ExampleLibrary'</msg>
+<status status="PASS" endtime="20131007 15:12:00.519" starttime="20131007 15:12:00.475"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>RFDoc | ${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.532" level="INFO">Page title is 'RFDoc | ExampleLibrary'.</msg>
+<status status="PASS" endtime="20131007 15:12:00.532" starttime="20131007 15:12:00.519"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.532" starttime="20131007 15:12:00.474"></status>
+</kw>
+<kw type="kw" name="@{keywords} = BuiltIn.Set Variable">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>@{${library name with possible version} KEYWORDS}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.533" level="INFO">@{keywords} = [ First Keyword | first, second=default, *args | First KW doc | My Second Keyword | some | Second KW doc ]</msg>
+<status status="PASS" endtime="20131007 15:12:00.533" starttime="20131007 15:12:00.532"></status>
+</kw>
+<kw type="kw" name="rfdoc.Library should contain keywords">
+<doc></doc>
+<arguments>
+<arg>@{keywords}</arg>
+</arguments>
+<kw type="kw" name="${source} = Selenium2Library.Get Source">
+<doc>Returns the entire html source of the current page or frame.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20131007 15:12:00.542" level="INFO">${source} = &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+&lt;!--
+Copyright 2009-2013 Nokia Siemens Networks Oyj
+
+Licensed under the Apache License, Version 2.0 (the "Lic...</msg>
+<status status="PASS" endtime="20131007 15:12:00.542" starttime="20131007 15:12:00.534"></status>
+</kw>
+<kw type="for" name="${name} | ${args} | ${doc} IN [ @{keywords} ]">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="foritem" name="${name} = First Keyword, ${args} = first, second=default, *args, ${doc} = First KW doc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Source should contain keyword">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${name}</arg>
+<arg>${args}</arg>
+<arg>${doc}</arg>
+</arguments>
+<kw type="kw" name="${match}, ${group1}, ${group2} = BuiltIn.Should Match Regexp">
+<doc>Fails if `string` does not match `pattern` as a regular expression.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>(?s)&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;\\s*&lt;td class="arg"&gt;(.*?)&lt;/td&gt;\\s*&lt;td class="doc"&gt;(.+?)&lt;/td&gt;</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.545" level="INFO">${match} = &lt;td id="First Keyword" class="kw"&gt;First Keyword&lt;/td&gt;
+    &lt;td class="arg"&gt;first, second=default, *args&lt;/td&gt;
+    &lt;td class="doc"&gt;First KW doc&lt;/td&gt;</msg>
+<msg timestamp="20131007 15:12:00.545" level="INFO">${group1} = first, second=default, *args</msg>
+<msg timestamp="20131007 15:12:00.545" level="INFO">${group2} = First KW doc</msg>
+<status status="PASS" endtime="20131007 15:12:00.545" starttime="20131007 15:12:00.544"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group1}</arg>
+<arg>${args}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.546" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:00.546" starttime="20131007 15:12:00.545"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group2}</arg>
+<arg>${doc}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.546" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:00.546" starttime="20131007 15:12:00.546"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.546" starttime="20131007 15:12:00.543"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.546" starttime="20131007 15:12:00.543"></status>
+</kw>
+<kw type="foritem" name="${name} = My Second Keyword, ${args} = some, ${doc} = Second KW doc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Source should contain keyword">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${name}</arg>
+<arg>${args}</arg>
+<arg>${doc}</arg>
+</arguments>
+<kw type="kw" name="${match}, ${group1}, ${group2} = BuiltIn.Should Match Regexp">
+<doc>Fails if `string` does not match `pattern` as a regular expression.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>(?s)&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;\\s*&lt;td class="arg"&gt;(.*?)&lt;/td&gt;\\s*&lt;td class="doc"&gt;(.+?)&lt;/td&gt;</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.549" level="INFO">${match} = &lt;td id="My Second Keyword" class="kw"&gt;My Second Keyword&lt;/td&gt;
+    &lt;td class="arg"&gt;some&lt;/td&gt;
+    &lt;td class="doc"&gt;Second KW doc&lt;/td&gt;</msg>
+<msg timestamp="20131007 15:12:00.549" level="INFO">${group1} = some</msg>
+<msg timestamp="20131007 15:12:00.549" level="INFO">${group2} = Second KW doc</msg>
+<status status="PASS" endtime="20131007 15:12:00.549" starttime="20131007 15:12:00.547"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group1}</arg>
+<arg>${args}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.549" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:00.549" starttime="20131007 15:12:00.549"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group2}</arg>
+<arg>${doc}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.550" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:00.550" starttime="20131007 15:12:00.549"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.550" starttime="20131007 15:12:00.547"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.550" starttime="20131007 15:12:00.546"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.550" starttime="20131007 15:12:00.543"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.550" starttime="20131007 15:12:00.533"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.550" starttime="20131007 15:12:00.472"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:12:00.550" critical="yes" starttime="20131007 15:12:00.283"></status>
+</test>
+<test id="s1-s6-t2" name="User Can Update Library Documentation">
+<kw type="kw" name="rfdoc.Given ExampleLibrary version 1 exists in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/libraries.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.553" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/libraries.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:12:00.553" starttime="20131007 15:12:00.552"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.553" starttime="20131007 15:12:00.552"></status>
+</kw>
+<kw type="kw" name="rfdoc.and &quot;upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.555" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:12:00.584" starttime="20131007 15:12:00.554"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.585" starttime="20131007 15:12:00.554"></status>
+</kw>
+<kw type="kw" name="rfdoc.When user selects &quot;override&quot; option">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Select Checkbox">
+<doc>Selects checkbox identified by `locator`.</doc>
+<arguments>
+<arg>${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.587" level="INFO">Selecting checkbox 'override'.</msg>
+<status status="PASS" endtime="20131007 15:12:00.682" starttime="20131007 15:12:00.587"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.682" starttime="20131007 15:12:00.585"></status>
+</kw>
+<kw type="kw" name="rfdoc.and user uploads ExampleLibrary version 2">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${file} = BuiltIn.Set Variable">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${library.replace(' ', '_')}.xml</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.685" level="INFO">${file} = ExampleLibrary_version_2.xml</msg>
+<status status="PASS" endtime="20131007 15:12:00.685" starttime="20131007 15:12:00.684"></status>
+</kw>
+<kw type="kw" name="rfdoc.Upload ${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:12:00.705" starttime="20131007 15:12:00.686"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.705" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:12:00.820" starttime="20131007 15:12:00.705"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.820" starttime="20131007 15:12:00.685"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.820" starttime="20131007 15:12:00.683"></status>
+</kw>
+<kw type="kw" name="rfdoc.Then notification &quot;Successfully uploaded library ExampleLibrary&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.839" level="INFO">Current page contains text 'Successfully uploaded library ExampleLibrary'.</msg>
+<status status="PASS" endtime="20131007 15:12:00.839" starttime="20131007 15:12:00.822"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.839" starttime="20131007 15:12:00.821"></status>
+</kw>
+<kw type="kw" name="rfdoc.and RFDoc contains ExampleLibrary version 2">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${name} = NameParser.Get Library Name">
+<doc></doc>
+<arguments>
+<arg>${library name with possible version}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.841" level="INFO">${name} = ExampleLibrary</msg>
+<status status="PASS" endtime="20131007 15:12:00.840" starttime="20131007 15:12:00.840"></status>
+</kw>
+<kw type="kw" name="rfdoc.Navigate to library &quot;${name}&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/lib/${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.841" level="INFO">Opening url 'http://localhost:7000/lib/ExampleLibrary'</msg>
+<status status="PASS" endtime="20131007 15:12:00.879" starttime="20131007 15:12:00.841"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>RFDoc | ${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.898" level="INFO">Page title is 'RFDoc | ExampleLibrary'.</msg>
+<status status="PASS" endtime="20131007 15:12:00.899" starttime="20131007 15:12:00.879"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.899" starttime="20131007 15:12:00.841"></status>
+</kw>
+<kw type="kw" name="@{keywords} = BuiltIn.Set Variable">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>@{${library name with possible version} KEYWORDS}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.900" level="INFO">@{keywords} = [ First Keyword Updated | first, second=default updated, *args | Updated KW doc | My Second Keyword | some | Second KW doc | Third Keyword | third | Third KW doc ]</msg>
+<status status="PASS" endtime="20131007 15:12:00.900" starttime="20131007 15:12:00.899"></status>
+</kw>
+<kw type="kw" name="rfdoc.Library should contain keywords">
+<doc></doc>
+<arguments>
+<arg>@{keywords}</arg>
+</arguments>
+<kw type="kw" name="${source} = Selenium2Library.Get Source">
+<doc>Returns the entire html source of the current page or frame.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20131007 15:12:00.909" level="INFO">${source} = &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+&lt;!--
+Copyright 2009-2013 Nokia Siemens Networks Oyj
+
+Licensed under the Apache License, Version 2.0 (the "Lic...</msg>
+<status status="PASS" endtime="20131007 15:12:00.909" starttime="20131007 15:12:00.901"></status>
+</kw>
+<kw type="for" name="${name} | ${args} | ${doc} IN [ @{keywords} ]">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="foritem" name="${name} = First Keyword Updated, ${args} = first, second=default updated, *args, ${doc} = Updated KW doc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Source should contain keyword">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${name}</arg>
+<arg>${args}</arg>
+<arg>${doc}</arg>
+</arguments>
+<kw type="kw" name="${match}, ${group1}, ${group2} = BuiltIn.Should Match Regexp">
+<doc>Fails if `string` does not match `pattern` as a regular expression.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>(?s)&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;\\s*&lt;td class="arg"&gt;(.*?)&lt;/td&gt;\\s*&lt;td class="doc"&gt;(.+?)&lt;/td&gt;</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.913" level="INFO">${match} = &lt;td id="First Keyword Updated" class="kw"&gt;First Keyword Updated&lt;/td&gt;
+    &lt;td class="arg"&gt;first, second=default updated, *args&lt;/td&gt;
+    &lt;td class="doc"&gt;Updated KW doc&lt;/td&gt;</msg>
+<msg timestamp="20131007 15:12:00.913" level="INFO">${group1} = first, second=default updated, *args</msg>
+<msg timestamp="20131007 15:12:00.913" level="INFO">${group2} = Updated KW doc</msg>
+<status status="PASS" endtime="20131007 15:12:00.913" starttime="20131007 15:12:00.911"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group1}</arg>
+<arg>${args}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.914" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:00.914" starttime="20131007 15:12:00.913"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group2}</arg>
+<arg>${doc}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.914" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:00.914" starttime="20131007 15:12:00.914"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.915" starttime="20131007 15:12:00.910"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.915" starttime="20131007 15:12:00.910"></status>
+</kw>
+<kw type="foritem" name="${name} = My Second Keyword, ${args} = some, ${doc} = Second KW doc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Source should contain keyword">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${name}</arg>
+<arg>${args}</arg>
+<arg>${doc}</arg>
+</arguments>
+<kw type="kw" name="${match}, ${group1}, ${group2} = BuiltIn.Should Match Regexp">
+<doc>Fails if `string` does not match `pattern` as a regular expression.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>(?s)&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;\\s*&lt;td class="arg"&gt;(.*?)&lt;/td&gt;\\s*&lt;td class="doc"&gt;(.+?)&lt;/td&gt;</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.917" level="INFO">${match} = &lt;td id="My Second Keyword" class="kw"&gt;My Second Keyword&lt;/td&gt;
+    &lt;td class="arg"&gt;some&lt;/td&gt;
+    &lt;td class="doc"&gt;Second KW doc&lt;/td&gt;</msg>
+<msg timestamp="20131007 15:12:00.917" level="INFO">${group1} = some</msg>
+<msg timestamp="20131007 15:12:00.917" level="INFO">${group2} = Second KW doc</msg>
+<status status="PASS" endtime="20131007 15:12:00.916" starttime="20131007 15:12:00.916"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group1}</arg>
+<arg>${args}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.917" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:00.917" starttime="20131007 15:12:00.917"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group2}</arg>
+<arg>${doc}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.918" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:00.918" starttime="20131007 15:12:00.918"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.918" starttime="20131007 15:12:00.915"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.918" starttime="20131007 15:12:00.915"></status>
+</kw>
+<kw type="foritem" name="${name} = Third Keyword, ${args} = third, ${doc} = Third KW doc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Source should contain keyword">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${name}</arg>
+<arg>${args}</arg>
+<arg>${doc}</arg>
+</arguments>
+<kw type="kw" name="${match}, ${group1}, ${group2} = BuiltIn.Should Match Regexp">
+<doc>Fails if `string` does not match `pattern` as a regular expression.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>(?s)&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;\\s*&lt;td class="arg"&gt;(.*?)&lt;/td&gt;\\s*&lt;td class="doc"&gt;(.+?)&lt;/td&gt;</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.920" level="INFO">${match} = &lt;td id="Third Keyword" class="kw"&gt;Third Keyword&lt;/td&gt;
+    &lt;td class="arg"&gt;third&lt;/td&gt;
+    &lt;td class="doc"&gt;Third KW doc&lt;/td&gt;</msg>
+<msg timestamp="20131007 15:12:00.921" level="INFO">${group1} = third</msg>
+<msg timestamp="20131007 15:12:00.921" level="INFO">${group2} = Third KW doc</msg>
+<status status="PASS" endtime="20131007 15:12:00.920" starttime="20131007 15:12:00.919"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group1}</arg>
+<arg>${args}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.921" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:00.921" starttime="20131007 15:12:00.921"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group2}</arg>
+<arg>${doc}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.922" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:00.922" starttime="20131007 15:12:00.921"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.922" starttime="20131007 15:12:00.918"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.922" starttime="20131007 15:12:00.918"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.922" starttime="20131007 15:12:00.909"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.922" starttime="20131007 15:12:00.900"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.922" starttime="20131007 15:12:00.839"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:12:00.922" critical="yes" starttime="20131007 15:12:00.551"></status>
+</test>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20131007 15:12:00.923" starttime="20131007 15:12:00.276"></status>
+</suite>
+<suite source="/Users/asyrjasalo/eficode/robot/rfdoc/atest/upload_documentation.txt" id="s1-s7" name="Upload Documentation">
+<test id="s1-s7-t1" name="User Can Upload Library Documentation">
+<kw type="kw" name="rfdoc.Given no libraries exist in RFDoc">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="OperatingSystem.Copy File">
+<doc>Copies the source file into a new destination.</doc>
+<arguments>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata/empty.db</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}results${/}rfdoc.db</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.933" html="yes" level="INFO">Copied file from '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/empty.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/testdata/empty.db&lt;/a&gt;' to '&lt;a href="file:///Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db"&gt;/Users/asyrjasalo/eficode/robot/rfdoc/atest/results/rfdoc.db&lt;/a&gt;'</msg>
+<status status="PASS" endtime="20131007 15:12:00.933" starttime="20131007 15:12:00.932"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.933" starttime="20131007 15:12:00.931"></status>
+</kw>
+<kw type="kw" name="rfdoc.and &quot;upload&quot; page is open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/${name.lower()}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.934" level="INFO">Opening url 'http://localhost:7000/upload'</msg>
+<status status="PASS" endtime="20131007 15:12:00.975" starttime="20131007 15:12:00.934"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:00.975" starttime="20131007 15:12:00.933"></status>
+</kw>
+<kw type="kw" name="rfdoc.When user uploads BuiltIn">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${file} = BuiltIn.Set Variable">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${library.replace(' ', '_')}.xml</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.978" level="INFO">${file} = BuiltIn.xml</msg>
+<status status="PASS" endtime="20131007 15:12:00.977" starttime="20131007 15:12:00.976"></status>
+</kw>
+<kw type="kw" name="rfdoc.Upload ${file}">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Choose File">
+<doc>Inputs the `file_path` into file input field found by `identifier`.</doc>
+<arguments>
+<arg>file</arg>
+<arg>/Users/asyrjasalo/eficode/robot/rfdoc/atest/resources${/}..${/}testdata${/}${file}</arg>
+</arguments>
+<status status="PASS" endtime="20131007 15:12:00.996" starttime="20131007 15:12:00.979"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>Upload</arg>
+</arguments>
+<msg timestamp="20131007 15:12:00.997" level="INFO">Clicking button 'Upload'.</msg>
+<status status="PASS" endtime="20131007 15:12:01.469" starttime="20131007 15:12:00.997"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.469" starttime="20131007 15:12:00.978"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.469" starttime="20131007 15:12:00.976"></status>
+</kw>
+<kw type="kw" name="rfdoc.Then notification &quot;Successfully uploaded library BuiltIn&quot; is shown">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.495" level="INFO">Current page contains text 'Successfully uploaded library BuiltIn'.</msg>
+<status status="PASS" endtime="20131007 15:12:01.495" starttime="20131007 15:12:01.471"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.495" starttime="20131007 15:12:01.470"></status>
+</kw>
+<kw type="kw" name="rfdoc.and notification contains a link to BuiltIn">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain Link">
+<doc>Verifies link identified by `locator` is found from current page.</doc>
+<arguments>
+<arg>/lib/${library}</arg>
+<arg>${library}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.510" level="INFO">Current page contains link '/lib/BuiltIn'.</msg>
+<status status="PASS" endtime="20131007 15:12:01.510" starttime="20131007 15:12:01.497"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.510" starttime="20131007 15:12:01.496"></status>
+</kw>
+<kw type="kw" name="rfdoc.and RFDoc contains BuiltIn">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${name} = NameParser.Get Library Name">
+<doc></doc>
+<arguments>
+<arg>${library name with possible version}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.512" level="INFO">${name} = BuiltIn</msg>
+<status status="PASS" endtime="20131007 15:12:01.512" starttime="20131007 15:12:01.512"></status>
+</kw>
+<kw type="kw" name="rfdoc.Navigate to library &quot;${name}&quot;">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${BASE URL}/lib/${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.514" level="INFO">Opening url 'http://localhost:7000/lib/BuiltIn'</msg>
+<status status="PASS" endtime="20131007 15:12:01.638" starttime="20131007 15:12:01.514"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>RFDoc | ${name}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.665" level="INFO">Page title is 'RFDoc | BuiltIn'.</msg>
+<status status="PASS" endtime="20131007 15:12:01.665" starttime="20131007 15:12:01.639"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.666" starttime="20131007 15:12:01.513"></status>
+</kw>
+<kw type="kw" name="@{keywords} = BuiltIn.Set Variable">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>@{${library name with possible version} KEYWORDS}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.667" level="INFO">@{keywords} = [ Convert To Integer | item | Converts the given item to an integer number. | No Operation |  | Does absolutely nothing. ]</msg>
+<status status="PASS" endtime="20131007 15:12:01.667" starttime="20131007 15:12:01.666"></status>
+</kw>
+<kw type="kw" name="rfdoc.Library should contain keywords">
+<doc></doc>
+<arguments>
+<arg>@{keywords}</arg>
+</arguments>
+<kw type="kw" name="${source} = Selenium2Library.Get Source">
+<doc>Returns the entire html source of the current page or frame.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20131007 15:12:01.698" level="INFO">${source} = &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+&lt;!--
+Copyright 2009-2013 Nokia Siemens Networks Oyj
+
+Licensed under the Apache License, Version 2.0 (the "Lic...</msg>
+<status status="PASS" endtime="20131007 15:12:01.698" starttime="20131007 15:12:01.668"></status>
+</kw>
+<kw type="for" name="${name} | ${args} | ${doc} IN [ @{keywords} ]">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="foritem" name="${name} = Convert To Integer, ${args} = item, ${doc} = Converts the given item to an integer number.">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Source should contain keyword">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${name}</arg>
+<arg>${args}</arg>
+<arg>${doc}</arg>
+</arguments>
+<kw type="kw" name="${match}, ${group1}, ${group2} = BuiltIn.Should Match Regexp">
+<doc>Fails if `string` does not match `pattern` as a regular expression.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>(?s)&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;\\s*&lt;td class="arg"&gt;(.*?)&lt;/td&gt;\\s*&lt;td class="doc"&gt;(.+?)&lt;/td&gt;</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.700" level="INFO">${match} = &lt;td id="Convert To Integer" class="kw"&gt;Convert To Integer&lt;/td&gt;
+    &lt;td class="arg"&gt;item&lt;/td&gt;
+    &lt;td class="doc"&gt;Converts the given item to an integer number.&lt;/td&gt;</msg>
+<msg timestamp="20131007 15:12:01.700" level="INFO">${group1} = item</msg>
+<msg timestamp="20131007 15:12:01.700" level="INFO">${group2} = Converts the given item to an integer number.</msg>
+<status status="PASS" endtime="20131007 15:12:01.700" starttime="20131007 15:12:01.700"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group1}</arg>
+<arg>${args}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.701" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:01.701" starttime="20131007 15:12:01.701"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group2}</arg>
+<arg>${doc}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.701" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:01.702" starttime="20131007 15:12:01.701"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.702" starttime="20131007 15:12:01.699"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.702" starttime="20131007 15:12:01.699"></status>
+</kw>
+<kw type="foritem" name="${name} = No Operation, ${args} = , ${doc} = Does absolutely nothing.">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="rfdoc.Source should contain keyword">
+<doc></doc>
+<arguments>
+<arg>${source}</arg>
+<arg>${name}</arg>
+<arg>${args}</arg>
+<arg>${doc}</arg>
+</arguments>
+<kw type="kw" name="${match}, ${group1}, ${group2} = BuiltIn.Should Match Regexp">
+<doc>Fails if `string` does not match `pattern` as a regular expression.</doc>
+<arguments>
+<arg>${source}</arg>
+<arg>(?s)&lt;td id="${name}" class="kw"&gt;${name}&lt;/td&gt;\\s*&lt;td class="arg"&gt;(.*?)&lt;/td&gt;\\s*&lt;td class="doc"&gt;(.+?)&lt;/td&gt;</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.704" level="INFO">${match} = &lt;td id="No Operation" class="kw"&gt;No Operation&lt;/td&gt;
+    &lt;td class="arg"&gt;&lt;/td&gt;
+    &lt;td class="doc"&gt;Does absolutely nothing.&lt;/td&gt;</msg>
+<msg timestamp="20131007 15:12:01.704" level="INFO">${group1} = </msg>
+<msg timestamp="20131007 15:12:01.704" level="INFO">${group2} = Does absolutely nothing.</msg>
+<status status="PASS" endtime="20131007 15:12:01.704" starttime="20131007 15:12:01.703"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group1}</arg>
+<arg>${args}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.704" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'str'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:01.704" starttime="20131007 15:12:01.704"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${group2}</arg>
+<arg>${doc}</arg>
+</arguments>
+<msg timestamp="20131007 15:12:01.705" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20131007 15:12:01.705" starttime="20131007 15:12:01.705"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.705" starttime="20131007 15:12:01.702"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.705" starttime="20131007 15:12:01.702"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.705" starttime="20131007 15:12:01.698"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.705" starttime="20131007 15:12:01.667"></status>
+</kw>
+<status status="PASS" endtime="20131007 15:12:01.705" starttime="20131007 15:12:01.511"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20131007 15:12:01.706" critical="yes" starttime="20131007 15:12:00.930"></status>
+</test>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20131007 15:12:01.706" starttime="20131007 15:12:00.924"></status>
+</suite>
+<kw type="teardown" name="Selenium2Library.Close All Browsers">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20131007 15:12:01.753" starttime="20131007 15:12:01.709"></status>
+</kw>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20131007 15:12:01.753" starttime="20131007 15:11:52.135"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="32">Critical Tests</stat>
+<stat fail="0" pass="32">All Tests</stat>
+</total>
+<tag>
+<stat info="" links="" doc="" combined="" pass="1" fail="0">Req-Search 3</stat>
+</tag>
+<suite>
+<stat fail="0" pass="32" id="s1" name="Atest">Atest</stat>
+<stat fail="0" pass="12" id="s1-s1" name="Invalid File Upload">Atest.Invalid File Upload</stat>
+<stat fail="0" pass="2" id="s1-s2" name="Libraries Listed">Atest.Libraries Listed</stat>
+<stat fail="0" pass="8" id="s1-s3" name="Library Details">Atest.Library Details</stat>
+<stat fail="0" pass="4" id="s1-s4" name="Search Functionality">Atest.Search Functionality</stat>
+<stat fail="0" pass="3" id="s1-s5" name="Search Interface">Atest.Search Interface</stat>
+<stat fail="0" pass="2" id="s1-s6" name="Update Documentation">Atest.Update Documentation</stat>
+<stat fail="0" pass="1" id="s1-s7" name="Upload Documentation">Atest.Upload Documentation</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
