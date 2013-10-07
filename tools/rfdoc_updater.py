@@ -110,8 +110,9 @@ as target.""" % self.default_url
         return options
 
     def _traverse_targets_for_libraries(self, targets):
-        libraries = []
+        libraries = targets
         for directory in self._only_directories(targets):
+            libraries.remove(directory)
             for path, _, filenames in os.walk(directory):
                 for filename in self._only_library_files(filenames):
                     libraries.append(os.path.join(path, filename))
