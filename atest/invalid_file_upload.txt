@@ -1,3 +1,13 @@
+*** Settings ***
+Test Setup    "Upload" page is open
+Resource      resources/rfdoc.txt
+
+*** Variables ***
+${NON XML FILE}       Given file is not XML.
+${INVALID XML FILE}   Given file contains invalid XML.
+${NON EXISTING FILE}  The submitted file is empty.
+${MISSING KEYWORDS}   Given test library contains no keywords.
+
 *** Test Cases ***                       *** Uploaded File ***      *** Error Message ***
 Non XML file           Uploading fails   text_file.txt              ${NON XML FILE}
 Wrong XML content      Uploading fails   invalid_content.xml        ${INVALID XML FILE}
@@ -12,22 +22,7 @@ Empty keyword          Uploading fails   empty_keyword.xml          ${INVALID XM
 Empty keywords         Uploading fails   empty_keywords.xml         ${MISSING KEYWORDS}
 Missing keywords       Uploading fails   missing_keywords.xml       ${MISSING KEYWORDS}
 
-
 *** Keywords ***
 Uploading fails   [Arguments]   ${file}   ${message}
    Upload invalid${/}${file}
    error "${message}" is shown
-
-
-*** Variables ***
-${NON XML FILE}       Given file is not XML.
-${INVALID XML FILE}   Given file contains invalid XML.
-${NON EXISTING FILE}  The submitted file is empty.
-${MISSING KEYWORDS}   Given test library contains no keywords.
-
-
-*** Settings ***
-Test Setup    "Upload" page is open
-Force Tags    Req-Upload 3   Sprint-1
-Resource      ../rfdoc.txt
-

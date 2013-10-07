@@ -1,5 +1,5 @@
 *** Settings ***
-Resource        ../rfdoc.txt
+Resource        rfdoc.txt
 
 *** Keywords ***
 "${libraries}" Are Listed On The Main Page
@@ -67,15 +67,14 @@ List Of Keywords Linking To The Keyword Details Is Shown
 Should Contain Link To Keyword With Short Documentation
     [Arguments]  ${name}  ${short doc}
     ${source} =  Get source
-    Should Contain  ${source}  <a href="#${name}" title="${short doc}">${name}</a>
+    Should Contain  ${source}  <a title="${short_doc}" href="#${name}">${name}</a>
     Keyword should contain anchor  ${source}  ${name}
 
 Keyword Should Contain Anchor
     [Arguments]  ${source}  ${name}
-    Should contain  ${source}  <td class="kw" id="${name}">${name}</td>
+    Should contain  ${source}  <td id="${name}" class="kw">${name}</td>
 
 Link Exist From Keyword Documentation To Another Keyword
     ${source} =  Get source
-    Should contain  ${source}  <a href="#Get%20Length" class="name">Get Length</a>
+    Should contain  ${source}  <a class="name" href="#Get%20Length">Get Length</a>
     Keyword should contain anchor  ${source}  Get Length
-

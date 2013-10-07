@@ -1,5 +1,7 @@
-*** Test Cases ***
+*** Settings ***
+Resource        resources/library_information.txt
 
+*** Test Cases ***
 Main Page Contains Info That No Libraries Exist In RFDoc
     Given no libraries exist in RFDoc
     and "main" page is open
@@ -9,9 +11,3 @@ Libraries In RFDoc Are Listed On Main Page
     Given "BuiltIn", "ExampleLibrary" and "SeleniumLibrary" exist in RFDoc
     and "main" page is open
     Then "BuiltIn", "ExampleLibrary" and "SeleniumLibrary" are listed on the main page
-
-
-*** Settings ***
-Force Tags      Req-Library 1  Sprint-1
-Resource        library_information.txt
-

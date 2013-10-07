@@ -1,9 +1,7 @@
 *** Settings ***
 Suite Setup     Given some libraries exist in RFDoc
 Test Setup      and "main" page is open
-Force Tags      Sprint-2
-Default Tags    Req-Search 2
-Resource        search.txt
+Resource        resources/search.txt
 
 *** Test Cases ***
 It Is Possible To Search From Main Page

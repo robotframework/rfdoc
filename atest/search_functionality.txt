@@ -1,6 +1,5 @@
 *** Settings ***
-Force Tags      Req-Search 1  Sprint-2
-Resource        search.txt
+Resource        resources/search.txt
 
 *** Test Cases ***
 User Can Search Using Keyword Name Only
@@ -20,12 +19,12 @@ User Can Search Using Keyword Name And Documentation
 Message Is Displayed When Search Matches No Keywords
     Given SeleniumLibrary exists in RFDoc
     and "search" page is open
-    When user searches with "non-matching" 
+    When user searches with "non-matching"
     Then notification "No matching keywords found." is shown
 
 Error Is Displayed When Searching Without Search Term
     Given SeleniumLibrary exists in RFDoc
     and "search" page is open
-    When user searches with "" 
+    When user searches with ""
     Then error "This field is required." is shown
 

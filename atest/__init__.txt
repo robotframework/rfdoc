@@ -1,7 +1,7 @@
 *** Settings ***
 Suite Setup     Open browser and set demo delay
 Suite Teardown  Close All Browsers
-Resource        rfdoc.txt
+Resource        resources/rfdoc.txt
 
 *** Variables ***
 ${DEMO DELAY}  0 seconds

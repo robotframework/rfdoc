@@ -1,5 +1,7 @@
-*** Test Cases ***
+*** Settings ***
+Resource        resources/rfdoc.txt
 
+*** Test Cases ***
 User Can Upload Library Documentation
     Given no libraries exist in RFDoc
     and "upload" page is open
@@ -7,9 +9,3 @@ User Can Upload Library Documentation
     Then notification "Successfully uploaded library BuiltIn" is shown
     and notification contains a link to BuiltIn
     and RFDoc contains BuiltIn
-
-
-*** Settings ***
-Force Tags      Req-Upload 1  Sprint-1
-Resource        ../rfdoc.txt
-
