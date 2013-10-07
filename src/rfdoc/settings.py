@@ -4,7 +4,7 @@
 # in `rfdocsettings_defaults.py`. More settings can be made configurable that
 # way if there is a need.
 
-import os
+from os.path import abspath, dirname, join
 
 import rfdocsettings_defaults
 try:
@@ -14,7 +14,7 @@ except ImportError:
 
 
 # Path to the directory containing this file. Don't edit!
-_BASEDIR = os.path.dirname(os.path.abspath(__file__))
+_BASEDIR = dirname(abspath(__file__))
 
 # Helper method to get local settings either from `rfdocsettings.py`
 # or `rfdocsettings_defaults.py`.
@@ -73,7 +73,7 @@ ROOT_URLCONF = 'rfdoc.urls'
 # Always use forward slashes, even on Windows.
 # Don't forget to use absolute paths, not relative paths.
 TEMPLATE_DIRS = (
-    os.path.join(_BASEDIR, 'rfdocapp', 'templates').replace('\\', '/'),
+    join(_BASEDIR, 'rfdocapp', 'templates').replace('\\', '/'),
 )
 
 INSTALLED_APPS = (
