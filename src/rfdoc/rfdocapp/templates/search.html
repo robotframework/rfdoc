@@ -25,8 +25,7 @@ limitations under the License.
 <div class="hr"><hr /></div>
 <h2>Search results</h2>
 <p class="info">
-  {% if not kws %}No{% else %}{{ kws|length }}{% endif %}
-  matching keyword{{ kws|length|pluralize }} found.
+  {% if not kws %}No{% else %}{{ kws|length }}{% endif %} matching keyword{{ kws|length|pluralize }} found.
 </p>
 {% if kws %}
 <table class="keywords results">
