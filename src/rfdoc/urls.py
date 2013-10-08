@@ -1,5 +1,4 @@
-from django.conf.urls import *
-
+from django.conf.urls import include, patterns, url
 from rfdoc.rfdocapp import views
 
 from django.contrib import admin

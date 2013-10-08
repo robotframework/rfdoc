@@ -13,9 +13,6 @@ except ImportError:
     rfdocsettings = None
 
 
-# Path to the directory containing this file. Don't edit!
-_BASEDIR = dirname(abspath(__file__))
-
 # Helper method to get local settings either from `rfdocsettings.py`
 # or `rfdocsettings_defaults.py`.
 def localsetting(name):
@@ -37,11 +34,11 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['*']
 
 SITE_ID = 1
 
-# If you set this to False, Django will make some optimizations so as not
+# If this is false, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = False
 
@@ -69,7 +66,7 @@ ROOT_URLCONF = 'rfdoc.urls'
 # Always use forward slashes, even on Windows.
 # Don't forget to use absolute paths, not relative paths.
 TEMPLATE_DIRS = (
-    join(_BASEDIR, 'rfdocapp', 'templates').replace('\\', '/'),
+    join(dirname(abspath(__file__)), 'rfdocapp', 'templates').replace('\\', '/'),
 )
 
 INSTALLED_APPS = (

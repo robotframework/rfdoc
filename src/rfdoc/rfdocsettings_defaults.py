@@ -9,14 +9,13 @@
 # Notice that `rfdocsettings.py` can be anywhere in the file system as long
 # it is in the PYTHONPATH.
 
-import tempfile
 from os.path import join
 
 # If debug is True, stack traces are shown instead of normal 404 and 500 pages.
 DEBUG = False
 
 # Path to the database file used by sqlite3
-DATABASE_NAME = join(tempfile.gettempdir(), 'rfdoc.db')
+DATABASE_NAME = join('db', 'rfdoc.db')
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
