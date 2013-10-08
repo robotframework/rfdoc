@@ -1,12 +1,14 @@
 syntax: glob
 
+*~
 *.pyc
 *.class
-*~
 .project
 .pydevproject
 .idea
+db/*.db
 atest/results
 log.html
 report.html
 output.xml
+
