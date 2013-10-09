@@ -15,8 +15,8 @@ execfile(join(dirname(abspath(__file__)), 'src', 'rfdoc', 'version.py'))
 
 # Maximum width in Windows installer seems to be 70 characters -------|
 DESCRIPTION = """
-RFDoc is a web-based application for storing and searching
-Robot Framework test library and resource file documentations.
+RFDoc is a web application for storing and searching Robot Framework
+test library and resource file documentations.
 
 Required packages:
     django >= 1.5
@@ -33,7 +33,7 @@ Topic :: Software Development :: Testing
 setup(
     name             = 'rfdoc',
     version          = VERSION,
-    description      = 'Robot Framework library documentation server',
+    description      = 'Web-based Robot Framework library documentation server',
     long_description = DESCRIPTION,
     author           = 'Robot Framework Developers',
     author_email     = 'robotframework-devel@googlegroups.com',

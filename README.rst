@@ -4,7 +4,7 @@ RFDoc
 Introduction
 ------------
 
-RFDoc (http://code.google.com/p/rfdoc) is a web-based application for storing
+RFDoc (http://code.google.com/p/rfdoc) is a web application for storing
 and searching Robot Framework (http://robotframework.org) test library and
 resource file documentations.
 
