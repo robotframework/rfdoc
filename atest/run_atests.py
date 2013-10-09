@@ -69,7 +69,7 @@ class DevelopmentRunner(object):
                  join(ATEST_RESULTS_PATH, 'rfdoc.db'))
 
     def run_tests(self, options):
-        command = ['pybot', '-o', ATEST_RESULTS_PATH] + options + [ATEST_PATH]
+        command = ['pybot', '-d', ATEST_RESULTS_PATH] + options + [ATEST_PATH]
         process = Popen(command, shell=SHELL)
         return process.wait()
 
