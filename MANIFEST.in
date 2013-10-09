@@ -7,4 +7,3 @@ prune atest/results
 include COPYRIGHT.txt
 include LICENSE.txt
 include README.rst
-include runserver.sh
