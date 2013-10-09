@@ -22,7 +22,7 @@ See LICENSE.txt for details.
 Installation
 ------------
 
-For the installation instructions, see
+For installation instructions, see
 https://code.google.com/p/rfdoc/wiki/InstallationInstructions.
 
 
@@ -47,4 +47,4 @@ Running the Acceptance Tests
 
 Acceptance tests are run using `atest/run_atests.py`
 
-Run the script without any arguments for more information.
+Run the script without any arguments for help.
