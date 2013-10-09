@@ -36,14 +36,21 @@ import os
 import signal
 import sys
 from os.path import dirname, exists, join
-from shutil import rmtree, copyfile
-from subprocess import Popen, PIPE
+from shutil import copyfile, rmtree
+from subprocess import call, PIPE, Popen
 
 
 ATEST_PATH = dirname(__file__)
 ATEST_LIB_PATH = join(ATEST_PATH, 'lib')
 ATEST_RESULTS_PATH = join(ATEST_PATH, 'results')
+DJANGO_ADMIN = 'django-admin.py'
 SHELL = os.name == 'nt'
+
+try:
+    call([DJANGO_ADMIN], stderr=PIPE, stdout=PIPE, shell=SHELL)
+except OSError:
+    sys.stderr.write('error: Could not find %s from PATH\n' % DJANGO_ADMIN)
+    exit(-1)
 
 
 class DevelopmentRunner(object):
@@ -91,7 +98,7 @@ class RegressionRunner(DevelopmentRunner):
         self._stop_rfdoc()
 
     def _start_rfdoc(self):
-        command = ['django-admin.py', 'runserver', '7000']
+        command = [DJANGO_ADMIN, 'runserver', '7000']
         process = Popen(command, stderr=PIPE, shell=SHELL)
         return process.pid
 
