@@ -24,4 +24,3 @@ Search Results Contain Relevant Information
     And "search" page is open
     And user searches with "title"
     Then search results contain keyword "Get Title" with link to "SeleniumLibrary" and with documentation
-
