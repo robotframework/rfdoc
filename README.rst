@@ -19,10 +19,10 @@ SSHLibrary is licensed under Apache License 2.0.
 See LICENSE.txt for details.
 
 
-Installation
-------------
+Setup
+-----
 
-For installation instructions, see
+For instructions, see
 https://code.google.com/p/rfdoc/wiki/InstallationInstructions.
 
 
