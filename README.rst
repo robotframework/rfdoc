@@ -19,11 +19,14 @@ SSHLibrary is licensed under Apache License 2.0.
 See LICENSE.txt for details.
 
 
-Setup
------
+Running RFDoc
+-------------
 
-For instructions, see
-https://code.google.com/p/rfdoc/wiki/InstallationInstructions.
+For getting RFDoc to run locally, see
+https://code.google.com/p/rfdoc/wiki/DevelopmentEnvironment
+
+For instructions on deploying RFdoc to a production environment, see
+https://code.google.com/p/rfdoc/wiki/DeploymentGuide
 
 
 Directory Layout
