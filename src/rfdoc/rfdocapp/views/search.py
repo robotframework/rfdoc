@@ -40,5 +40,5 @@ def search(request):
 
 class SearchForm(forms.Form):
     search_term = forms.CharField()
-    include_doc = forms.BooleanField(required=False)
+    include_doc = forms.BooleanField(required=False, initial=True)
 
