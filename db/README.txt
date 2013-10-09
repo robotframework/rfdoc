@@ -1,5 +1,5 @@
 This directory will contain the RFDoc database by default.
 
-Run the following command to initialize the database:
+To initialize the database, run:
 
-    ./runserver.sh syncdb
+    python src/rfdoc/manage.py syncdb
