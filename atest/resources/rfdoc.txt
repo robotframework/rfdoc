@@ -14,10 +14,10 @@ ${BROWSER}  firefox
 
 *** Keywords ***
 Given no libraries exist in RFDoc
-    Copy file  ${CURDIR}${/}..${/}testdata/empty.db  ${CURDIR}${/}..${/}results${/}rfdoc.db
+    Copy file  ${CURDIR}/../testdata/empty.db  ${CURDIR}/../results/rfdoc.db
 
 ${Some libraries} exist${s} in RFDoc
-    Copy file  ${CURDIR}${/}..${/}testdata/libraries.db  ${CURDIR}${/}..${/}results${/}rfdoc.db
+    Copy file  ${CURDIR}/../testdata/libraries.db  ${CURDIR}/../results/rfdoc.db
 
 "Main" page is open
     Go to  ${BASE URL}

@@ -41,7 +41,6 @@ from subprocess import call, PIPE, Popen
 
 
 ATEST_PATH = dirname(__file__)
-ATEST_LIB_PATH = join(ATEST_PATH, 'lib')
 ATEST_RESULTS_PATH = join(ATEST_PATH, 'results')
 DJANGO_ADMIN = 'django-admin.py'
 SHELL = os.name == 'nt'
@@ -56,15 +55,8 @@ except OSError:
 class DevelopmentRunner(object):
 
     def __init__(self):
-        self._set_paths()
         self._remove_old_results()
         self._copy_database()
-
-    def _set_paths(self):
-        os.environ['PYTHONPATH'] = ATEST_PATH + os.pathsep +\
-                                   ATEST_LIB_PATH + os.pathsep +\
-                                   os.getenv('PYTHONPATH', '')
-        os.environ['DJANGO_SETTINGS_MODULE'] = 'atest_settings'
 
     def _remove_old_results(self):
         if exists(ATEST_RESULTS_PATH):
@@ -90,17 +82,20 @@ class RegressionRunner(DevelopmentRunner):
         DevelopmentRunner.__init__(self)
         self._rfdoc_pid = self._start_rfdoc()
 
+    def _start_rfdoc(self):
+        command = [DJANGO_ADMIN, 'runserver',
+                   '--pythonpath', ATEST_PATH,
+                   '--settings', 'atest_settings',
+                   '7000']
+        process = Popen(command, stderr=PIPE, shell=SHELL)
+        return process.pid
+
     def run_tests(self, options):
         DevelopmentRunner.run_tests(self, options)
 
     def finalize(self):
         DevelopmentRunner.finalize(self)
         self._stop_rfdoc()
-
-    def _start_rfdoc(self):
-        command = [DJANGO_ADMIN, 'runserver', '7000']
-        process = Popen(command, stderr=PIPE, shell=SHELL)
-        return process.pid
 
     def _stop_rfdoc(self):
         if os.name == 'nt':
