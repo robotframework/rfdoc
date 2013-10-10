@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-from upload import upload
 from index import index
 from library import library
 from search import search
+from upload import upload
