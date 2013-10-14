@@ -64,7 +64,7 @@ class DevelopmentRunner(object):
             os.mkdir(ATEST_RESULTS_PATH)
 
     def _copy_database(self):
-        copyfile(join(ATEST_PATH, 'testdata', 'libraries.db'),
+        copyfile(join(ATEST_PATH, 'testdata', 'databases', 'libraries.db'),
                  join(ATEST_RESULTS_PATH, 'rfdoc.db'))
 
     def run_tests(self, options):
