@@ -17,6 +17,7 @@ from django.shortcuts import render_to_response
 from django import forms
 from django.db.models import Q
 
+
 from rfdocapp.models import Keyword
 
 
@@ -27,18 +28,26 @@ def search(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             term = form.cleaned_data['search_term']
-            filter = Q(name__icontains=term)
+            query = Q(name__icontains = term)
             if form.cleaned_data['include_doc']:
-                filter = filter | Q(doc__icontains=term)
-            kws = Keyword.objects.filter(filter)
+                query = query | Q(doc__icontains = term)
+            if not form.cleaned_data['case_insensitive']:
+                query = Q(name__regex = r'.*%s.*' % term)
+                if form.cleaned_data['include_doc']:
+                    query = query | Q(doc__regex = r'.*%s.*' % term)
+            kws = Keyword.objects.filter(query)
             search_performed = True
     else:
         form = SearchForm()
-    return render_to_response('search.html', {'form': form, 'kws': kws,
-                                              'search_performed': search_performed})
+    return render_to_response('search.html', {
+        'form': form,
+        'kws': kws,
+        'search_performed': search_performed
+    })
 
 
 class SearchForm(forms.Form):
     search_term = forms.CharField()
     include_doc = forms.BooleanField(required=False, initial=True)
+    case_insensitive = forms.BooleanField(required=False, initial=True)
 

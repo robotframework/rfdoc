@@ -10,6 +10,14 @@ User searches with "${search term}" without documentation
     Unselect Checkbox  include_doc
     User searches with "${search term}"
 
+User searches case sensitively with "${search term}"
+    Unselect Checkbox  case_insensitive
+    User searches with "${search term}"
+
+User searches case sensitively with "${search term}" without documentation
+    Unselect Checkbox  case_insensitive
+    User searches with "${search term}" without documentation
+
 "${keywords}" keywords are displayed
     @{keywords} =  Get names  ${keywords}
     :FOR  ${name}  IN  @{keywords}
