@@ -22,7 +22,11 @@ limitations under the License.
       <td>{{ form.search_term }}</td>
       <td>
         {{ form.include_doc }}
-        <label for="id_include_doc">Search also documentation</label>
+        <label for="id_include_doc">Also documentation</label>
+      </td>
+      <td>
+        {{ form.case_insensitive }}
+        <label for="id_case_insensitive">Case-insensitive</label>
       </td>
   </table>
   <input type="submit" name="search_button" value="Search" />
