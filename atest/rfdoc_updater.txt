@@ -1,0 +1,111 @@
+*** Settings ***
+Resource    resources/rfdoc.txt
+
+*** Variables ***
+${INVALID URL}  localhost:4
+${SCRIPT NAME}  rfdoc_updater.py
+${SCRIPT PATH}  ${CURDIR}${/}..${/}tools${/}${SCRIPT NAME}
+${EXAMPLE LIBRARY SOURCE}  ${TESTDATA PATH}${/}sources${/}example_lib.py
+${EXAMPLE LIBRARY XML}     ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_1.xml
+
+*** Test Cases ***
+With one target given
+    ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML}
+    Prints Library Updated  ${EXAMPLE LIBRARY XML}
+    Exits With  0
+
+With multiple targets given
+    ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML} ${EXAMPLE LIBRARY SOURCE}
+    Prints Library Updated  ${EXAMPLE LIBRARY XML}
+    Prints Library Updated  ${EXAMPLE LIBRARY SOURCE}
+    Exits With  0
+
+With a path to the targets given
+    ${rc}  ${output}=  Run With -u ${BASE URL} ${TESTDATA PATH}${/}sources
+    Prints Library Updated  ${EXAMPLE LIBRARY SOURCE}
+    Exits With  0
+
+With invalid path given
+    ${not_existing_library}=  Set Variable  not_exist
+    ${rc}  ${output}=  Run With -u ${BASE URL} ${not_existing_library}
+    Prints Library ${not_existing_library} Not Found
+    Exits With  1
+
+With invalid arguments
+    ${invalid_argument}=  Set Variable  --invalid
+    ${rc}  ${output}=  Run With ${invalid_argument}
+    Prints Usage
+    Prints Argument ${invalid_argument} Is Invalid
+    Exits With  2
+
+Without arguments
+    ${rc}  ${output}=  Run With ${EMPTY}
+    Prints Usage
+    Prints Help
+    Exits With  1
+
+With -h
+    ${rc}  ${output}=  Run With -h
+    Prints Usage
+    Prints Help
+    Exits With  0
+
+With --help
+    ${rc}  ${output}=  Run With --help
+    Prints Usage
+    Prints Help
+    Exits With  0
+
+With -u but without URL
+    ${rc}  ${output}=  Run With -u
+    Prints Usage
+    Prints Argument -u Requires Value
+    Exits With  2
+
+With -u but no files given
+    ${rc}  ${output}=  Run With -u ${BASE URL}
+    Prints Usage
+    Prints Help
+    Exits With  1
+
+With --url but no files given
+    ${rc}  ${output}=  Run With --url=${BASE URL}
+    Prints Usage
+    Prints Help
+    Exits With  1
+
+With invalid host given
+    ${rc}  ${output}=  Run With --url=${INVALID URL} ${EXAMPLE LIBRARY XML}
+    Prints ${INVALID URL} Is Invalid Host
+    Exits With  1
+
+*** Keywords ***
+Run With ${arguments}
+    ${rc}  ${output}=  Run And Return Rc And Output  ${SCRIPT_PATH} ${arguments}
+    [Return]  ${rc}  ${output}
+
+Exits With
+    [Arguments]  ${expected}
+    Should Be Equal As Integers  ${rc}  ${expected}
+
+Prints Usage
+    Should Contain  ${output}  Usage: ${script_name} [options] PATH
+
+Prints Help
+    Should Contain  ${output}  This script regenerates documentation at Robot Framework RFDoc server.
+
+Prints Library Updated
+    [Arguments]  ${test_library}
+    Should Contain  ${output}  Updated documentation for '${test_library}'
+
+Prints Argument ${argument} Requires Value
+    Should Contain  ${output}  ${script_name}: error: ${argument} option requires an argument
+
+Prints Argument ${argument} Is Invalid
+    Should Contain  ${output}  ${script_name}: error: no such option: ${argument}
+
+Prints ${host} Is Invalid Host
+    Should Contain  ${output}  ${script_name}: error: Connection refused to '${host}'. Check that the host responds and is reachable.
+
+Prints Library ${library} Not Found
+    Should Contain  ${output}  ${script_name}: error: Library '${library}' not found
