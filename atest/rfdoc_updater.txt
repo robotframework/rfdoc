@@ -1,28 +1,36 @@
 *** Settings ***
-Resource    resources/rfdoc.txt
+Resource      resources/rfdoc.txt
 
 *** Variables ***
-${INVALID URL}  localhost:4
-${SCRIPT NAME}  rfdoc_updater.py
-${SCRIPT PATH}  ${CURDIR}${/}..${/}tools${/}${SCRIPT NAME}
-${EXAMPLE LIBRARY SOURCE}  ${TESTDATA PATH}${/}sources${/}example_lib.py
-${EXAMPLE LIBRARY XML}     ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_1.xml
+${INVALID URL}              localhost:1
+${SCRIPT NAME}              rfdoc_updater.py
+${SCRIPT PATH}              ${CURDIR}${/}..${/}tools${/}${SCRIPT NAME}
+${EXAMPLE LIBRARY SOURCE}   ${TESTDATA PATH}${/}sources${/}example_lib.py
+${EXAMPLE LIBRARY XML V1}   ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_1.xml
+${EXAMPLE LIBRARY XML V2}   ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_2.xml
+@{EXAMPLE LIB KEYWORDS}     My Keyword  self  Does nothing.  Your Keyword  self, arg  Takes one argument and does nothing with it.
 
 *** Test Cases ***
 With one target given
-    ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML}
-    Prints Library Updated  ${EXAMPLE LIBRARY XML}
+    [Setup]  Given no libraries exist in RFDoc
+    ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V1}
+    Prints ${EXAMPLE LIBRARY XML V1} Updated
+    RFDoc contains ExampleLibrary version 1
     Exits With  0
 
 With multiple targets given
-    ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML} ${EXAMPLE LIBRARY SOURCE}
-    Prints Library Updated  ${EXAMPLE LIBRARY XML}
-    Prints Library Updated  ${EXAMPLE LIBRARY SOURCE}
+    [Setup]  Given no libraries exist in RFDoc
+    ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V1} ${EXAMPLE LIBRARY XML V2}
+    Prints ${EXAMPLE LIBRARY XML V1} Updated
+    Prints ${EXAMPLE LIBRARY XML V2} Updated
+    RFDoc contains ExampleLibrary version 2
     Exits With  0
 
 With a path to the targets given
+    [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} ${TESTDATA PATH}${/}sources
-    Prints Library Updated  ${EXAMPLE LIBRARY SOURCE}
+    Prints ${EXAMPLE LIBRARY SOURCE} Updated
+    RFDoc contains example_lib
     Exits With  0
 
 With invalid path given
@@ -75,7 +83,7 @@ With --url but no files given
     Exits With  1
 
 With invalid host given
-    ${rc}  ${output}=  Run With --url=${INVALID URL} ${EXAMPLE LIBRARY XML}
+    ${rc}  ${output}=  Run With --url=${INVALID URL} ${EXAMPLE LIBRARY XML V1}
     Prints ${INVALID URL} Is Invalid Host
     Exits With  1
 
@@ -94,8 +102,7 @@ Prints Usage
 Prints Help
     Should Contain  ${output}  This script regenerates documentation at Robot Framework RFDoc server.
 
-Prints Library Updated
-    [Arguments]  ${test_library}
+Prints ${test_library} Updated
     Should Contain  ${output}  Updated documentation for '${test_library}'
 
 Prints Argument ${argument} Requires Value
