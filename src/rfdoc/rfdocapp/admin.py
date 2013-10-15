@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from django.contrib import admin
+
 from rfdoc.rfdocapp.models import Library, Keyword, Init
+
 
 class InitInline(admin.StackedInline):
     model = Init

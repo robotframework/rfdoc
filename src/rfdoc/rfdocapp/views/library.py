@@ -12,13 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 import re
-
 from django.shortcuts import render_to_response, get_object_or_404
 
-from rfdoc.rfdocapp.models import Library
 from rfdoc.rfdocapp import utils
+from rfdoc.rfdocapp.models import Library
 
 
 def library(request, libname):

@@ -12,12 +12,11 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-# This file is copied from Robot Framework SVN repository and cleaned up a bit: 
+# This file is copied from Robot Framework SVN repository and cleaned up a bit:
 # http://code.google.com/p/robotframework/source/browse/trunk/src/robot/utils/htmlutils.py?spec=svn1999&r=1922
 
-
-import re
 import os.path
+import re
 
 _hr_re = re.compile('^-{3,} *$')
 _bold_re = re.compile('''
@@ -29,7 +28,7 @@ _bold_re = re.compile('''
 ([^\ ].*?)                # no space and then anything (group 3)
 \*                        # end of bold
 (?=                       # start of postfix (non-capturing group)
-  _? ["').,!?:;]*         # optional end of italic and any char "').,!?:; 
+  _? ["').,!?:;]*         # optional end of italic and any char "').,!?:;
   (\Z|\ )                 # end of line or space
 )
 ''', re.VERBOSE)
@@ -50,7 +49,7 @@ _url_re = re.compile('''
 def html_escape(text, formatting=False):
     for name, value in [('&', '&amp;'), ('<', '&lt;'), ('>', '&gt;')]:
         text = text.replace(name, value)
-    
+
     ret = []
     table = _Table()
     hr = None
@@ -81,7 +80,7 @@ def html_escape(text, formatting=False):
         ret.append(table.end())
     if hr:
         ret.append(hr)
-        
+
     return '<br />\n'.join(ret)
 
 
@@ -128,7 +127,7 @@ def _format_line(line, formatting=False):
         line = _italic_re.sub('\\1<i>\\3</i>', line)
     line = _url_re.sub(lambda res: _repl_url(res, formatting), line)
     # Replace a tab with eight "hard" spaces, and two "soft" spaces with one
-    # "hard" and one "soft" space (preserves spaces but allows wrapping) 
+    # "hard" and one "soft" space (preserves spaces but allows wrapping)
     return line.replace('\t', '&nbsp;'*8).replace('  ', ' &nbsp;')
 
 
