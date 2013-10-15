@@ -1,6 +1,6 @@
 *** Settings ***
 Resource        resources/search.txt
-Suite Setup     Given some libraries exist in RFDoc
+Suite Setup     Given SeleniumLibrary exist in RFDoc
 
 *** Test Cases ***
 It Is Possible To Search From Main Page

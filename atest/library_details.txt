@@ -1,6 +1,6 @@
 *** Settings ***
 Resource        resources/library_information.txt
-Suite Setup     Given some libraries exist in RFDoc
+Suite Setup     Given BuiltIn and ExampleLibrary exist in RFDoc
 
 *** Test Cases ***
 Library Details Are Visible
