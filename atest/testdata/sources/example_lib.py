@@ -8,10 +8,5 @@ def my_keyword(self):
     pass
 
 def your_keyword(self, arg):
-    """Takes one argument and *does nothing* with it.
-
-    Example:
-    | Your Keyword | xxx |
-    | Your Keyword | yyy |
-    """
+    """Takes one argument and does nothing with it."""
     pass
