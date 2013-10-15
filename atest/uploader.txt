@@ -12,18 +12,21 @@ ${EXAMPLE LIBRARY XML V2}   ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_2
 
 *** Test Cases ***
 With one source file given
+    [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY SOURCE}
     Should Print ${EXAMPLE LIBRARY SOURCE} Updated
     RFDoc contains example_lib
     Should Exit With  0
 
 With one library XML given
+    [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V1}
     Should Print ${EXAMPLE LIBRARY XML V1} Updated
     RFDoc contains ExampleLibrary version 1
     Should Exit With  0
 
 With multiple different files given
+    [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V1} ${EXAMPLE LIBRARY SOURCE}
     Should Print ${EXAMPLE LIBRARY XML V1} Updated
     Should Print ${EXAMPLE LIBRARY SOURCE} Updated
@@ -32,14 +35,14 @@ With multiple different files given
     Should Exit With  0
 
 With a directory given
+    [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} ${TESTDATA PATH}${/}sources
     Should Print ${EXAMPLE LIBRARY SOURCE} Updated
     RFDoc contains example_lib
     Should Exit With  0
 
 With newer version given
-    [Setup]  Given ExampleLibrary version 1 exist in RFDoc
-    RFDoc contains ExampleLibrary version 1
+    [Setup]  Given SeleniumLibrary exist in RFDoc
     Run Keyword And Expect Error  *  RFDoc contains ExampleLibrary version 2
     ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V2}
     Should Print ${EXAMPLE LIBRARY XML V2} Updated
