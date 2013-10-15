@@ -30,6 +30,10 @@ def search(request):
             query = Q(name__icontains = term)
             if form.cleaned_data['include_doc']:
                 query = query | Q(doc__icontains = term)
+            # SQLite LIKEs are case-insensitive by default.
+            # Thus using just name__contains wouldn't work expectedly.
+            # To circumvent this, an additional query using regular expressions
+            # is applied for the case-sensitive searches.
             if not form.cleaned_data['case_insensitive']:
                 query = Q(name__regex = r'.*%s.*' % re.escape(term))
                 if form.cleaned_data['include_doc']:
