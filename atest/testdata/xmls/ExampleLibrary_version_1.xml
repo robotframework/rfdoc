@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <keywordspec generated="20090504 14:32:08" type="library" name="ExampleLibrary">
-<version>&amp;lt;unknown&amp;gt;</version>
+<version>1</version>
 <doc>First Library Doc</doc>
 <init>
 <doc>Library can be imported with optional arguments.</doc>
