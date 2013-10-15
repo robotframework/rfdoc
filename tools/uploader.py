@@ -57,7 +57,7 @@ class Uploader(object):
                     self._uploader.upload_file(xml_doc)
                 except DataError, e:
                     if 'ImportError' in e.message:
-                        raise DataError("Library '%s' not found'" % library)
+                        raise DataError("Library '%s' not found" % library)
                     raise
                 finally:
                     xml_doc.original_close()
@@ -68,11 +68,18 @@ class Uploader(object):
             exit(1)
 
 
-class RawOptionParser(OptionParser):
+class ImprovedOptionParser(OptionParser):
 
     # This prevents newlines from getting discarded from the help text.
     def format_description(self, formatter):
         return self.description
+
+    # This adds "try --help for information" message.
+    def error(self, message):
+        progname = os.path.basename(sys.argv[0])
+        sys.stderr.write('%s: error: %s\n'% (progname, message))
+        sys.stderr.write("Try '%s --help' for more information.\n" % progname)
+        exit(2)
 
 
 class CommandlineUI(object):
@@ -81,13 +88,13 @@ class CommandlineUI(object):
     default_url = 'localhost:8000'
     usage_text = 'usage: %prog [options] PATH ...'
     help_text = """
-This script regenerates documentation at Robot Framework RFDoc server.
+This script updates the documentation at Robot Framework RFDoc server.
 
 PATH is one of the following (multiple can be given, separated by a space):
 1) A path to a library source file (e.g. src/libraries/example_lib.py)
 2) A path to a resource file (e.g. atest/resources/utils.txt)
 3) A path to a library XML, generated using LibDoc (e.g. libdoc/BuiltIn.xml)
-4) A path to a directory, in which case its recursively traversed any of
+4) A path to a directory, in which case it's recursively traversed for any of
    files mentioned in 1-3.
 """[1:]
     epilog_text = """
@@ -96,7 +103,7 @@ post-change hook to update the documentation in RFDoc automatically.
 """[1:]
 
     def __init__(self):
-        self._parser = RawOptionParser(
+        self._parser = ImprovedOptionParser(
             usage=self.usage_text,
             description=self.help_text,
             epilog=self.epilog_text

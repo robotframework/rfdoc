@@ -60,43 +60,36 @@ With invalid path given
 With invalid arguments
     ${invalid_argument}=  Set Variable  --invalid
     ${rc}  ${output}=  Run With ${invalid_argument}
-    Should Print Usage
     Should Print Argument ${invalid_argument} Is Invalid
     Should Exit With  2
 
 Without arguments
     ${rc}  ${output}=  Run With ${EMPTY}
-    Should Print Usage
     Should Print Help
     Should Exit With  1
 
 With -h
     ${rc}  ${output}=  Run With -h
-    Should Print Usage
     Should Print Help
     Should Exit With  0
 
 With --help
     ${rc}  ${output}=  Run With --help
-    Should Print Usage
     Should Print Help
     Should Exit With  0
 
 With -u but without URL
     ${rc}  ${output}=  Run With -u
-    Should Print Usage
     Should Print Argument -u Requires Value
     Should Exit With  2
 
-With -u but no files given
+With correct no files given
     ${rc}  ${output}=  Run With -u ${BASE URL}
-    Should Print Usage
     Should Print Help
     Should Exit With  1
 
 With --url but no files given
     ${rc}  ${output}=  Run With --url=${BASE URL}
-    Should Print Usage
     Should Print Help
     Should Exit With  1
 
@@ -114,20 +107,19 @@ Should Exit With
     [Arguments]  ${expected}
     Should Be Equal As Integers  ${rc}  ${expected}
 
-Should Print Usage
-    Should Contain  ${output}  Usage: ${SCRIPT_NAME} [options] PATH ...
-
 Should Print Help
-    Should Contain  ${output}  This script regenerates documentation at Robot Framework RFDoc server.
+    Should Contain  ${output}  This script updates the documentation at Robot Framework RFDoc server.
 
 Should Print ${test_library} Updated
     Should Contain  ${output}  Updated documentation for '${test_library}'
 
 Should Print Argument ${argument} Requires Value
     Should Contain  ${output}  ${SCRIPT_NAME}: error: ${argument} option requires an argument
+    Should Contain  ${output}  Try '${SCRIPT_NAME} --help' for more information
 
 Should Print Argument ${argument} Is Invalid
     Should Contain  ${output}  ${SCRIPT_NAME}: error: no such option: ${argument}
+    Should Contain  ${output}  Try '${SCRIPT_NAME} --help' for more information
 
 Should Print ${host} Is Invalid Host
     Should Contain  ${output}  ${SCRIPT_NAME}: error: Connection refused to '${host}'. Check that the host responds and is reachable.
