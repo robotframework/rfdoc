@@ -15,7 +15,7 @@
 from django import forms
 from django.db.models import Q
 from django.shortcuts import render_to_response
-from re import escape
+import re
 
 from rfdocapp.models import Keyword
 
@@ -31,9 +31,9 @@ def search(request):
             if form.cleaned_data['include_doc']:
                 query = query | Q(doc__icontains = term)
             if not form.cleaned_data['case_insensitive']:
-                query = Q(name__regex = r'.*%s.*' % escape(term))
+                query = Q(name__regex = r'.*%s.*' % re.escape(term))
                 if form.cleaned_data['include_doc']:
-                    query = query | Q(doc__regex = r'.*%s.*' % escape(term))
+                    query = query | Q(doc__regex = r'.*%s.*' % re.escape(term))
             kws = Keyword.objects.filter(query)
             search_performed = True
     else:

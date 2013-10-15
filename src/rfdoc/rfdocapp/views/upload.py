@@ -12,12 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-from xml.etree import cElementTree as ET
-
-from django.shortcuts import render_to_response
 from django import forms
 from django.forms.util import ErrorList
+from django.shortcuts import render_to_response
+from xml.etree import cElementTree as ET
 
 from rfdoc.rfdocapp.models import Library
 

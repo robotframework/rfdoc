@@ -1,7 +1,9 @@
 from django.conf.urls import include, patterns, url
+from django.contrib import admin
+
 from rfdoc.rfdocapp import views
 
-from django.contrib import admin
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
