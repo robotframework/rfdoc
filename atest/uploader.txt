@@ -14,123 +14,123 @@ ${EXAMPLE LIBRARY XML V2}   ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_2
 With one source file given
     [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY SOURCE}
-    Prints ${EXAMPLE LIBRARY SOURCE} Updated
+    Should Print ${EXAMPLE LIBRARY SOURCE} Updated
     RFDoc contains example_lib
-    Exits With  0
+    Should Exit With  0
 
 With one library XML given
     [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V1}
-    Prints ${EXAMPLE LIBRARY XML V1} Updated
+    Should Print ${EXAMPLE LIBRARY XML V1} Updated
     RFDoc contains ExampleLibrary version 1
-    Exits With  0
+    Should Exit With  0
 
 With multiple different files given
     [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V1} ${EXAMPLE LIBRARY SOURCE}
-    Prints ${EXAMPLE LIBRARY XML V1} Updated
-    Prints ${EXAMPLE LIBRARY SOURCE} Updated
+    Should Print ${EXAMPLE LIBRARY XML V1} Updated
+    Should Print ${EXAMPLE LIBRARY SOURCE} Updated
     RFDoc contains ExampleLibrary version 1
     RFDoc contains example_lib
-    Exits With  0
+    Should Exit With  0
 
 With a directory given
     [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} ${TESTDATA PATH}${/}sources
-    Prints ${EXAMPLE LIBRARY SOURCE} Updated
+    Should Print ${EXAMPLE LIBRARY SOURCE} Updated
     RFDoc contains example_lib
-    Exits With  0
+    Should Exit With  0
 
 With newer version given
     [Setup]  Given ExampleLibrary version 1 exist in RFDoc
     RFDoc contains ExampleLibrary version 1
     Run Keyword And Expect Error  *  RFDoc contains ExampleLibrary version 2
     ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V2}
-    Prints ${EXAMPLE LIBRARY XML V2} Updated
+    Should Print ${EXAMPLE LIBRARY XML V2} Updated
     Run Keyword And Expect Error  *  RFDoc contains ExampleLibrary version 1
     RFDoc contains ExampleLibrary version 2
-    Exits With  0
+    Should Exit With  0
 
 With invalid path given
     ${not_existing_library}=  Set Variable  not_exist
     ${rc}  ${output}=  Run With -u ${BASE URL} ${not_existing_library}
-    Prints Library ${not_existing_library} Not Found
-    Exits With  1
+    Should Print Library ${not_existing_library} Not Found
+    Should Exit With  1
 
 With invalid arguments
     ${invalid_argument}=  Set Variable  --invalid
     ${rc}  ${output}=  Run With ${invalid_argument}
-    Prints Usage
-    Prints Argument ${invalid_argument} Is Invalid
-    Exits With  2
+    Should Print Usage
+    Should Print Argument ${invalid_argument} Is Invalid
+    Should Exit With  2
 
 Without arguments
     ${rc}  ${output}=  Run With ${EMPTY}
-    Prints Usage
-    Prints Help
-    Exits With  1
+    Should Print Usage
+    Should Print Help
+    Should Exit With  1
 
 With -h
     ${rc}  ${output}=  Run With -h
-    Prints Usage
-    Prints Help
-    Exits With  0
+    Should Print Usage
+    Should Print Help
+    Should Exit With  0
 
 With --help
     ${rc}  ${output}=  Run With --help
-    Prints Usage
-    Prints Help
-    Exits With  0
+    Should Print Usage
+    Should Print Help
+    Should Exit With  0
 
 With -u but without URL
     ${rc}  ${output}=  Run With -u
-    Prints Usage
-    Prints Argument -u Requires Value
-    Exits With  2
+    Should Print Usage
+    Should Print Argument -u Requires Value
+    Should Exit With  2
 
 With -u but no files given
     ${rc}  ${output}=  Run With -u ${BASE URL}
-    Prints Usage
-    Prints Help
-    Exits With  1
+    Should Print Usage
+    Should Print Help
+    Should Exit With  1
 
 With --url but no files given
     ${rc}  ${output}=  Run With --url=${BASE URL}
-    Prints Usage
-    Prints Help
-    Exits With  1
+    Should Print Usage
+    Should Print Help
+    Should Exit With  1
 
 With invalid host given
     ${rc}  ${output}=  Run With --url=${INVALID URL} ${EXAMPLE LIBRARY XML V1}
-    Prints ${INVALID URL} Is Invalid Host
-    Exits With  1
+    Should Print ${INVALID URL} Is Invalid Host
+    Should Exit With  1
 
 *** Keywords ***
 Run With ${arguments}
     ${rc}  ${output}=  Run And Return Rc And Output  ${SCRIPT_PATH} ${arguments}
     [Return]  ${rc}  ${output}
 
-Exits With
+Should Exit With
     [Arguments]  ${expected}
     Should Be Equal As Integers  ${rc}  ${expected}
 
-Prints Usage
+Should Print Usage
     Should Contain  ${output}  Usage: ${SCRIPT_NAME} [options] PATH ...
 
-Prints Help
+Should Print Help
     Should Contain  ${output}  This script regenerates documentation at Robot Framework RFDoc server.
 
-Prints ${test_library} Updated
+Should Print ${test_library} Updated
     Should Contain  ${output}  Updated documentation for '${test_library}'
 
-Prints Argument ${argument} Requires Value
+Should Print Argument ${argument} Requires Value
     Should Contain  ${output}  ${SCRIPT_NAME}: error: ${argument} option requires an argument
 
-Prints Argument ${argument} Is Invalid
+Should Print Argument ${argument} Is Invalid
     Should Contain  ${output}  ${SCRIPT_NAME}: error: no such option: ${argument}
 
-Prints ${host} Is Invalid Host
+Should Print ${host} Is Invalid Host
     Should Contain  ${output}  ${SCRIPT_NAME}: error: Connection refused to '${host}'. Check that the host responds and is reachable.
 
-Prints Library ${library} Not Found
+Should Print Library ${library} Not Found
     Should Contain  ${output}  ${SCRIPT_NAME}: error: Library '${library}' not found
