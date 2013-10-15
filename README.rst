@@ -36,7 +36,7 @@ atest/
     Acceptance tests. Naturally using Robot Framework.
 
 db/
-    The default location for the development database.
+    The default location for the RFDoc development database.
 
 src/
     RFDoc source code.
