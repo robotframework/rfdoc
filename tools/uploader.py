@@ -32,7 +32,7 @@ from robot.libdocpkg import LibraryDocumentation
 from robot.parsing.populators import READERS
 
 
-class RFDocUpdater(object):
+class Uploader(object):
 
     def __init__(self):
         self._options = CommandlineUI()
@@ -193,7 +193,7 @@ Content-Type: text/xml
     def _post_multipart(self, connection, xml_doc):
         connection.connect()
         content_type, body = self._encode_multipart_formdata(xml_doc)
-        headers = {'User-Agent': 'RFDoc updater', 'Content-Type': content_type}
+        headers = {'User-Agent': 'RFDoc uploader', 'Content-Type': content_type}
         connection.request('POST', self.default_endpoint, body, headers)
         return connection.getresponse()
 
@@ -237,4 +237,4 @@ Content-Type: text/xml
 
 
 if __name__ == '__main__':
-    RFDocUpdater().run()
+    Uploader().run()

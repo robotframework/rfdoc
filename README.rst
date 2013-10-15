@@ -42,7 +42,7 @@ src/
     RFDoc source code.
 
 tools/
-    Scripts to use as part of CI pipeline or as SCM repository hooks.
+    Scripts to use as part of the CI pipeline or as SCM repository hooks.
 
 
 Running the Acceptance Tests
