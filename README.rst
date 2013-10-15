@@ -36,13 +36,13 @@ atest/
     Acceptance tests. Naturally using Robot Framework.
 
 db/
-    The default location for database.
+    The default location for the development database.
 
 src/
     RFDoc source code.
 
 tools/
-    Scripts to use as part of the CI pipeline or as SCM hooks.
+    Utilities to use as part of the CI pipeline or as SCM hooks.
 
 
 Running the Acceptance Tests
