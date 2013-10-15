@@ -3,7 +3,7 @@ Resource      resources/rfdoc.txt
 
 *** Variables ***
 ${INVALID URL}              localhost:1
-${SCRIPT NAME}              rfdoc_updater.py
+${SCRIPT NAME}              uploader.py
 ${SCRIPT PATH}              ${CURDIR}${/}..${/}tools${/}${SCRIPT NAME}
 ${EXAMPLE LIBRARY SOURCE}   ${TESTDATA PATH}${/}sources${/}example_lib.py
 ${EXAMPLE LIBRARY XML V1}   ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_1.xml
@@ -11,26 +11,44 @@ ${EXAMPLE LIBRARY XML V2}   ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_2
 @{EXAMPLE LIB KEYWORDS}     My Keyword  self  Does nothing.  Your Keyword  self, arg  Takes one argument and does nothing with it.
 
 *** Test Cases ***
-With one target given
+With one source file given
+    [Setup]  Given no libraries exist in RFDoc
+    ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY SOURCE}
+    Prints ${EXAMPLE LIBRARY SOURCE} Updated
+    RFDoc contains example_lib
+    Exits With  0
+
+With one library XML given
     [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V1}
     Prints ${EXAMPLE LIBRARY XML V1} Updated
     RFDoc contains ExampleLibrary version 1
     Exits With  0
 
-With multiple targets given
+With multiple different files given
     [Setup]  Given no libraries exist in RFDoc
-    ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V1} ${EXAMPLE LIBRARY XML V2}
+    ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V1} ${EXAMPLE LIBRARY SOURCE}
     Prints ${EXAMPLE LIBRARY XML V1} Updated
-    Prints ${EXAMPLE LIBRARY XML V2} Updated
-    RFDoc contains ExampleLibrary version 2
+    Prints ${EXAMPLE LIBRARY SOURCE} Updated
+    RFDoc contains ExampleLibrary version 1
+    RFDoc contains example_lib
     Exits With  0
 
-With a path to the targets given
+With a directory given
     [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} ${TESTDATA PATH}${/}sources
     Prints ${EXAMPLE LIBRARY SOURCE} Updated
     RFDoc contains example_lib
+    Exits With  0
+
+With newer version given
+    [Setup]  Given ExampleLibrary version 1 exist in RFDoc
+    RFDoc contains ExampleLibrary version 1
+    Run Keyword And Expect Error  *  RFDoc contains ExampleLibrary version 2
+    ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V2}
+    Prints ${EXAMPLE LIBRARY XML V2} Updated
+    Run Keyword And Expect Error  *  RFDoc contains ExampleLibrary version 1
+    RFDoc contains ExampleLibrary version 2
     Exits With  0
 
 With invalid path given
@@ -97,7 +115,7 @@ Exits With
     Should Be Equal As Integers  ${rc}  ${expected}
 
 Prints Usage
-    Should Contain  ${output}  Usage: ${script_name} [options] PATH
+    Should Contain  ${output}  Usage: ${SCRIPT_NAME} [options] PATH ...
 
 Prints Help
     Should Contain  ${output}  This script regenerates documentation at Robot Framework RFDoc server.
@@ -106,13 +124,13 @@ Prints ${test_library} Updated
     Should Contain  ${output}  Updated documentation for '${test_library}'
 
 Prints Argument ${argument} Requires Value
-    Should Contain  ${output}  ${script_name}: error: ${argument} option requires an argument
+    Should Contain  ${output}  ${SCRIPT_NAME}: error: ${argument} option requires an argument
 
 Prints Argument ${argument} Is Invalid
-    Should Contain  ${output}  ${script_name}: error: no such option: ${argument}
+    Should Contain  ${output}  ${SCRIPT_NAME}: error: no such option: ${argument}
 
 Prints ${host} Is Invalid Host
-    Should Contain  ${output}  ${script_name}: error: Connection refused to '${host}'. Check that the host responds and is reachable.
+    Should Contain  ${output}  ${SCRIPT_NAME}: error: Connection refused to '${host}'. Check that the host responds and is reachable.
 
 Prints Library ${library} Not Found
-    Should Contain  ${output}  ${script_name}: error: Library '${library}' not found
+    Should Contain  ${output}  ${SCRIPT_NAME}: error: Library '${library}' not found
