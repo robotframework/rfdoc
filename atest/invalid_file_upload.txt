@@ -1,6 +1,6 @@
 *** Settings ***
-Test Setup    "Upload" page is open
 Resource      resources/rfdoc.txt
+Test Setup    "Upload" page is open
 
 *** Variables ***
 ${NON XML FILE}       Given file is not XML.

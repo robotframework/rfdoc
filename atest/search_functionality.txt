@@ -1,44 +1,39 @@
 *** Settings ***
 Resource        resources/search.txt
+Suite Setup     Given some libraries exist in RFDoc
 
 *** Test Cases ***
 User Can Search Using Keyword Name And Documentation
-    Given SeleniumLibrary exists in RFDoc
-    and "search" page is open
+    "search" page is open
     When user searches with "window"
     Then "Close Window", "Execute Javascript", "Select Window" and "Wait For Condition" keywords are displayed
     and notification "4 matching keywords found." is shown
 
 User Can Search Using Keyword Name Only
-    Given SeleniumLibrary exists in RFDoc
-    and "search" page is open
+    "search" page is open
     When user searches with "window" without documentation
     Then "Close Window" and "Select Window" keywords are displayed
     and notification "2 matching keywords found." is shown
 
 User Can Search Case Sensitively Using Keyword Name And Documentation
-    Given SeleniumLibrary exists in RFDoc
-    and "search" page is open
+    "search" page is open
     When user searches case sensitively with "Close All"
     Then "Close All Browsers", "Open Browser" and "Switch Browser" keywords are displayed
     and notification "3 matching keywords found." is shown
 
 User Can Search Case Sensitively Using Keyword Name Only
-    Given SeleniumLibrary exists in RFDoc
-    and "search" page is open
+    "search" page is open
     When user searches case sensitively with "Close All" without documentation
     Then "Close All Browsers" keywords are displayed
     and notification "1 matching keyword found." is shown
 
 Message Is Displayed When Search Matches No Keywords
-    Given SeleniumLibrary exists in RFDoc
-    and "search" page is open
+    "search" page is open
     When user searches with "non-matching"
     Then notification "No matching keywords found." is shown
 
 Error Is Displayed When Searching Without Search Term
-    Given SeleniumLibrary exists in RFDoc
-    and "search" page is open
+    "search" page is open
     When user searches with ""
     Then error "This field is required." is shown
 

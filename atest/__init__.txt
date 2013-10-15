@@ -1,5 +1,5 @@
 *** Settings ***
-Suite Setup     Open browser and set demo delay
+Suite Setup     Clear Database And Open Browser
 Suite Teardown  Close All Browsers
 Resource        resources/rfdoc.txt
 
@@ -7,7 +7,8 @@ Resource        resources/rfdoc.txt
 ${DEMO DELAY}  0 seconds
 
 *** Keywords ***
-Open Browser And Set Demo Delay
+Clear Database And Open Browser
+    Given no libraries exist in RFDoc
     Open Browser  ${BASE URL}  ${BROWSER}
     Set selenium speed  ${DEMO DELAY}
 

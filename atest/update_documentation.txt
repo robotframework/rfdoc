@@ -1,17 +1,16 @@
 *** Settings ***
 Resource        resources/rfdoc.txt
+Test Setup      Given ExampleLibrary version 1 exists in RFDoc
 
 *** Test Cases ***
 Existing Library Is Not Overridden By Default
-    Given ExampleLibrary version 1 exists in RFDoc
-    and "upload" page is open
+    "upload" page is open
     When user uploads ExampleLibrary version 2
     Then error "ExampleLibrary already exists" is shown
     and RFDoc contains ExampleLibrary version 1
 
 User Can Update Library Documentation
-    Given ExampleLibrary version 1 exists in RFDoc
-    and "upload" page is open
+    "upload" page is open
     When user selects "override" option
     and user uploads ExampleLibrary version 2
     Then notification "Successfully uploaded library ExampleLibrary" is shown

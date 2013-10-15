@@ -1,7 +1,6 @@
 *** Settings ***
-Suite Setup     Given some libraries exist in RFDoc
-Test Setup      When user opens library details
 Resource        resources/library_information.txt
+Suite Setup     Given some libraries exist in RFDoc
 
 *** Test Cases ***
 Library Details Are Visible
@@ -22,13 +21,17 @@ Library Initialization Is Not Visible
     Then library initialization is not shown
 
 Keyword Details Are Visible
+    [Setup]  When user opens library details
     Then keywords are listed with name, argument and documentation information
 
 Total Number Of Keywords Is Visible
+    [Setup]  When user opens library details
     Then total number of keywords in library is shown
 
 Shortcut Links Exist
+    [Setup]  When user opens library details
     Then list of keywords linking to the keyword details is shown
 
 Keyword Documentation Can Contain Keyword-to-keyword Links
+    [Setup]  When user opens library details
     Then link exist from keyword documentation to another keyword

@@ -54,19 +54,6 @@ except OSError:
 
 class DevelopmentRunner(object):
 
-    def __init__(self):
-        self._remove_old_results()
-        self._copy_database()
-
-    def _remove_old_results(self):
-        if exists(ATEST_RESULTS_PATH):
-            rmtree(ATEST_RESULTS_PATH)
-            os.mkdir(ATEST_RESULTS_PATH)
-
-    def _copy_database(self):
-        copyfile(join(ATEST_PATH, 'testdata', 'databases', 'libraries.db'),
-                 join(ATEST_RESULTS_PATH, 'rfdoc.db'))
-
     def run_tests(self, options):
         command = ['pybot', '-d', ATEST_RESULTS_PATH] + options + [ATEST_PATH]
         process = Popen(command, shell=SHELL)
@@ -79,7 +66,6 @@ class DevelopmentRunner(object):
 class RegressionRunner(DevelopmentRunner):
 
     def __init__(self):
-        DevelopmentRunner.__init__(self)
         self._rfdoc_pid = self._start_rfdoc()
 
     def _start_rfdoc(self):
