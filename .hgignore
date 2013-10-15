@@ -9,8 +9,7 @@ syntax: glob
 build
 dist
 *.egg-info
-db/*.db
-atest/results
+rfdoc.db
 log.html
 report.html
 output.xml
