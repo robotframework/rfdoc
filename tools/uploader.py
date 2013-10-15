@@ -57,7 +57,7 @@ class Uploader(object):
                     self._uploader.upload_file(xml_doc)
                 except DataError, e:
                     if 'ImportError' in e.message:
-                        raise DataError("Library '%s' not found" % library)
+                        raise DataError("library '%s' not found" % library)
                     raise
                 finally:
                     xml_doc.original_close()
@@ -192,8 +192,8 @@ Content-Type: text/xml
                 response = self._post_multipart(connection, xml_doc)
             except Exception, message:
                 if 'Connection refused' in message:
-                    message = "Connection refused to '%s'. " % self.target_host
-                    message += 'Check that the host responds and is reachable.'
+                    message = "connection refused to '%s', " % self.target_host
+                    message += 'check that the host responds and is reachable.'
                 raise DataError(message)
         self._validate_success(response)
 

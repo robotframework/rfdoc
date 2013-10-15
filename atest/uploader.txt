@@ -122,7 +122,7 @@ Should Print Argument ${argument} Is Invalid
     Should Contain  ${output}  Try '${SCRIPT_NAME} --help' for more information
 
 Should Print ${host} Is Invalid Host
-    Should Contain  ${output}  ${SCRIPT_NAME}: error: Connection refused to '${host}'. Check that the host responds and is reachable.
+    Should Contain  ${output}  ${SCRIPT_NAME}: error: connection refused to '${host}', check that the host responds and is reachable.
 
 Should Print Library ${library} Not Found
-    Should Contain  ${output}  ${SCRIPT_NAME}: error: Library '${library}' not found
+    Should Contain  ${output}  ${SCRIPT_NAME}: error: library '${library}' not found
