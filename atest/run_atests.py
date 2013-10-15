@@ -25,7 +25,7 @@ Running the acceptance tests requires the following:
 - Python (2.6 or newer)
 - Django (1.5 or newer)
 - Robot Framework (2.6 or newer)
-- Selenium2Library (TODO or newer)
+- Selenium2Library
 
 Examples:
     $ ./run_atests.py regr
