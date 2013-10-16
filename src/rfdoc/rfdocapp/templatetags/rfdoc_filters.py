@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from django import template
 from django.template.defaultfilters import stringfilter
 
@@ -21,8 +20,8 @@ register = template.Library()
 
 @register.filter
 @stringfilter
-def nbsp(value):
-    return value.replace(' ', '&nbsp;')
+def nospaces(value):
+    return value.replace(' ', '')
 
 @register.filter
 @stringfilter
