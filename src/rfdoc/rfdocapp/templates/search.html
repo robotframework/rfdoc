@@ -12,7 +12,7 @@
     <table class="keywords results">
       {% for kw in kws %}
       <tr>
-        <td><a href="/lib/{{ kw.library.name|urlencode }}#{{ kw.name|cut:' ' }}">{{ kw.name }}</a></td>
+        <td><a href="/lib/{{ kw.library.name|urlencode }}#{{ kw.name|nospaces }}">{{ kw.name }}</a></td>
         <td><a href="/lib/{{ kw.library.name|urlencode }}">{{ kw.library.name }}</a></td>
         <td>{{ kw.doc|first_line }}</td>
       </tr>

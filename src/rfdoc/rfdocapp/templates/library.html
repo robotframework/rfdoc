@@ -40,7 +40,7 @@
       </tr>
       {% for kw in lib.keywords %}
       <tr>
-        <td class="kw" id="{{ kw.name|cut:' ' }}">{{ kw.name }}</td>
+        <td class="kw" id="{{ kw.name|nospaces }}">{{ kw.name }}</td>
         <td class="arg">{{ kw.args }}</td>
         <td class="doc">{{ kw.doc|safe }}</td>
       </tr>
