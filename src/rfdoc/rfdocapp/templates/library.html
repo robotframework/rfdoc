@@ -28,7 +28,7 @@
     {% endif %}
     <h3>Shortcuts</h3>
     <div class='shortcuts'>{% for kw in lib.keywords %}
-      <a href="#{{ kw.name|cut:' ' }}" title="{{ kw.shortdoc }}">{{ kw.name }}</a>{% if not forloop.last %}&middot;{% endif %}{% endfor %}
+      <a href="#{{ kw.name|nospaces }}" title="{{ kw.shortdoc }}">{{ kw.name }}</a>{% if not forloop.last %} &middot; {% endif %}{% endfor %}
     </div>
 
     <h3>Keywords</h3>
