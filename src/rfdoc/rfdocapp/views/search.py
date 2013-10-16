@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import re
 from django import forms
 from django.db.models import Q
 from django.shortcuts import render_to_response
-import re
 
 from rfdocapp.models import Keyword
 
@@ -43,10 +43,11 @@ def search(request):
     else:
         form = SearchForm()
     return render_to_response('search.html', {
-        'form': form,
-        'kws': kws,
-        'search_performed': search_performed
-    })
+            'form': form,
+            'kws': kws,
+            'search_performed': search_performed
+        }
+    )
 
 
 class SearchForm(forms.Form):

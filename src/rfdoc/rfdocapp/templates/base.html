@@ -15,280 +15,31 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-
+{% load staticfiles %}
 <html>
 <head>
   <title>RFDoc | {% block title %}{% endblock %}</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<style media="all" type="text/css">
-/*
- * The original source for these styles is the Graphite theme got from
- * the excellent Wufoo Form Gallery <http://wufoo.com/gallery>.
- *
- * All themes and templates from the Wufoo Form Gallery are provided
- * under a Creative Commons Attribution license.
- *
- * http://creativecommons.org/licenses/by/3.0/
- */
-
-/* General structure */
-body {
-  background: #222222;
-  font-size: small;
-  font-family: sans-serif;
-  padding: 1em;
-}
-#header, #content, #footer {
-  margin: 0 auto;
-  width: 70%;
-  max-width: 1000px;
-  padding: 1.7em;
-}
-
-/* Header */
-#header {
-  padding-top: 0.7em;
-  padding-bottom: 0.7em;
-  height: 1.5em;
-  background: #444444;
-  color: white;
-  font-variant: small-caps;
-}
-h1 {
-  font-size: 1.5em;
-  letter-spacing: -0.2em;
-  margin: 0;
-  float: left;
-}
-#navi {
-  float: right;
-}
-h1 a, h1 a:hover, #navi a {
-  color: white;
-  text-decoration: none;
-}
-#navi a:hover {
-  color: #eeeeee;
-}
-
-/* Footer */
-#footer {
-  padding-top: 0.4em;
-  padding-bottom: 0.4em;
-  background: #444444;
-  color: black;
-}
-#footer p {
-  font-size: 0.8em;
-  text-align: center;
-  margin: 0;
-}
-#footer p a {
-  color: black;
-  text-decoration: none;
-}
-#footer p a:hover {
-  color: #eeeeee;
-}
-
-/* Content */
-#content {
-  padding-top: 0.7em;
-  background: white;
-  color: #555555;
-}
-h2, h3 {
-  color: #222222;
-  font-weight: normal;
-  font-size: 1.6em;
-  margin: 0.5em 0em 0.3em 0em;
-}
-h3 {
-  font-size: 1.2em;
-}
-div.hr {
-  margin: 1.3em 0em;
-  border-bottom: 1px dotted #cccccc;
-}
-div.hr hr {
-  display: none;
-}
-p.info {
-  margin: 0;
-}
-a {
-  color: black;
-}
-ul.libraries {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-ul.libraries a {
-  text-decoration: none;
-}
-a:hover {
-  color: #444444;
-  text-decoration: underline;
-}
-
-/* Forms */
-form {
-  font-size: 0.9em;
-}
-form div {
-  margin: 1.3em 0;
-}
-.success, .errorlist {
-  font-size: 0.85em;
-  background: #eeeeee;
-  padding: 0.6em 1.4em;
-  margin: 0;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-}
-.errorlist {
-  list-style-type: none;
-  color: red;
-}
-
-/* Search */
-table#search {
-  margin: 0.5em 0 1em 0;
-}
-table#search td {
-  padding-right: 1em;
-}
-input#id_search_term {
-  width: 20em;
-}
-table.results td a {
-  text-decoration: none;
-}
-table.results td a:hover {
-  text-decoration: underline;
-}
-
-/* Library pages */
-p.version {
-  font-size: 0.85em;
-}
-p.version b {
-  font-weight: normal;
-  color: black;
-}
-p.libintro {
-  margin: 1em 0em;
-}
-div.shortcuts {
-  margin: 1em 0em;
-  font-size: 0.85em;
-}
-div.shortcuts a {
-  text-decoration: none;
-}
-div.shortcuts a:hover {
-  text-decoration: underline;
-}
-table.keywords {
-  background: white;
-  border: 1px solid #444444;
-  border-collapse: collapse;
-  empty-cells: show;
-  font-size: 0.9em;
-  margin: 1em 0em;
-  width: 100%;
-}
-table.keywords th, table.keywords td {
-  border: 1px solid #444444;
-  padding: 0.2em 0.3em;
-}
-table.keywords th {
-  background: #eeeeee;
-  font-weight: normal;
-  color: black;
-}
-table.keywords td {
-  vertical-align: top;
-}
-table.keywords td.kw {
-  width: 120px;
-  color: black;
-}
-table.keywords td.arg {
-  width: 150px;
-  font-style: italic;
-}
-table.doc {
-  border: 1px solid gray;
-  background: transparent;
-  border-collapse: collapse;
-  empty-cells: show;
-  font-size: 0.85em;
-  font-family: sans-serif;
-}
-table.doc td {
-  border: 1px solid gray;
-  padding: 0.1em 0.2em;
-  height: 1.2em;
-}
-table.doc b {
-  font-weight: normal;
-  color: black;
-}
-a.name, span.name {
-  font-style: italic;
-  color: black;
-}
-a.name:hover {
-  color: #444444;
-}
-</style>
-<style media="print" type="text/css">
-#header, #footer {
-  display: none;
-}
-body, #content {
-  background: white;
-  width: 100%;
-  max-width: 100%;
-  padding: 0;
-  margin: 0;
-  font-size: 10px;
-}
-table.keywords {
-  width: 99%;
-  margin-left: 1px;
-  margin-right: 1px;
-}
-a {
-  text-decoration: none;
-}
-</style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'default.css' %}" media="screen">
+  <link rel="stylesheet" type="text/css" href="{% static 'print.css' %}" media="print">
 </head>
 
 <body>
   <div id="header">
     <h1><a href="/">RFDoc</a></h1>
-    <div id="navi">{% block navi %}[<a href="/">front page</a>]{% endblock navi %}</div>
+    <div id="navigation">{% block navi %}[<a href="/">front page</a>]{% endblock navi %}</div>
   </div>
-  <div id="content">
-    {% block content %}{% endblock content %}
-  </div>
+
+  <div id="content">{% block content %}{% endblock content %}  </div>
+
   <div id="footer">
     <p>
-      <a href="http://code.google.com/p/rfdoc" title="RFDoc project pages">
-        RFDoc
-      </a>
+      <a href="http://code.google.com/p/rfdoc" title="RFDoc project pages">RFDoc</a>
       &nbsp; &nbsp; | &nbsp; &nbsp;
-      <a href="http://robotframework.org" title="Robot Framework project pages">
-        Robot Framework
-      </a>
+      <a href="http://robotframework.org" title="Robot Framework project pages">Robot Framework</a>
       &nbsp; &nbsp; | &nbsp; &nbsp;
-      <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool" title="Tool for generating library and resource file documentations">
-        libdoc.py
-      </a>
+      <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool" title="Tool for generating library and resource file documentations">libdoc.py</a>
     </p>
   </div>
 </body>
 </html>
-

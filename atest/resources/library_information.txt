@@ -72,9 +72,9 @@ Should Contain Link To Keyword With Short Documentation
 
 Keyword Should Contain Anchor
     [Arguments]  ${source}  ${name}
-    Should contain  ${source}  <td id="${name}" class="kw">${name}</td>
+    Should contain  ${source}  <td id="${name.replace(' ', '')}" class="kw">${name}</td>
 
 Link Exist From Keyword Documentation To Another Keyword
     ${source} =  Get source
-    Should contain  ${source}  <a class="name" href="#Get%20Length">Get Length</a>
+    Should contain  ${source}  <a class="name" href="#GetLength">Get Length</a>
     Keyword should contain anchor  ${source}  Get Length

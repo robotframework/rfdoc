@@ -13,10 +13,15 @@
 # limitations under the License.
 
 from django.shortcuts import render_to_response
-from rfdoc.rfdocapp.models import Library
 
+from rfdoc.rfdocapp.models import Library
 from search import SearchForm
+
 
 def index(request):
     libs = Library.objects.all().order_by('name')
-    return render_to_response('index.html', {'libs': libs, 'form': SearchForm()})
+    return render_to_response('index.html', {
+        'libs': libs,
+        'form': SearchForm()
+        }
+    )
