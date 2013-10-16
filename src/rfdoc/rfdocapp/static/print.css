@@ -1,0 +1,22 @@
+#header, #footer {
+  display: none;
+}
+
+body, #content {
+  background: white;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+}
+
+table.keywords {
+  width: 99%;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+a {
+  text-decoration: none;
+}

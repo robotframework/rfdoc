@@ -29,7 +29,11 @@ def upload(request):
                                          form.cleaned_data['override'])
     else:
         form = UploadFileForm()
-    return render_to_response('upload.html', {'form': form, 'libname': libname})
+    return render_to_response('upload.html', {
+            'form': form,
+            'libname': libname
+        }
+    )
 
 
 class UploadFileForm(forms.Form):

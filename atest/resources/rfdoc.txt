@@ -70,6 +70,6 @@ Library should contain keywords  [Arguments]  @{keywords}
 
 Source should contain keyword  [Arguments]  ${source}  ${name}  ${args}  ${doc}
     ${match}  ${group1}  ${group2} =  Should Match Regexp  ${source}
-    ...      (?s)<td id="${name}" class="kw">${name}</td>\\s*<td class="arg">(.*?)</td>\\s*<td class="doc">(.+?)</td>
+    ...      (?s)<td id="${name.replace(' ', '')}" class="kw">${name}</td>\\s*<td class="arg">(.*?)</td>\\s*<td class="doc">(.+?)</td>
     Should be equal  ${group1}  ${args}
     Should be equal  ${group2}  ${doc}

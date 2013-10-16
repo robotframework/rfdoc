@@ -14,6 +14,7 @@
 
 import re
 from django.shortcuts import render_to_response, get_object_or_404
+from django.utils.http import urlquote
 
 from rfdoc.rfdocapp import utils
 from rfdoc.rfdocapp.models import Library
@@ -40,7 +41,8 @@ class _DocHelper:
         keywords = self.keywords if isinstance(self, LibraryDoc) else self._library.keywords
         for kw in keywords:
             if utils.eq(name, kw.name):
-                return '<a href="#%s" class="name">%s</a>' % (kw.name, name)
+                return '<a href="#%s" class="name">%s</a>' %\
+                       (kw.name.replace(' ', ''), name)
         if utils.eq_any(name, ['introduction', 'library introduction']):
             return '<a href="#introduction" class="name">%s</a>' % name
         if utils.eq_any(name, ['importing', 'library importing']):

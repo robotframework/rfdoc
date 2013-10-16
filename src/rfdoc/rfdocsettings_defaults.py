@@ -1,25 +1,38 @@
 # Local RFDoc configuration file used by `settings.py`.
 #
-# `rfdocsettings_defaults.py` contains the default values to use. It should
-# not be edited directly, however, but first copied to `rfdocsettings.py`.
-# All values are looked first from `rfdocsettings.py` and then from
-# `rfdocsettings_defaults.py`, and thus the former only needs to have
-# settings that are different to defaults.
+# `rfdocsettings_defaults.py` contains the default values to use.
+# However, it should not be edited directly, but first copied to
+# `rfdocsettings.py`.
 #
-# Notice that `rfdocsettings.py` can be anywhere in the file system as long
-# it is in the PYTHONPATH.
+# Settings are first read from `rfdocsettings.py` and then from
+# `rfdocsettings_defaults.py`. Thus `rfdocsettings.py` only needs to have
+# the settings that are different to defaults.
+#
+# Notice that `rfdocsettings.py` can be anywhere in the file system, as long
+# it is in PYTHONPATH.
 
-from os.path import join
+import os
 
-# If debug is True, stack traces are shown instead of normal 404 and 500 pages.
+# If PRODUCTION is True, static assets must be served by a separate web server.
+PRODUCTION = False
+
+# If DEBUG is True, stack traces are shown instead of normal 404 and 500 pages.
 DEBUG = False
 
-# Path to the database file used by sqlite3
-DATABASE_NAME = join('db', 'rfdoc.db')
+# Path to the sqlite3 database file
+DATABASE_NAME = os.path.join('db', 'rfdoc.db')
 
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+# A list of strings representing the host/domain names that this Django site
+# can serve. If you are in PRODUCTION, please set this according to your hosts.
+#
+# For more information, see:
+# https://docs.djangoproject.com/en/1.5/ref/settings/#std:setting-ALLOWED_HOSTS
+ALLOWED_HOSTS = ['*']
+
+# Local time zone for this installation.
+#
+# Choices are listed at http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
+#
+# If running on Windows, this must be set to the same as your system time zone.
 TIME_ZONE = 'Europe/Helsinki'
