@@ -11,16 +11,17 @@
 # Notice that `rfdocsettings.py` can be anywhere in the file system, as long
 # it is in PYTHONPATH.
 
-import os
-
 # If PRODUCTION is True, static assets must be served by a separate web server.
 PRODUCTION = False
 
 # If DEBUG is True, stack traces are shown instead of normal 404 and 500 pages.
 DEBUG = False
 
-# Path to the sqlite3 database file
-DATABASE_NAME = os.path.join('db', 'rfdoc.db')
+# Path to the sqlite3 database file. The default location is in system temporary
+# directory which can be automatically cleared. You should therefore change the path
+# unless using RFDoc for testing purposes.
+import os, tempfile
+DATABASE_NAME = os.path.join(tempfile.gettempdir(), 'rfdoc.db')
 
 # A list of strings representing the host/domain names that this Django site
 # can serve. If you are in PRODUCTION, please set this according to your hosts.
