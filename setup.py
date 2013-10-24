@@ -45,6 +45,6 @@ setup(
     package_dir      = {'rfdoc': 'src/rfdoc'},
     packages         = ['rfdoc', 'rfdoc.rfdocapp', 'rfdoc.rfdocapp.views',
                         'rfdoc.rfdocapp.templatetags', 'rfdoc.rfdocapp.utils'],
-    package_data     = {'rfdoc': ['*.tmpl', 'rfdocapp/templates/*.html']},
+    package_data     = {'rfdoc': ['*.tmpl', 'rfdocapp/templates/*.html', 'rfdocapp/static/*.css']},
     **requires
 )
