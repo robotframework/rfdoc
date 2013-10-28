@@ -31,7 +31,7 @@ Topic :: Software Development :: Testing
 """[1:-1]
 
 setup(
-    name             = 'rfdoc',
+    name             = 'robotframework-rfdoc',
     version          = VERSION,
     description      = 'Web-based Robot Framework library documentation server',
     long_description = DESCRIPTION,
@@ -45,6 +45,7 @@ setup(
     package_dir      = {'rfdoc': 'src/rfdoc'},
     packages         = ['rfdoc', 'rfdoc.rfdocapp', 'rfdoc.rfdocapp.views',
                         'rfdoc.rfdocapp.templatetags', 'rfdoc.rfdocapp.utils'],
-    package_data     = {'rfdoc': ['*.tmpl', 'rfdocapp/templates/*.html', 'rfdocapp/static/*.css']},
+    package_data     = {'rfdoc': ['*.tmpl', 'rfdocapp/templates/*.html',
+                                  'rfdocapp/static/*.css']},
     **requires
 )
