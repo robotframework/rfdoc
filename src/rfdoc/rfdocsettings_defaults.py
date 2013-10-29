@@ -39,14 +39,23 @@ TIME_ZONE = 'Europe/Helsinki'
 
 
 # --- NO NEED TO EDIT BELOW ---
-from shutil import copy
 if __name__ == "__main__":
-    TARGET_FILE = 'rfdocsettings.py'
+    from sys import argv
+    from shutil import copy
+    from os.path import isdir, abspath
+    if len(argv) != 2 or not isdir(argv[1]):
+        exit("""Usage: python -m rfdoc.rfdocsettings_defaults SETTINGS_DIR
+
+  SETTINGS_DIR    Path to an existing directory where the settings file is
+                  created. This directory must be in your PYTHONPATH when
+                  running RFdoc.
+""")
+    TARGET_FILE = os.path.join(argv[1], 'rfdocsettings.py')
     if os.path.exists(TARGET_FILE):
-        msg = "File '%s' exists. Do you want to override it?" % TARGET_FILE
-        if not raw_input('%s (y/n, n default) > ' % msg).lower() == 'y':
-            exit('Aborted.\n')
+        msg = "File '%s' already exists. Override?" % TARGET_FILE
+        if not raw_input('%s [y/N] ' % msg).lower() == 'y':
+            exit('User aborted.\n')
     copy(__file__, TARGET_FILE)
-    print "\nCreated a new setting file '%s'. Make sure it is found in your " \
-          "PYTHONPATH before running RFDoc. The correct path to append to " \
-          "your PYTHONPATH seems to be: %s" % (TARGET_FILE, os.getcwd())
+    print "\nCreated the settings file '%s'.\n" \
+          "Make sure to add '%s' to your PYTHONPATH before running RFDoc."\
+          % (abspath(TARGET_FILE), abspath(argv[1]))
