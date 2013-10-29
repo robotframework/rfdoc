@@ -1,7 +1,8 @@
+prune atest
+graft tools
 include src/rfdoc/*.tmpl
 include src/rfdoc/rfdocapp/templates/*.html
-recursive-include atest *.tsv *.txt *.xml *.py *.db
-prune atest/results
+include src/rfdoc/rfdocapp/static/*.css
 include COPYRIGHT.txt
 include LICENSE.txt
 include README.rst
