@@ -18,7 +18,7 @@ Releasing a new version
 
     Verify that the content looks correct:
 
-        tar -ztvf rfdoc-N.N.tar.gz
+        tar -ztvf dist/robotframework-rfdoc-N.N.tar.gz
 
 4. Upload the source distribution to PyPi
 
