@@ -50,12 +50,6 @@ With newer version given
     RFDoc contains ExampleLibrary version 2
     Should Exit With  0
 
-With invalid path given
-    ${not_existing_library}=  Set Variable  not_exist
-    ${rc}  ${output}=  Run With -u ${BASE URL} ${not_existing_library}
-    Should Print Library ${not_existing_library} Not Found
-    Should Exit With  1
-
 With invalid arguments
     ${invalid_argument}=  Set Variable  --invalid
     ${rc}  ${output}=  Run With ${invalid_argument}
@@ -82,7 +76,7 @@ With -u but without URL
     Should Print Argument -u Requires Value
     Should Exit With  2
 
-With correct no files given
+With -u but no files given
     ${rc}  ${output}=  Run With -u ${BASE URL}
     Should Print Help
     Should Exit With  1
@@ -91,6 +85,17 @@ With --url but no files given
     ${rc}  ${output}=  Run With --url=${BASE URL}
     Should Print Help
     Should Exit With  1
+
+With library not found
+    ${rc}  ${output}=  Run With -u ${BASE URL} NotExistingLibrary
+    Should Print NotExistingLibrary Not Found
+    Should Exit With  0
+
+With an error in parsing one library
+    ${rc}  ${output}=  Run With -u ${BASE URL} InvalidLibrary ${EXAMPLE LIBRARY XML V1}
+    Should Print InvalidLibrary Failed To Update
+    Should Print ${EXAMPLE LIBRARY XML V1} Updated
+    Should Exit With  0
 
 With invalid host given
     ${rc}  ${output}=  Run With --url=${INVALID URL} ${EXAMPLE LIBRARY XML V1}
@@ -112,6 +117,12 @@ Should Print Help
 Should Print ${test_library} Updated
     Should Contain  ${output}  Updated documentation for '${test_library}'
 
+Should Print ${test_library} Failed To Update
+    Should Contain  ${output}  Skipping '${test_library}' due to an error:
+
+Should Print ${test_library} Not Found
+    Should Contain  ${output}  Skipping '${test_library}' due to an error: Library not found.
+
 Should Print Argument ${argument} Requires Value
     Should Contain  ${output}  ${SCRIPT_NAME}: error: ${argument} option requires an argument
     Should Contain  ${output}  Try '${SCRIPT_NAME} --help' for more information
@@ -122,6 +133,3 @@ Should Print Argument ${argument} Is Invalid
 
 Should Print ${host} Is Invalid Host
     Should Contain  ${output}  ${SCRIPT_NAME}: error: connection refused to '${host}', check that the host responds and is reachable.
-
-Should Print Library ${library} Not Found
-    Should Contain  ${output}  ${SCRIPT_NAME}: error: library '${library}' not found
