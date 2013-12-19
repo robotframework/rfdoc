@@ -47,21 +47,23 @@ class Uploader(object):
                 # This is why close() is overridden below.
                 xml_doc.original_close = xml_doc.close
                 try:
-                    if library.endswith('.xml'):
-                        with open(library) as xml_file:
-                            xml_doc.write(xml_file.read())
-                    else:
-                        xml_doc.close = lambda: None
-                        LibraryDocumentation(library).save(xml_doc, 'xml')
+                    try:
+                        if library.endswith('.xml'):
+                            with open(library) as xml_file:
+                                xml_doc.write(xml_file.read())
+                        else:
+                            xml_doc.close = lambda: None
+                            LibraryDocumentation(library).save(xml_doc, 'xml')
+                    except DataError, e:
+                        message = "Library not found" if 'ImportError' in e.message else e.message
+                        sys.stderr.write("Skipping '%s' due to an error: %s.\n" %
+                            (library, message))
+                        continue
                     xml_doc.name = library
                     self._uploader.upload_file(xml_doc)
-                except DataError, e:
-                    if 'ImportError' in e.message:
-                        raise DataError("library '%s' not found" % library)
-                    raise
+                    sys.stdout.write("Updated documentation for '%s'.\n" % library)
                 finally:
                     xml_doc.original_close()
-                sys.stdout.write("Updated documentation for '%s'.\n" % library)
         except DataError, e:
             sys.stderr.write('%s: error: %s\n' % (os.path.basename(__file__),
                                                   e.message))
