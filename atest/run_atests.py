@@ -11,7 +11,7 @@ Valid `mode` is one of the following:
 
     devel   Runs acceptance tests so that RFDoc is not started nor stopped.
             The server must be started before executing as following:
-            django-admin.py runserver 7000 --pythonpath=atest/ --settings atest_settings
+            python -m rfdoc.manage runserver --pythonpath=atest/ --settings atest_settings
 
     ci      Used at continuous integration servers.
             Basically same as 'devel' but disables colored test outputs.
@@ -23,7 +23,7 @@ All outputs are written `atests/results` directory.
 
 Running the acceptance tests requires the following:
 - Python (2.6 or newer)
-- Django (1.5 or newer)
+- Django (1.5 or 1.6)
 - Robot Framework (2.6 or newer)
 - Selenium2Library
 
@@ -35,14 +35,13 @@ Examples:
 import os
 import signal
 import sys
-from os.path import dirname, exists, join
-from shutil import copyfile, rmtree
+from os.path import dirname, join
 from subprocess import call, PIPE, Popen
 
 
 ATEST_PATH = dirname(__file__)
 ATEST_RESULTS_PATH = join(ATEST_PATH, 'results')
-DJANGO_ADMIN = 'django-admin.py'
+DJANGO_ADMIN = join(ATEST_PATH, '..', 'src', 'rfdoc', 'manage.py')
 SHELL = os.name == 'nt'
 
 try:
