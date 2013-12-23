@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     (r'^$', views.index)
 )
 
-# Force Django's server to serve static assets, if this is not the production
+# Force Django to serve static assets, if this is not the production
 if settings.PRODUCTION is False:
     urlpatterns += patterns('', (
         r'^static/(?P<path>.*)$', 'django.views.static.serve', {
