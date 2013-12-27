@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Welcome{% endblock title %}
-{% block navi %}[<a href="/upload/">upload</a>]{% endblock navi %}
+{% block navi %}[<a href="{% url 'upload' %}">upload</a>]{% endblock navi %}
 {% block content %}
     <h2>Welcome</h2>
     <p class="info">
@@ -15,8 +15,8 @@
 
     <h2>Libraries</h2>
     {% if libs %}<ul class="libraries">
-      {% for lib in libs %}<li><a href="/lib/{{ lib.name|urlencode }}">{{ lib.name }}</a></li>
+      {% for lib in libs %}<li><a href="{% url 'library' lib.name|urlencode %}">{{ lib.name }}</a></li>
       {% endfor %}</ul>{% else %}<p class="info">
-      No libraries in the system. Why don't you <a href="/upload/">upload</a> one?
+      No libraries in the system. Why don't you <a href="{% url 'upload' %}">upload</a> one?
     </p>{%endif %}
 {% endblock content %}

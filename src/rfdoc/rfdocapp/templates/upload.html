@@ -12,9 +12,9 @@
 
     <div class="hr"><hr /></div>
 
-    <form enctype="multipart/form-data" action="/upload/" method="POST">{% if libname %}
+    <form enctype="multipart/form-data" action="{% url 'upload' %}" method="POST">{% if libname %}
       <div class="success">
-        Successfully uploaded library <a href="/lib/{{ libname }}">{{ libname }}</a>.
+        Successfully uploaded library <a href="{% url 'library' libname %}">{{ libname }}</a>.
       </div>{% endif %}{{ form.file.errors }}
       <div>
         {{ form.file }}

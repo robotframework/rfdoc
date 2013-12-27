@@ -31,7 +31,7 @@ ${Some libraries} exist${s} in RFDoc
     Go to  ${BASE URL}/${name.lower()}
 
 "${name}" page is opened
-    Location should be  ${BASE URL}/${name}/
+    Location should be  ${BASE URL}/${name}
 
 Error "${message}" is shown
     Element should contain  xpath=//ul[@class='errorlist']  ${message}

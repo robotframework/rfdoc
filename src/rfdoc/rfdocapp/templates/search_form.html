@@ -1,5 +1,5 @@
     <h2>Search keywords</h2>
-    <form enctype="multipart/form-data" action="/search/" method="POST">
+    <form enctype="multipart/form-data" action="{% url 'search' %}" method="POST">
       {{ form.search_term.errors }}<table id="search">
         <tr>
           <td>{{ form.search_term }}</td>

@@ -26,8 +26,8 @@ limitations under the License.
 
 <body>
   <div id="header">
-    <h1><a href="/">RFDoc</a></h1>
-    <div id="navigation">{% block navi %}[<a href="/">front page</a>]{% endblock navi %}</div>
+    <h1><a href="{% url 'root' %}">RFDoc</a></h1>
+    <div id="navigation">{% block navi %}[<a href="{% url 'root' %}">front page</a>]{% endblock navi %}</div>
   </div>
 
   <div id="content">{% block content %}{% endblock content %}  </div>
