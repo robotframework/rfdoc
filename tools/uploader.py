@@ -25,7 +25,7 @@ from httplib import HTTPConnection
 from optparse import OptionParser
 from re import match
 from StringIO import StringIO
-from urlparse import urlparse
+from urlparse import urlsplit
 
 from robot.errors import DataError
 from robot.libdocpkg import LibraryDocumentation
@@ -36,7 +36,7 @@ class Uploader(object):
 
     def __init__(self):
         self._options = CommandlineUI()
-        self._uploader = XmlUploader(self._options.target_host)
+        self._uploader = XmlUploader(self._options.target_url)
 
     def run(self):
         try:
@@ -114,8 +114,8 @@ post-change hook to update the documentation in RFDoc automatically.
         self._options = self._get_validated_options()
 
     @property
-    def target_host(self):
-        return self._options.target_host
+    def target_url(self):
+        return self._options.target_url
 
     @property
     def libraries(self):
@@ -124,10 +124,10 @@ post-change hook to update the documentation in RFDoc automatically.
     def _add_commandline_options(self):
          self._parser.add_option(
              '-u', '--url',
-             dest='target_host',
+             dest='target_url',
              default=self.default_url,
-             help="""Target RFDoc host to update, e.g. 'my.server.com' or
-'192.168.1.100:8000'. If this option is not given, '%s' is assumed
+             help="""Target RFDoc URL to update, e.g. '192.168.1.100:8000' or
+'my.server.com/rfdoc'. If this option is not given, '%s' is assumed
 as target.""" % self.default_url
          )
 
@@ -136,7 +136,7 @@ as target.""" % self.default_url
         if len(targets) < 1:
             self._exit_with_help()
         options.libraries = self._traverse_targets_for_libraries(targets)
-        options.target_host = self._host_from_url(options.target_host)
+        options.target_url = self._host_from_url(options.target_url)
         return options
 
     def _traverse_targets_for_libraries(self, targets):
@@ -164,7 +164,7 @@ as target.""" % self.default_url
     def _host_from_url(self, url):
         if not match(r'http(s?)\:', url):
             url = 'http://' + url
-        return urlparse(url).netloc
+        return url
 
     def _exit_with_help(self):
         self._parser.print_help()
@@ -172,7 +172,7 @@ as target.""" % self.default_url
 
 
 class XmlUploader(object):
-    default_endpoint = '/upload'
+    default_endpoint = 'upload'
     body_template = """--%(boundary)s
 Content-Disposition: form-data; name="override"
 
@@ -185,16 +185,16 @@ Content-Type: text/xml
 --%(boundary)s--
 """
 
-    def __init__(self, target_host):
-        self.target_host = target_host
+    def __init__(self, target_url):
+        self.url = urlsplit(target_url)
 
     def upload_file(self, xml_doc):
-        with closing(HTTPConnection(self.target_host)) as connection:
+        with closing(HTTPConnection(self.url.netloc)) as connection:
             try:
                 response = self._post_multipart(connection, xml_doc)
             except Exception, message:
                 if 'Connection refused' in message:
-                    message = "connection refused to '%s', " % self.target_host
+                    message = "connection refused to '%s', " % self.url.netloc
                     message += 'check that the host responds and is reachable.'
                 raise DataError(message)
         self._validate_success(response)
@@ -203,8 +203,11 @@ Content-Type: text/xml
         connection.connect()
         content_type, body = self._encode_multipart_formdata(xml_doc)
         headers = {'User-Agent': 'RFDoc uploader', 'Content-Type': content_type}
-        connection.request('POST', self.default_endpoint, body, headers)
+        connection.request('POST', self._get_endpoint(), body, headers)
         return connection.getresponse()
+
+    def _get_endpoint(self):
+        return self.url.path + '/' + self.default_endpoint
 
     def _encode_multipart_formdata(self, xml_doc):
         boundary = '----------ThIs_Is_tHe_bouNdaRY_$'
