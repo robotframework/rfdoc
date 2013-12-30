@@ -8,7 +8,7 @@ RFDoc (http://code.google.com/p/rfdoc) is a web application for storing
 and searching Robot Framework (http://robotframework.org) test library and
 resource file documentations.
 
-RFdoc is implemented using Django web framework (http://djangoproject.com).
+RFDoc is implemented using Django web framework (http://djangoproject.com).
 
 
 License
@@ -25,8 +25,8 @@ Running RFDoc
 For getting RFDoc to run locally, see
 https://code.google.com/p/rfdoc/wiki/DevelopmentEnvironment
 
-For instructions on deploying RFdoc to a production environment, see
-https://code.google.com/p/rfdoc/wiki/DeploymentGuide
+For setting up a public production server, see
+https://code.google.com/p/rfdoc/wiki/ProductionEnvironment
 
 
 Directory Layout
