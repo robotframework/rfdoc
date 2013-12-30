@@ -58,5 +58,5 @@ if __name__ == "__main__":
             exit('User aborted.\n')
     copy(__file__, TARGET_FILE)
     print "\nCreated the settings file '%s'.\n" \
-          "Make sure to add '%s' to your PYTHONPATH before running RFDoc."\
+          "Make sure to have '%s' in your PYTHONPATH when running further manage commands."\
           % (abspath(TARGET_FILE), abspath(argv[1]))
