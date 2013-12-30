@@ -25,8 +25,9 @@ DATABASE_NAME = os.path.join(tempfile.gettempdir(), 'rfdoc.db')
 #
 # If this RFDoc instance is accessible from the public Internet, please set
 # this according to your hosts unless you want compromise security.
+#
 # For more information, see:
-# https://docs.djangoproject.com/en/1.5/ref/settings/#std:setting-ALLOWED_HOSTS
+# https://docs.djangoproject.com/en/1.6/ref/settings/#std:setting-ALLOWED_HOSTS
 ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation.
