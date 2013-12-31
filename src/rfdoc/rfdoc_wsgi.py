@@ -13,7 +13,7 @@ import sys
 SITE_PACKAGES_PATH = os.path.join(os.path.expanduser('~'), 'venv', 'lib',
     'python2.7', 'site-packages')
 
-# Adds site-packages to the PATH
+# Adds site-packages to sys.path
 prev_sys_path = list(sys.path)
 site.addsitedir(SITE_PACKAGES_PATH)
 new_sys_path = []
