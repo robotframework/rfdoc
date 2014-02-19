@@ -11,3 +11,8 @@ Libraries In RFDoc Are Listed On Main Page
     [Setup]  Given some libraries exist in RFDoc
     "main" page is open
     Then "BuiltIn", "ExampleLibrary" and "SeleniumLibrary" are listed on the main page
+
+Library Versions Are Listed On Main Page
+    [Setup]  Given some libraries exist in RFDoc
+    "main" page is open
+    Then all versions are shown
