@@ -7,11 +7,6 @@ Library Details Are Visible
     [Setup]  When user opens library with version information
     Then library name, version and documentation are shown
 
-Library Version Is Not Visible
-    [Setup]  When user opens library without version information
-    Then library name and documentation are shown
-    and no version information is shown
-
 Library Initialization Is Visible
     [Setup]  When user opens library with initialization information
     Then library initialization is shown
@@ -35,3 +30,7 @@ Shortcut Links Exist
 Keyword Documentation Can Contain Keyword-to-keyword Links
     [Setup]  When user opens library details
     Then link exist from keyword documentation to another keyword
+
+Other versions are visible
+    [Setup]  When user opens library with multiple versions
+    Then other versions are shown

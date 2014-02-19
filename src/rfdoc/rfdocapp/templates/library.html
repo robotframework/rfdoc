@@ -4,11 +4,9 @@
 {% block title %}{{ lib.name }}{% endblock title %}
 {% block content %}
     <h2>{{ lib.name }}</h2>
-    {% ifnotequal lib.version "<unknown>" %}
     <p class="version">
       <b>Version:</b> {{ lib.version }}
     </p>
-    {% endifnotequal %}
     <h3 id="introduction">Introduction</h3>
       <p class="libintro">{{ lib.doc|safe }}</p>
     {% if lib.inits %}
@@ -49,3 +47,15 @@
     <div class="hr"><hr /></div>
     <p class="info">Altogether {{ lib.keywords|length }} keywords.</p>
 {% endblock content %}
+{% block outside %}
+    <div id="versions">
+        Version: {{ lib.version }}
+        {% if versions %}
+        <br />Other versions:
+        {% for version in versions %}
+            <a href="{% url 'version' lib.name|urlencode version|urlencode %}">{{ version }}</a>
+        {% endfor %}
+        {% endif %}
+    </div>
+{% endblock outside %}
+

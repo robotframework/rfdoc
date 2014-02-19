@@ -49,6 +49,10 @@ Navigate to library "${name}"
     Go to  ${BASE URL}/lib/${name}
     Title should be  RFDoc | ${name}
 
+Navigate to versioned library "${name}" "${version}"
+    Go to  ${BASE URL}/lib/${name}/${version}
+    Title should be  RFDoc | ${name}
+
 User uploads ${library}
     ${file} =  Set Variable  ${library.replace(' ', '_')}.xml
     Upload ${file}
@@ -57,10 +61,16 @@ Upload ${file}
     Choose File  file  ${TESTDATA PATH}${/}xmls${/}${file}
     Click button  Upload
 
-RFDoc contains ${library name with possible version}
-    ${name} =  Get library name  ${library name with possible version}
-    Navigate to library "${name}"
-    @{keywords} =  Set variable  @{${library name with possible version} KEYWORDS}
+RFDoc contains versioned library ${library name with version}
+    ${name} =  Get library name  ${library name with version}
+    ${version} =  Get library version  ${library name with version}
+    Navigate to versioned library "${name}" "${version}"
+    @{keywords} =  Set variable  @{${library name with version} KEYWORDS}
+    Library should contain keywords  @{keywords}
+
+RFDoc contains library ${library name}
+    Navigate to library "${library name}"
+    @{keywords} =  Set variable  @{${library name} KEYWORDS}
     Library should contain keywords  @{keywords}
 
 Library should contain keywords  [Arguments]  @{keywords}

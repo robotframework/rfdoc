@@ -44,11 +44,11 @@ class UploadFileForm(forms.Form):
     def parse_kw_spec(self, fileobj, override):
         try:
             libdata = LibraryData(fileobj)
-            if Library.objects.filter(name=libdata.name):
+            if Library.objects.filter(name=libdata.name).filter(version=libdata.version):
                 if not override:
-                    raise InvalidXmlError("Library %s already exists." % libdata.name)
+                    raise InvalidXmlError("Library %s version %s already exists." % (libdata.name, libdata.version))
                 else:
-                    Library.objects.filter(name=libdata.name).delete()
+                    Library.objects.filter(name=libdata.name).filter(version=libdata.version).delete()
             lib = Library(name=libdata.name, doc=libdata.doc, version=libdata.version)
             lib.save()
             for init in libdata.inits:

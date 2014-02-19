@@ -19,7 +19,9 @@ from search import SearchForm
 
 
 def index(request):
-    libs = Library.objects.all().order_by('name')
+    libs = Library.objects.values('name').distinct()
+    for lib in libs:
+        lib['versions'] = [x.version for x in Library.objects.filter(name=lib['name'])]
     return render_to_response('index.html', {
         'libs': libs,
         'form': SearchForm()

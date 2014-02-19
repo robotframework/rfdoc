@@ -146,6 +146,18 @@ table.results td a:hover {
 }
 
 /* Library pages */
+
+#versions {
+    padding: 10px;
+    background-color: #eee;
+    width: auto;
+    max-width: 300px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 400;
+}
+
 p.version {
   font-size: 0.85em;
 }

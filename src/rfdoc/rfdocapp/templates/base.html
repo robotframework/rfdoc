@@ -18,7 +18,7 @@ limitations under the License.
 {% load staticfiles %}
 <html>
 <head>
-  <title>RFDoc | {% block title %}{% endblock %}</title>
+  <title>RFDoc | {% block title %}{% endblock title %}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="stylesheet" type="text/css" href="{% static 'default.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'print.css' %}" media="print">
@@ -41,5 +41,6 @@ limitations under the License.
       <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool" title="Tool for generating library and resource file documentations">libdoc.py</a>
     </p>
   </div>
+  {% block outside %}{% endblock outside %}
 </body>
 </html>

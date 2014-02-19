@@ -8,4 +8,4 @@ User Can Upload Library Documentation
     When user uploads BuiltIn
     Then notification "Successfully uploaded library BuiltIn" is shown
     and notification contains a link to BuiltIn
-    and RFDoc contains BuiltIn
+    and RFDoc contains library BuiltIn

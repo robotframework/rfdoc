@@ -5,3 +5,6 @@ def get_names(namestr):
 
 def get_library_name(library_name):
     return library_name.split()[0]
+
+def get_library_version(library_name):
+    return library_name.split()[-1]
