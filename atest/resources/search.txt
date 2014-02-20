@@ -27,6 +27,6 @@ Search Result Should Contain ${name}
     Page should contain element  //td/a[text()='${name}']
 
 Then search results contain keyword "Get Title" with link to "SeleniumLibrary" and with documentation
-    Page Should Contain Element  //td/a[text()='Get Title']
+    Page Should Contain Element  //td/a[@href='/lib/SeleniumLibrary#GetTitle' and text()='Get Title']
     Page Should Contain Element  //td/a[text()='SeleniumLibrary']
     Page Should Contain  Returns title of current page.
