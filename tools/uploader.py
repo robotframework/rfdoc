@@ -53,7 +53,10 @@ class Uploader(object):
                                 xml_doc.write(xml_file.read())
                         else:
                             xml_doc.close = lambda: None
-                            LibraryDocumentation(library).save(xml_doc, 'xml')
+                            if self._options.lib_version:
+                                LibraryDocumentation(library, version=self._options.lib_version).save(xml_doc, 'xml')
+                            else:
+                                LibraryDocumentation(library).save(xml_doc, 'xml')
                     except DataError, e:
                         message = "Library not found" if 'ImportError' in e.message else e.message
                         sys.stderr.write("Skipping '%s' due to an error: %s.\n" %
@@ -121,15 +124,23 @@ post-change hook to update the documentation in RFDoc automatically.
     def libraries(self):
         return self._options.libraries
 
+    @property
+    def lib_version(self):
+        return self._options.lib_version
+
     def _add_commandline_options(self):
-         self._parser.add_option(
-             '-u', '--url',
-             dest='target_url',
-             default=self.default_url,
-             help="""Target RFDoc URL to update, e.g. '192.168.1.100:8000' or
+        self._parser.add_option(
+            '-u', '--url',
+            dest='target_url',
+            default=self.default_url,
+            help="""Target RFDoc URL to update, e.g. '192.168.1.100:8000' or
 'my.server.com/rfdoc'. If this option is not given, '%s' is assumed
 as target.""" % self.default_url
          )
+        self._parser.add_option(
+            '-v', '--version',
+            dest='lib_version',
+            help="""Override library version""")
 
     def _get_validated_options(self):
         options, targets = self._parser.parse_args()
