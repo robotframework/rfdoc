@@ -27,6 +27,7 @@ def search(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             term = form.cleaned_data['search_term']
+            version = form.cleaned_data['search_version']
             query = Q(name__icontains = term)
             if form.cleaned_data['include_doc']:
                 query = query | Q(doc__icontains = term)
@@ -39,6 +40,9 @@ def search(request):
                 if form.cleaned_data['include_doc']:
                     query = query | Q(doc__regex = r'.*%s.*' % re.escape(term))
             kws = Keyword.objects.filter(query)
+            if version:
+                version = re.escape(version).replace('\?','.').replace('\*','.*')
+                kws = kws.filter(library__version__regex=r'^%s$' % version)
             search_performed = True
     else:
         form = SearchForm()
@@ -52,6 +56,7 @@ def search(request):
 
 class SearchForm(forms.Form):
     search_term = forms.CharField()
+    search_version = forms.CharField(required=False)
     include_doc = forms.BooleanField(required=False, initial=True)
     case_insensitive = forms.BooleanField(required=False, initial=True)
 

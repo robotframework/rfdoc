@@ -10,10 +10,17 @@
       {% if not kws %}No{% else %}{{ kws|length }}{% endif %} matching keyword{{ kws|length|pluralize }} found.
     </p>{% if kws %}
     <table class="keywords results">
+      <tr>
+          <th>Keyword</th>
+          <th>Library</th>
+          <th>Version</th>
+          <th>Doc</th>
+      </tr>
       {% for kw in kws %}
       <tr>
-        <td><a href="{% url 'library' kw.library.name|urlencode %}#{{ kw.name|nospaces }}">{{ kw.name }}</a></td>
-        <td><a href="{% url 'library' kw.library.name|urlencode %}">{{ kw.library.name }}</a></td>
+        <td><a href="{% url 'version' kw.library.name|urlencode kw.library.version|urlencode %}#{{ kw.name|nospaces }}">{{ kw.name }}</a></td>
+        <td><a href="{% url 'version' kw.library.name|urlencode kw.library.version|urlencode %}">{{ kw.library.name }}</a></td>
+        <td>{{ kw.library.version }}</td>
         <td>{{ kw.doc|first_line }}</td>
       </tr>
       {% endfor %}

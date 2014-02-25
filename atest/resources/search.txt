@@ -18,6 +18,10 @@ User searches case sensitively with "${search term}" without documentation
     Unselect Checkbox  case_insensitive
     User searches with "${search term}" without documentation
 
+User searches "${search term}" with version "${search version}"
+    Input text  search_version  ${search version}
+    User searches with "${search term}"
+
 "${keywords}" keywords are displayed
     @{keywords} =  Get names  ${keywords}
     :FOR  ${name}  IN  @{keywords}
@@ -26,7 +30,8 @@ User searches case sensitively with "${search term}" without documentation
 Search Result Should Contain ${name}
     Page should contain element  //td/a[text()='${name}']
 
-Then search results contain keyword "Get Title" with link to "SeleniumLibrary" and with documentation
-    Page Should Contain Element  //td/a[@href='/lib/SeleniumLibrary#GetTitle' and text()='Get Title']
-    Page Should Contain Element  //td/a[text()='SeleniumLibrary']
+Then search results contain keyword "Get Title" with link to "SeleniumLibrary" with version and with documentation
+    Page Should Contain Element  //td/a[@href='/lib/SeleniumLibrary/2.2#GetTitle' and text()='Get Title']
+    Page Should Contain Element  //td/a[@href='/lib/SeleniumLibrary/2.2' and text()='SeleniumLibrary']
+    Page Should Contain Element  //td[text()='2.2']
     Page Should Contain  Returns title of current page.
