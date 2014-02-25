@@ -1,6 +1,6 @@
 *** Settings ***
 Resource        resources/search.txt
-Suite Setup     Given SeleniumLibrary exists in RFDoc
+Suite Setup     Given SeleniumLibrary ExampleLibrary 1 and ExampleLibrary 2 exist in RFDoc
 
 *** Test Cases ***
 User Can Search Using Keyword Name And Documentation
@@ -25,6 +25,12 @@ User Can Search Case Sensitively Using Keyword Name Only
     "search" page is open
     When user searches case sensitively with "Close All" without documentation
     Then "Close All Browsers" keywords are displayed
+    and notification "1 matching keyword found." is shown
+
+User Can Search Using Keyword Name And Version Info
+    "search" page is open
+    When user searches "First" with version "1"
+    Then "First Keyword" keywords are displayed
     and notification "1 matching keyword found." is shown
 
 Message Is Displayed When Search Matches No Keywords

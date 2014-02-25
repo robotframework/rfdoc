@@ -2,6 +2,7 @@
     <form enctype="multipart/form-data" action="{% url 'search' %}" method="POST">
       {{ form.search_term.errors }}<table id="search">
         <tr>
+          <td><label for="id_search_term">Search term</label></td>
           <td>{{ form.search_term }}</td>
           <td>
             {{ form.include_doc }}
@@ -11,6 +12,13 @@
             {{ form.case_insensitive }}
             <label for="id_case_insensitive">Case-insensitive</label>
           </td>
+        </tr>
+        <tr>
+          <td><label for="id_search_version">Filter version</label></td>
+          <td>{{ form.search_version }}</td>
+          <td></td>
+          <td></td>
+        </tr>
       </table>
       <p>
         <input type="submit" name="search_button" value="Search" />
