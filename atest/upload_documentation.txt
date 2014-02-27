@@ -1,11 +1,18 @@
 *** Settings ***
 Resource        resources/rfdoc.txt
+Test Setup      Given no libraries exist in RFDoc
 
 *** Test Cases ***
 User Can Upload Library Documentation
-    [Setup]  Given no libraries exist in RFDoc
     "upload" page is open
     When user uploads BuiltIn
     Then notification "Successfully uploaded library BuiltIn" is shown
-    and notification contains a link to BuiltIn
+    and notification contains a version "2.1" link to "BuiltIn"
     and RFDoc contains library BuiltIn
+
+User Can Upload Library Documentation And Override Version
+    "upload" page is open
+    When user overrides version with "5" and uploads "ExampleLibrary version 1"
+    Then notification "Successfully uploaded library ExampleLibrary" is shown
+    and notification contains a version "5" link to "ExampleLibrary"
+    and RFDoc contains versioned library ExampleLibrary version 5

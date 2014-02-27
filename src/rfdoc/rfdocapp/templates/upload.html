@@ -12,16 +12,24 @@
 
     <div class="hr"><hr /></div>
 
-    <form enctype="multipart/form-data" action="{% url 'upload' %}" method="POST">{% if libname %}
+    <form enctype="multipart/form-data" action="{% url 'upload' %}" method="POST">{% if lib %}
       <div class="success">
-        Successfully uploaded library <a href="{% url 'library' libname %}">{{ libname }}</a>.
+        Successfully uploaded library <a href="{% url 'version' lib.name|urlencode lib.version|urlencode %}">{{ lib.name }}</a>.
       </div>{% endif %}{{ form.file.errors }}
       <div>
         {{ form.file }}
       </div>
-      <div>
-        {{ form.override }}
-        <label for="id_override">Overwrite existing documentation with same name</label>
+      <div class="form-options">
+          <table>
+              <tr>
+                  <td><label for="id_override_version">Overwrite library version with:</label></td>
+                  <td>{{ form.override_version }}</td>
+              </tr>
+              <tr>
+                  <td><label for="id_override">Overwrite existing documentation with same name</label></td>
+                  <td>{{ form.override }}</td>
+              </tr>
+          </table>
       </div>
       <p>
         <input type="submit" value="Upload" />

@@ -21,17 +21,18 @@ from rfdoc.rfdocapp.models import Library
 
 
 def upload(request):
-    libname = None
+    lib = None
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            libname = form.parse_kw_spec(request.FILES['file'],
-                                         form.cleaned_data['override'])
+            lib = form.parse_kw_spec(request.FILES['file'],
+                                         form.cleaned_data['override'],
+                                         form.cleaned_data['override_version'].strip())
     else:
         form = UploadFileForm()
     return render_to_response('upload.html', {
             'form': form,
-            'libname': libname
+            'lib': lib
         }
     )
 
@@ -40,10 +41,14 @@ class UploadFileForm(forms.Form):
     file = forms.FileField()
     file.widget.attrs['size'] = 40
     override = forms.BooleanField(required=False)
+    override_version = forms.CharField(required=False)
+    override_version.widget.attrs['size'] = 10
 
-    def parse_kw_spec(self, fileobj, override):
+    def parse_kw_spec(self, fileobj, override, override_version):
         try:
             libdata = LibraryData(fileobj)
+            if override_version:
+                libdata.version=override_version
             if Library.objects.filter(name=libdata.name).filter(version=libdata.version):
                 if not override:
                     raise InvalidXmlError("Library %s version %s already exists." % (libdata.name, libdata.version))
@@ -58,7 +63,7 @@ class UploadFileForm(forms.Form):
         except InvalidXmlError, err:
             self._errors['file'] = ErrorList([str(err)])
             return None
-        return lib.name
+        return lib
 
 
 class LibraryData(object):
