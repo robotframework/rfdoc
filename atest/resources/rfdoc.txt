@@ -13,7 +13,7 @@ ${RESULTS PATH}   ${CURDIR}${/}..${/}results
 @{BUILTIN KEYWORDS}  Convert To Integer  item  Converts the given item to an integer number.  No Operation  ${EMPTY}  Does absolutely nothing.
 @{EXAMPLELIBRARY VERSION 1 KEYWORDS}  First Keyword  first, second=default, *args  First KW doc  My Second Keyword  some  Second KW doc
 @{EXAMPLELIBRARY VERSION 2 KEYWORDS}  First Keyword Updated  first, second=default updated, *args  Updated KW doc  My Second Keyword  some  Second KW doc  Third Keyword  third  Third KW doc
-
+@{EXAMPLELIBRARY VERSION 5 KEYWORDS}  @{EXAMPLELIBRARY VERSION 1 KEYWORDS}
 
 *** Keywords ***
 Given no libraries exist in RFDoc
@@ -45,6 +45,9 @@ Notification "${message}" is shown
 Notification contains a link to ${library}
     Page should contain link  /lib/${library}  ${library}
 
+Notification contains a version "${version}" link to "${library}"
+    Page should contain link  /lib/${library}/${version}  ${library}
+
 Navigate to library "${name}"
     Go to  ${BASE URL}/lib/${name}
     Title should be  RFDoc | ${name}
@@ -55,6 +58,11 @@ Navigate to versioned library "${name}" "${version}"
 
 User uploads ${library}
     ${file} =  Set Variable  ${library.replace(' ', '_')}.xml
+    Upload ${file}
+
+User overrides version with "${version}" and uploads "${library}"
+    ${file} =  Set Variable  ${library.replace(' ', '_')}.xml
+    Input text  override_version  ${version}
     Upload ${file}
 
 Upload ${file}
