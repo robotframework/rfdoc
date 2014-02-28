@@ -57,7 +57,7 @@ INSTALLED_APPS = (
     'rfdoc.rfdocapp'
 )
 
-# CSRF removed from the defaults due to tools/uploader.py
+# CSRF removed from the defaults due to src/rfdoc/upload.py
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -3,8 +3,8 @@ Resource      resources/rfdoc.txt
 
 *** Variables ***
 ${INVALID URL}              localhost:1
-${SCRIPT NAME}              uploader.py
-${SCRIPT PATH}              ${CURDIR}${/}..${/}tools${/}${SCRIPT NAME}
+${SCRIPT NAME}              upload.py
+${SCRIPT PATH}              ${CURDIR}${/}..${/}src${/}rfdoc${/}${SCRIPT NAME}
 ${EXAMPLE LIBRARY SOURCE}   ${TESTDATA PATH}${/}sources${/}example_lib.py
 ${EXAMPLE LIBRARY XML V1}   ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_1.xml
 ${EXAMPLE LIBRARY XML V2}   ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_2.xml
