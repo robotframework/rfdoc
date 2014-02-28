@@ -69,23 +69,24 @@ class UploadFileForm(forms.Form):
 class LibraryData(object):
 
     def __init__(self, fileobj):
+        self.filename = fileobj.name
         root = self._get_root(fileobj)
         try:
             self.name = self._get_name(root)
             self.version = self._get_version(root)
             self.doc = self._get_doc(root)
-        except InvalidXmlError:
-            raise InvalidXmlError('Given file contains invalid XML.')
-        self.inits = [ InitData(data) for data in self._get_inits(root) ]
-        self.kws = [ KeywordData(data) for data in self._get_keywords(root) ]
+        except InvalidXmlError as e:
+            raise InvalidXmlError('Library parsing error. Given file %s contains invalid XML: %s' % (self.filename, e))
+        self.inits = [ InitData(data, self.filename) for data in self._get_inits(root) ]
+        self.kws = [ KeywordData(data, self.filename) for data in self._get_keywords(root) ]
 
     def _get_root(self, fileobj):
         try:
             root = ET.parse(fileobj).getroot()
-        except SyntaxError:
-            raise InvalidXmlError('Given file is not XML.')
+        except SyntaxError as e:
+            raise InvalidXmlError('Given file %s is not XML: %s' % (self.filename, e))
         if root.tag != 'keywordspec':
-            raise InvalidXmlError('Given file contains invalid XML.')
+            raise InvalidXmlError('Given file %s contains invalid XML: Root tag must be keywordspec' % self.filename)
         return root
 
     def _get_name(self, elem):
@@ -111,19 +112,19 @@ class LibraryData(object):
         # 'keywords/kw' is backwards compatibility for libdoc.py 2.1 and earlier
         kws = elem.findall('keywords/kw') + elem.findall('kw')
         if not kws:
-            raise InvalidXmlError('Given test library contains no keywords.')
+            raise InvalidXmlError('Given test library file %s contains no keywords.' % self.filename)
         return kws
 
 
 class KeywordData(object):
 
-    def __init__(self, elem):
+    def __init__(self, elem, filename):
         try:
             self.name = self._get_name(elem)
             self.doc = self._get_doc(elem)
             self.args = ', '.join(arg.text for arg in self._get_args(elem))
-        except InvalidXmlError:
-            raise InvalidXmlError('Given file contains invalid XML.')
+        except InvalidXmlError as e:
+            raise InvalidXmlError('Keyword parsing error. Given file %s contains invalid XML: %s' % (filename, e))
 
     def _get_name(self, elem):
         return get_attr(elem, 'name')
@@ -144,13 +145,13 @@ class InitData(KeywordData):
 def get_attr(elem, attr_name):
     attr = elem.get(attr_name)
     if not attr:
-        raise InvalidXmlError
+        raise InvalidXmlError('Attribute %s not found' % attr_name)
     return attr
 
 def get_child_element(elem, child_name):
     child = elem.find(child_name)
     if child is None:
-        raise InvalidXmlError
+        raise InvalidXmlError('Child element %s not found' % child_name)
     return child
 
 

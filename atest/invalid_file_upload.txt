@@ -3,24 +3,21 @@ Resource      resources/rfdoc.txt
 Test Setup    "Upload" page is open
 
 *** Variables ***
-${NON XML FILE}       Given file is not XML.
-${INVALID XML FILE}   Given file contains invalid XML.
 ${NON EXISTING FILE}  The submitted file is empty.
-${MISSING KEYWORDS}   Given test library contains no keywords.
 
 *** Test Cases ***                       *** Uploaded File ***      *** Error Message ***
-Non XML file           Uploading fails   text_file.txt              ${NON XML FILE}
-Wrong XML content      Uploading fails   invalid_content.xml        ${INVALID XML FILE}
+Non XML file           Uploading fails   text_file.txt              Given file text_file.txt is not XML: syntax error: line 1, column 0
+Wrong XML content      Uploading fails   invalid_content.xml        Given file invalid_content.xml contains invalid XML: Root tag must be keywordspec
 Non existing file      Uploading fails   non_existing_file.xml      ${NON EXISTING FILE}
-Empty library name     Uploading fails   empty_library_name.xml     ${INVALID XML FILE}
-Missing library name   Uploading fails   missing_library_name.xml   ${INVALID XML FILE}
-Missing library doc    Uploading fails   missing_library_doc.xml    ${INVALID XML FILE}
-Empty keyword name     Uploading fails   empty_keyword_name.xml     ${INVALID XML FILE}
-Missing keyword name   Uploading fails   missing_keyword_name.xml   ${INVALID XML FILE}
-Missing keyword doc    Uploading fails   missing_keyword_doc.xml    ${INVALID XML FILE}
-Empty keyword          Uploading fails   empty_keyword.xml          ${INVALID XML FILE}
-Empty keywords         Uploading fails   empty_keywords.xml         ${MISSING KEYWORDS}
-Missing keywords       Uploading fails   missing_keywords.xml       ${MISSING KEYWORDS}
+Empty library name     Uploading fails   empty_library_name.xml     Library parsing error. Given file empty_library_name.xml contains invalid XML: Attribute name not found
+Missing library name   Uploading fails   missing_library_name.xml   Library parsing error. Given file missing_library_name.xml contains invalid XML: Attribute name not found
+Missing library doc    Uploading fails   missing_library_doc.xml    Library parsing error. Given file missing_library_doc.xml contains invalid XML: Child element doc not found
+Empty keyword name     Uploading fails   empty_keyword_name.xml     Keyword parsing error. Given file empty_keyword_name.xml contains invalid XML: Attribute name not found
+Missing keyword name   Uploading fails   missing_keyword_name.xml   Keyword parsing error. Given file missing_keyword_name.xml contains invalid XML: Attribute name not found
+Missing keyword doc    Uploading fails   missing_keyword_doc.xml    Keyword parsing error. Given file missing_keyword_doc.xml contains invalid XML: Child element doc not found
+Empty keyword          Uploading fails   empty_keyword.xml          Keyword parsing error. Given file empty_keyword.xml contains invalid XML: Child element doc not found
+Empty keywords         Uploading fails   empty_keywords.xml         Given test library file empty_keywords.xml contains no keywords.
+Missing keywords       Uploading fails   missing_keywords.xml       Given test library file missing_keywords.xml contains no keywords.
 
 *** Keywords ***
 Uploading fails   [Arguments]   ${file}   ${message}
