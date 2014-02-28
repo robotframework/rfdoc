@@ -132,4 +132,4 @@ Should Print Argument ${argument} Is Invalid
     Should Contain  ${output}  Try '${SCRIPT_NAME} --help' for more information
 
 Should Print ${host} Is Invalid Host
-    Should Contain  ${output}  ${SCRIPT_NAME}: error: connection refused to '${host}', check that the host responds and is reachable.
+    Should Contain  ${output}  ${SCRIPT_NAME}: Remote error: connection refused to '${host}', check that the host responds and is reachable.

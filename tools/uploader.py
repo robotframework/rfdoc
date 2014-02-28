@@ -68,7 +68,7 @@ class Uploader(object):
                 finally:
                     xml_doc.original_close()
         except DataError, e:
-            sys.stderr.write('%s: error: %s\n' % (os.path.basename(__file__),
+            sys.stderr.write('%s: Remote error: %s\n' % (os.path.basename(__file__),
                                                   e.message))
             exit(1)
 
