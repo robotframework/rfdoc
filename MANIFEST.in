@@ -1,5 +1,4 @@
 prune atest
-graft tools
 include src/rfdoc/*.tmpl
 include src/rfdoc/rfdocapp/templates/*.html
 include src/rfdoc/rfdocapp/static/*.css
