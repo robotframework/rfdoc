@@ -55,7 +55,7 @@ def search(request):
 
 
 class SearchForm(forms.Form):
-    search_term = forms.CharField()
+    search_term = forms.CharField(error_messages={'required': 'Search term is required!'})
     search_version = forms.CharField(required=False)
     include_doc = forms.BooleanField(required=False, initial=True)
     case_insensitive = forms.BooleanField(required=False, initial=True)

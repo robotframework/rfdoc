@@ -41,5 +41,5 @@ Message Is Displayed When Search Matches No Keywords
 Error Is Displayed When Searching Without Search Term
     "search" page is open
     When user searches with ""
-    Then error "This field is required." is shown
+    Then error "Search term is required!" is shown
 
