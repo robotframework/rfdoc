@@ -53,17 +53,14 @@ class Uploader(object):
                                 xml_doc.write(xml_file.read())
                         else:
                             xml_doc.close = lambda: None
-                            if self._options.lib_version:
-                                LibraryDocumentation(library, version=self._options.lib_version).save(xml_doc, 'xml')
-                            else:
-                                LibraryDocumentation(library).save(xml_doc, 'xml')
+                            LibraryDocumentation(library).save(xml_doc, 'xml')
                     except DataError, e:
                         message = "Library not found" if 'ImportError' in e.message else e.message
                         sys.stderr.write("Skipping '%s' due to an error: %s.\n" %
                             (library, message))
                         continue
                     xml_doc.name = library
-                    self._uploader.upload_file(xml_doc)
+                    self._uploader.upload_file(xml_doc, self._options.lib_name, self._options.lib_version)
                     sys.stdout.write("Updated documentation for '%s'.\n" % library)
                 finally:
                     xml_doc.original_close()
@@ -128,6 +125,10 @@ post-change hook to update the documentation in RFDoc automatically.
     def lib_version(self):
         return self._options.lib_version
 
+    @property
+    def lib_name(self):
+        return self._options.lib_name
+
     def _add_commandline_options(self):
         self._parser.add_option(
             '-u', '--url',
@@ -140,7 +141,13 @@ as target.""" % self.default_url
         self._parser.add_option(
             '-v', '--version',
             dest='lib_version',
+            default=None,
             help="""Override library version""")
+        self._parser.add_option(
+            '-n', '--name',
+            dest='lib_name',
+            default=None,
+            help="""Override library name""")
 
     def _get_validated_options(self):
         options, targets = self._parser.parse_args()
@@ -184,7 +191,7 @@ as target.""" % self.default_url
 
 class XmlUploader(object):
     default_endpoint = 'upload'
-    body_template = """--%(boundary)s
+    required_content_template = """--%(boundary)s
 Content-Disposition: form-data; name="override"
 
 on
@@ -193,16 +200,21 @@ Content-Disposition: form-data; name="file"; filename="%(filename)s"
 Content-Type: text/xml
 
 %(content)s
---%(boundary)s--
 """
+    optional_field_template = """--%(boundary)s
+Content-Disposition: form-data; name="%(name)s"
+
+%(content)s
+"""
+    end_boundary_template = '--%(boundary)s--\n'
 
     def __init__(self, target_url):
         self.url = urlsplit(target_url)
 
-    def upload_file(self, xml_doc):
+    def upload_file(self, xml_doc, override_name=None, override_version=None):
         with closing(HTTPConnection(self.url.netloc)) as connection:
             try:
-                response = self._post_multipart(connection, xml_doc)
+                response = self._post_multipart(connection, xml_doc, override_name, override_version)
             except Exception, message:
                 if 'Connection refused' in message:
                     message = "connection refused to '%s', " % self.url.netloc
@@ -210,9 +222,9 @@ Content-Type: text/xml
                 raise DataError(message)
         self._validate_success(response)
 
-    def _post_multipart(self, connection, xml_doc):
+    def _post_multipart(self, connection, xml_doc, override_name, override_version):
         connection.connect()
-        content_type, body = self._encode_multipart_formdata(xml_doc)
+        content_type, body = self._encode_multipart_formdata(xml_doc, override_name, override_version)
         headers = {'User-Agent': 'RFDoc uploader', 'Content-Type': content_type}
         connection.request('POST', self._get_endpoint(), body, headers)
         return connection.getresponse()
@@ -220,13 +232,27 @@ Content-Type: text/xml
     def _get_endpoint(self):
         return self.url.path + '/' + self.default_endpoint
 
-    def _encode_multipart_formdata(self, xml_doc):
+    def _encode_multipart_formdata(self, xml_doc, override_name, override_version):
         boundary = '----------ThIs_Is_tHe_bouNdaRY_$'
-        body = self.body_template % {
+        body = self.required_content_template % {
             'boundary': boundary,
             'filename': xml_doc.name,
             'content': xml_doc.getvalue()
         }
+        if override_name:
+            body += self.optional_field_template % {
+                'boundary': boundary,
+                'name': 'override_name',
+                'content': override_name
+            }
+        if override_version:
+            body += self.optional_field_template % {
+                'boundary': boundary,
+                'name': 'override_version',
+                'content': override_version
+            }
+
+        body += self.end_boundary_template % {'boundary': boundary}
         content_type = 'multipart/form-data; boundary=%s' % boundary
         return content_type, body.replace('\n', '\r\n')
 

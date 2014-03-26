@@ -42,12 +42,28 @@ With a directory given
     Should Exit With  0
 
 With new version
-    [Setup]  Given SeleniumLibrary exist in RFDoc
+    [Setup]  Given some libraries exist in RFDoc
     Run Keyword And Expect Error  *  RFDoc contains versioned library ExampleLibrary version 2
     ${rc}  ${output}=  Run With -u ${BASE URL} ${EXAMPLE LIBRARY XML V2}
     Should Print ${EXAMPLE LIBRARY XML V2} Updated
     RFDoc contains versioned library ExampleLibrary version 1
     RFDoc contains versioned library ExampleLibrary version 2
+    Should Exit With  0
+
+With version override
+    [Setup]  Given no libraries exist in RFDoc
+    Run Keyword And Expect Error  *  RFDoc contains versioned library ExampleLibrary version 5
+    ${rc}  ${output}=  Run With -u ${BASE URL} -v 5 ${EXAMPLE LIBRARY XML V1}
+    Should Print ${EXAMPLE LIBRARY XML V1} Updated
+    RFDoc contains versioned library ExampleLibrary version 5
+    Should Exit With  0
+
+With name override
+    [Setup]  Given no libraries exist in RFDoc
+    Run Keyword And Expect Error  *  RFDoc contains versioned library ExampleLibrary version 5
+    ${rc}  ${output}=  Run With -u ${BASE URL} -n NewnameLibrary ${EXAMPLE LIBRARY XML V2}
+    Should Print ${EXAMPLE LIBRARY XML V2} Updated
+    RFDoc contains versioned library NewnameLibrary version 2
     Should Exit With  0
 
 With invalid arguments

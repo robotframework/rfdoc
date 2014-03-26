@@ -14,6 +14,7 @@ ${RESULTS PATH}   ${CURDIR}${/}..${/}results
 @{EXAMPLELIBRARY VERSION 1 KEYWORDS}  First Keyword  first, second=default, *args  First KW doc  My Second Keyword  some  Second KW doc
 @{EXAMPLELIBRARY VERSION 2 KEYWORDS}  First Keyword Updated  first, second=default updated, *args  Updated KW doc  My Second Keyword  some  Second KW doc  Third Keyword  third  Third KW doc
 @{EXAMPLELIBRARY VERSION 5 KEYWORDS}  @{EXAMPLELIBRARY VERSION 1 KEYWORDS}
+@{NEWNAMELIBRARY VERSION 2 KEYWORDS}  @{EXAMPLELIBRARY VERSION 2 KEYWORDS}
 
 *** Keywords ***
 Given no libraries exist in RFDoc
