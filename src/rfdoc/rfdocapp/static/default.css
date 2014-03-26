@@ -97,7 +97,7 @@ a {
   color: black;
 }
 ul.libraries {
-  margin-top: 0;
+  margin-top: 20px;
   margin-bottom: 0;
 }
 ul.libraries a {
@@ -109,6 +109,7 @@ a:hover {
 }
 
 /* Forms */
+
 form {
   font-size: 0.9em;
 }
@@ -127,7 +128,6 @@ form div {
   list-style-type: none;
   color: red;
 }
-
 .form-options {
   border: 1px dashed #eee;
 }
@@ -139,9 +139,7 @@ table#search {
 table#search td {
   padding-right: 1em;
 }
-input#id_search_term {
-  width: 20em;
-}
+
 table.results td a {
   text-decoration: none;
 }
@@ -152,7 +150,6 @@ table.results td a:hover {
 /* Library pages */
 
 #versions {
-    padding: 10px;
     background-color: #eee;
     width: auto;
     max-width: 300px;
@@ -161,7 +158,41 @@ table.results td a:hover {
     right: 20px;
     z-index: 400;
 }
-
+#versions dt {
+    font-weight: bold;
+}
+#versions dl {
+    display: none;
+    margin: 10px 10px;
+}
+#versions dd {
+    display: inline;
+    margin: 0 5px;
+}
+span.versions-current {
+    cursor: pointer;
+    display: block;
+    width: auto;
+    margin: 0;
+    padding: 0 20px;
+    line-height: 1.5em;
+    text-align: right;
+    color: #fff;
+    background-color: #000;
+}
+span.versions-current:after {
+    display: inline-block;
+    position:relative;
+    top: -2px;
+    left: 10px;
+    content: "";
+    height:0;
+    width:0;
+    padding:0;
+    margin:-5px;
+    border:5px solid transparent;
+    border-top-color:#FFF;
+}
 p.version {
   font-size: 0.85em;
 }

@@ -48,14 +48,16 @@
     <p class="info">Altogether {{ lib.keywords|length }} keywords.</p>
 {% endblock content %}
 {% block outside %}
+    {% if versions %}
     <div id="versions">
-        Version: {{ lib.version }}
-        {% if versions %}
-        <br />Other versions:
-        {% for version in versions %}
-            <a href="{% url 'version' lib.name|urlencode version|urlencode %}">{{ version }}</a>
-        {% endfor %}
-        {% endif %}
+        <span class="versions-current">v: {{ lib.version }}</span>
+               <dl>
+                <dt>Other versions:</dt>
+                {% for version in versions %}
+                   <dd><a href="{% url 'version' lib.name|urlencode version|urlencode %}">{{ version }}</a></dd>
+                {% endfor %}
+               </dl>
     </div>
+    {% endif %}
 {% endblock outside %}
 

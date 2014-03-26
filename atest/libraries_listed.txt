@@ -15,4 +15,4 @@ Libraries In RFDoc Are Listed On Main Page
 Library Versions Are Listed On Main Page
     [Setup]  Given some libraries exist in RFDoc
     "main" page is open
-    Then all versions are shown
+    Then number of versions is shown
