@@ -66,6 +66,11 @@ User overrides version with "${version}" and uploads "${library}"
     Input text  override_version  ${version}
     Upload ${file}
 
+User overrides name with "${name}" and uploads "${library}"
+    ${file} =  Set Variable  ${library.replace(' ', '_')}.xml
+    Input text  override_name  ${name}
+    Upload ${file}
+
 Upload ${file}
     Choose File  file  ${TESTDATA PATH}${/}xmls${/}${file}
     Click button  Upload

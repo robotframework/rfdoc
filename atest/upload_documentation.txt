@@ -16,3 +16,10 @@ User Can Upload Library Documentation And Override Version
     Then notification "Successfully uploaded library ExampleLibrary" is shown
     and notification contains a version "5" link to "ExampleLibrary"
     and RFDoc contains versioned library ExampleLibrary version 5
+
+User Can Upload Library Documentation And Override Name
+    "upload" page is open
+    When user overrides name with "NewnameLibrary" and uploads "ExampleLibrary version 2"
+    Then notification "Successfully uploaded library NewnameLibrary" is shown
+    and notification contains a version "2" link to "NewnameLibrary"
+    and RFDoc contains versioned library NewnameLibrary version 2
