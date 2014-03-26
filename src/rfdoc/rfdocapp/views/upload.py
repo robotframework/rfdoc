@@ -42,6 +42,7 @@ class UploadFileForm(forms.Form):
     file = forms.FileField()
     file.widget.attrs['size'] = 40
     override = forms.BooleanField(required=False)
+    override_name = forms.CharField(required=False)
     override_version = forms.CharField(required=False)
     override_version.widget.attrs['size'] = 10
 
