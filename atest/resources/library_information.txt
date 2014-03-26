@@ -8,9 +8,9 @@ Resource        rfdoc.txt
 
 Main Page Should Contain Libraries
     [Arguments]  @{libraries}
-    ${regexp} =  Set Variable  <h2>Libraries</h2>\\s+<ul class="libraries">\\s+
+    ${regexp} =  Set Variable  <h2>Libraries</h2>\\s+<a href="\\?sort=version" class="sortlink">Sort by version</a>\\s+<ul class="libraries">\\s+
     :FOR  ${library}  IN  @{libraries}
-    \  ${regexp} =  Set Variable  ${regexp}<li><a href="/lib/${library}">${library}</a> \\( .* \\)</li>\\s+
+    \  ${regexp} =  Set Variable  ${regexp}<li><a href="/lib/${library}">${library}</a> .*</li>\\s+
     ${regexp} =  Set Variable  ${regexp}</ul>
     ${source} =  Get source
     Should match regexp  ${source}  ${regexp}
@@ -80,11 +80,11 @@ Link Exist From Keyword Documentation To Another Keyword
     Keyword should contain anchor  ${source}  Get Length
 
 Other Versions Are Shown
-    ${regexp} =  Set Variable  Other versions:\\s+<a href="/lib/ExampleLibrary/3">3</a>\\s+
+    ${regexp} =  Set Variable  <span class="versions-current">v: 1</span>\\s+<dl>\\s+<dt>Other versions:</dt>\\s+<dd><a href="/lib/ExampleLibrary/3">3</a></dd>\\s+</dl>
     ${source} =  Get source
     Should match regexp  ${source}  ${regexp}
 
-All Versions Are Shown
-    ${regexp} =  Set Variable  \( <a href="/lib/ExampleLibrary/1">1</a> <a href="/lib/ExampleLibrary/3">3</a> \)
+Number Of Versions Is Shown
+    ${regexp} =  Set Variable  <a href="/lib/ExampleLibrary">ExampleLibrary</a> \\( 2 versions \\)
     ${source} =  Get source
     Should match regexp  ${source}  ${regexp}
