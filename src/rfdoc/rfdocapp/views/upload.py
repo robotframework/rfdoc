@@ -27,6 +27,7 @@ def upload(request):
         if form.is_valid():
             lib = form.parse_kw_spec(request.FILES['file'],
                                          form.cleaned_data['override'],
+                                         form.cleaned_data['override_name'].strip(),
                                          form.cleaned_data['override_version'].strip())
     else:
         form = UploadFileForm()
@@ -44,11 +45,13 @@ class UploadFileForm(forms.Form):
     override_version = forms.CharField(required=False)
     override_version.widget.attrs['size'] = 10
 
-    def parse_kw_spec(self, fileobj, override, override_version):
+    def parse_kw_spec(self, fileobj, override, override_name, override_version):
         try:
             libdata = LibraryData(fileobj)
             if override_version:
-                libdata.version=override_version
+                libdata.version = override_version
+            if override_name:
+                libdata.name = override_name
             if Library.objects.filter(name=libdata.name).filter(version=libdata.version):
                 if not override:
                     raise InvalidXmlError("Library %s version %s already exists." % (libdata.name, libdata.version))
