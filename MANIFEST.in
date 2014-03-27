@@ -2,6 +2,7 @@ prune atest
 include src/rfdoc/*.tmpl
 include src/rfdoc/rfdocapp/templates/*.html
 include src/rfdoc/rfdocapp/static/*.css
+include src/rfdoc/rfdocapp/static/*.js
 include COPYRIGHT.txt
 include LICENSE.txt
 include README.rst
