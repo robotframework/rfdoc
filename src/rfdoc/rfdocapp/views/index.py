@@ -19,13 +19,21 @@ from search import SearchForm
 
 
 def index(request):
-    libs = Library.objects.values('name').distinct()
-    for lib in libs:
-        versioned_libs = Library.objects.filter(name=lib['name'])
-        if len(versioned_libs) > 1:
-            lib['versions'] = [library.version for library in versioned_libs]
+    libs = None
+    versions = None
+    if request.GET.get('sort') == 'version':
+        versions = Library.objects.values('version').distinct()
+        for version in versions:
+            version['libs'] = [lib.name for lib in Library.objects.filter(version=version['version'])]
+    else:
+        libs = Library.objects.values('name').distinct()
+        for lib in libs:
+            versioned_libs = Library.objects.filter(name=lib['name'])
+            if len(versioned_libs) > 1:
+                lib['versions'] = [library.version for library in versioned_libs]
     return render_to_response('index.html', {
         'libs': libs,
+        'versions': versions,
         'form': SearchForm()
         }
     )

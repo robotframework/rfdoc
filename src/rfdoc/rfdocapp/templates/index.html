@@ -15,9 +15,25 @@
 
     <h2>Libraries</h2>
     {% if libs %}
+      <a class="sortlink" href="?sort=version">Sort by version</a>
       <ul class="libraries">
       {% for lib in libs %}<li><a href="{% url 'library' lib.name|urlencode %}">{{ lib.name }}</a> {% if lib.versions %}( {{ lib.versions|length }} versions )</span>{% endif %}</li>
       {% endfor %}</ul>
+    {% elif versions %}
+      <a class="sortlink" href="?sort=libname">Sort by library name</a>
+      <div class="versioncontainer">
+      {% for version in versions %}
+        <div>
+          <h3>{{ version.version }}</h3>
+          <ul>
+            {% for lib in version.libs %}
+              <li><a href="{% url 'version' lib|urlencode version.version|urlencode %}">{{ lib }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+      </div>
+    <div style="clear:both;">&nbsp;</div>
     {% else %}<p class="info">
       No libraries in the system. Why don't you <a href="{% url 'upload' %}">upload</a> one?
     </p>

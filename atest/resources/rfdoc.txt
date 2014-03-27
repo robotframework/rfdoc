@@ -28,6 +28,9 @@ ${Some libraries} exist${s} in RFDoc
 "Main" page is open
     Go to  ${BASE URL}
 
+Version sorted "Main" page is open
+    Go to  ${BASE_URL}/?sort=version
+
 "${name}" page is open
     Go to  ${BASE URL}/${name.lower()}
 
