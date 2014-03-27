@@ -16,3 +16,20 @@ Library Versions Are Listed On Main Page
     [Setup]  Given some libraries exist in RFDoc
     "main" page is open
     Then number of versions is shown
+
+Libraries Can Be Grouped By Version On Main Page
+    [Setup]  Given some libraries exist in RFDoc
+    "main" page is open
+    Click link  Sort by version
+    Then versions "2.1", "1", "2.2", "3" are listed on the main page
+
+User Can List Libraries Again By Name After Grouping Them By Version
+    [Setup]  Given some libraries exist in RFDoc
+    version sorted "main" page is open
+    Click link  Sort by library name
+    Then "BuiltIn", "ExampleLibrary" and "SeleniumLibrary" are listed on the main page
+
+Version Grouping Should Show All Libraries Of Same Version
+    [Setup]  Given some libraries exist in RFDoc
+    version sorted "main" page is open
+    Then "ExampleLibrary", "BuiltIn" are listed in the same version column

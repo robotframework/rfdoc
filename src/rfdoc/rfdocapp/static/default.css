@@ -107,6 +107,22 @@ a:hover {
   color: #444444;
   text-decoration: underline;
 }
+div.versioncontainer{
+    margin-top:20px;
+    overflow: auto;
+    width: 100%;
+}
+div.versioncontainer div{
+    display:inline-table;
+    width: 200px;
+    margin-bottom: 20px;
+}
+div.versioncontainer div h3 {
+    text-align: center;
+    margin: 2px;
+    padding: 2px;
+    background-color: #eee;
+}
 
 /* Forms */
 

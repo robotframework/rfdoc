@@ -15,6 +15,24 @@ Main Page Should Contain Libraries
     ${source} =  Get source
     Should match regexp  ${source}  ${regexp}
 
+Versions "${versions}" Are Listed On The Main Page
+    @{versions} =  Get Names  ${versions}
+    ${regexp} =  Set Variable  (?s)<div class="versioncontainer">\\s+
+    :FOR  ${version}  IN  @{versions}
+    \  ${regexp} =  Set Variable  ${regexp}<div>\\s+<h3>${version}</h3>.*</div>\\s+
+    ${regexp} =  Set Variable  ${regexp}</div>
+    ${source} =  Get source
+    Should match regexp  ${source}  ${regexp}
+
+"${libraries}" Are Listed In The Same Version Column
+    @{libraries} =  Get Names  ${libraries}
+    ${regexp} =  Set Variable  <div>\\s+<h3>.+</h3>\\s+<ul>\\s+
+    :FOR  ${library}  IN  @{libraries}
+    \  ${regexp} =  Set Variable  ${regexp}<li><a href="/lib/${library}/.+">${library}</a></li>\\s+
+    ${regexp} =  Set Variable  ${regexp}</ul>\\s+</div>
+    ${source} =  Get source
+    Should match regexp  ${source}  ${regexp}
+
 User Opens Library Details
     Navigate to library "BuiltIn"
 
