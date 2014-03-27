@@ -39,8 +39,9 @@ class Uploader(object):
         self._uploader = XmlUploader(self._options.target_url)
 
     def run(self):
-        try:
-            for library in self._options.libraries:
+        failed = []
+        for library in self._options.libraries:
+            try:
                 xml_doc = StringIO()
                 # LibraryDocumentation().save() calls close() for the underlying
                 # file but closing StringIO object discards its data.
@@ -56,6 +57,7 @@ class Uploader(object):
                             LibraryDocumentation(library).save(xml_doc, 'xml')
                     except DataError, e:
                         message = "Library not found" if 'ImportError' in e.message else e.message
+                        failed.append(library)
                         sys.stderr.write("Skipping '%s' due to an error: %s.\n" %
                             (library, message))
                         continue
@@ -64,11 +66,15 @@ class Uploader(object):
                     sys.stdout.write("Updated documentation for '%s'.\n" % library)
                 finally:
                     xml_doc.original_close()
-        except DataError, e:
-            sys.stderr.write('%s: Remote error: %s\n' % (os.path.basename(__file__),
-                                                  e.message))
+            except DataError, e:
+                failed.append(library)
+                sys.stderr.write('%s: Remote error: %s\n' % (os.path.basename(__file__),
+                                                      e.message))
+        if failed:
+            sys.stderr.write('\nERROR: Uploading %d file(s) failed:\n' % len(failed))
+            for name in failed:
+                sys.stderr.write('* %s\n' % name)
             exit(1)
-
 
 class ImprovedOptionParser(OptionParser):
 

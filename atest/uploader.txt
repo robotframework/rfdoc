@@ -6,6 +6,7 @@ ${INVALID URL}              localhost:1
 ${SCRIPT NAME}              upload.py
 ${SCRIPT PATH}              ${CURDIR}${/}..${/}src${/}rfdoc${/}${SCRIPT NAME}
 ${EXAMPLE LIBRARY SOURCE}   ${TESTDATA PATH}${/}sources${/}example_lib.py
+${EMPTY KEYWORDS XML}       ${TESTDATA PATH}${/}xmls${/}invalid${/}empty_keywords.xml
 ${EXAMPLE LIBRARY XML V1}   ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_1.xml
 ${EXAMPLE LIBRARY XML V2}   ${TESTDATA PATH}${/}xmls${/}ExampleLibrary_version_2.xml
 @{EXAMPLE LIB KEYWORDS}     My Keyword  self  Does nothing.  Your Keyword  self, arg  Takes one argument and does nothing with it.
@@ -105,17 +106,28 @@ With --url but no files given
 With library not found
     ${rc}  ${output}=  Run With -u ${BASE URL} NotExistingLibrary
     Should Print NotExistingLibrary Not Found
-    Should Exit With  0
+    Should Exit With  1
 
 With an error in parsing one library
+    [Setup]  Given no libraries exist in RFDoc
     ${rc}  ${output}=  Run With -u ${BASE URL} InvalidLibrary ${EXAMPLE LIBRARY XML V1}
     Should Print InvalidLibrary Failed To Update
     Should Print ${EXAMPLE LIBRARY XML V1} Updated
-    Should Exit With  0
+    RFDoc contains versioned library ExampleLibrary version 1
+    Should Exit With  1
 
 With invalid host given
     ${rc}  ${output}=  Run With --url=${INVALID URL} ${EXAMPLE LIBRARY XML V1}
     Should Print ${INVALID URL} Is Invalid Host
+    Should Exit With  1
+
+With a remote error
+    [Setup]  Given no libraries exist in RFDoc
+    ${rc}  ${output}=  Run With -u ${BASE URL} ${EMPTY KEYWORDS XML} ${EXAMPLE LIBRARY XML V1}
+    Should Print empty_keywords.xml Contains No Keywords
+    Should Print ${EMPTY KEYWORDS XML} In Errorlist
+    Should Print ${EXAMPLE LIBRARY XML V1} Updated
+    RFDoc contains versioned library ExampleLibrary version 1
     Should Exit With  1
 
 *** Keywords ***
@@ -149,3 +161,10 @@ Should Print Argument ${argument} Is Invalid
 
 Should Print ${host} Is Invalid Host
     Should Contain  ${output}  ${SCRIPT_NAME}: Remote error: connection refused to '${host}', check that the host responds and is reachable.
+
+Should Print ${test_library} Contains No Keywords
+    Should Contain  ${output}  ${SCRIPT_NAME}: Remote error: Given test library file ${test_library} contains no keywords.
+
+Should Print ${test_library} In Errorlist
+    Should Contain  ${output}  ERROR: Uploading 1 file(s) failed:
+    Should Contain  ${output}  * ${test_library}
