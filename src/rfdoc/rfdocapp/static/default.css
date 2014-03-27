@@ -147,6 +147,24 @@ form div {
 .form-options {
   border: 1px dashed #eee;
 }
+a.help {
+    font-size: 0.5em;
+}
+div.help {
+    display: none;
+    border: 1px solid #000;
+    background-color: #eee;
+}
+div.help h3 {
+    margin: 10px;
+}
+div.help table {
+    margin: 10px;
+    border-spacing: 10px;
+}
+div.help th {
+    text-align: right;
+}
 
 /* Search */
 table#search {
