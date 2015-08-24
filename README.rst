@@ -4,17 +4,16 @@ RFDoc
 Introduction
 ------------
 
-RFDoc (http://code.google.com/p/rfdoc) is a web application for storing
-and searching Robot Framework (http://robotframework.org) test library and
-resource file documentations.
+RFDoc is a web application for storing and searching `Robot Framework
+<http://robotframework.org>`_ test library and resource file documentations.
 
-RFDoc is implemented using Django web framework (http://djangoproject.com).
+RFDoc is implemented using `Django web framework <http://djangoproject.com>`_.
 
 
 License
 -------
 
-SSHLibrary is licensed under Apache License 2.0.
+RFDoc is licensed under Apache License 2.0.
 
 See LICENSE.txt for details.
 
@@ -23,10 +22,10 @@ Running RFDoc
 -------------
 
 For getting RFDoc to run locally, see
-https://code.google.com/p/rfdoc/wiki/DevelopmentEnvironment
+https://github.com/robotframework/rfdoc/blob/wiki/DevelopmentEnvironment.md
 
 For setting up a public production server, see
-https://code.google.com/p/rfdoc/wiki/ProductionEnvironment
+https://github.com/robotframework/rfdoc/blob/wiki/ProductionEnvironment.md
 
 
 Directory Layout
