@@ -9,6 +9,7 @@ RFDoc is a web application for storing and searching `Robot Framework
 
 RFDoc is implemented using `Django web framework <http://djangoproject.com>`_.
 
+**Note:** This project is currently not actively maintained.
 
 License
 -------
@@ -16,7 +17,6 @@ License
 RFDoc is licensed under Apache License 2.0.
 
 See LICENSE.txt for details.
-
 
 Running RFDoc
 -------------
@@ -26,7 +26,6 @@ https://github.com/robotframework/rfdoc/blob/wiki/DevelopmentEnvironment.md
 
 For setting up a public production server, see
 https://github.com/robotframework/rfdoc/blob/wiki/ProductionEnvironment.md
-
 
 Directory Layout
 ----------------
@@ -40,10 +39,9 @@ src/
 tools/
     Utilities to use as part of the CI pipeline or as SCM hooks.
 
-
 Running the Acceptance Tests
 ----------------------------
 
-Acceptance tests are run using `atest/run_atests.py`
+Acceptance tests are run using ``atest/run_atests.py``.
 
 Run the script without any arguments for help.
