@@ -54,9 +54,9 @@ if __name__ == "__main__":
     TARGET_FILE = os.path.join(argv[1], 'rfdocsettings.py')
     if os.path.exists(TARGET_FILE):
         msg = "File '%s' already exists. Override?" % TARGET_FILE
-        if not raw_input('%s [y/N] ' % msg).lower() == 'y':
+        if not input('%s [y/N] ' % msg).lower() == 'y':
             exit('User aborted.\n')
     copy(__file__, TARGET_FILE)
-    print "\nCreated the settings file '%s'.\n" \
-          "Make sure to have '%s' in your PYTHONPATH when running further manage commands."\
-          % (abspath(TARGET_FILE), abspath(argv[1]))
+    print("\nCreated the settings file '%s'.\n"
+          "Make sure to have '%s' in your PYTHONPATH when running further manage commands."
+          % (abspath(TARGET_FILE), abspath(argv[1])))
