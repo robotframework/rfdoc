@@ -55,7 +55,7 @@ class Uploader(object):
                         else:
                             xml_doc.close = lambda: None
                             LibraryDocumentation(library).save(xml_doc, 'xml')
-                    except DataError, e:
+                    except DataError as e:
                         message = "Library not found" if 'ImportError' in e.message else e.message
                         failed.append(library)
                         sys.stderr.write("Skipping '%s' due to an error: %s.\n" %
@@ -66,7 +66,7 @@ class Uploader(object):
                     sys.stdout.write("Updated documentation for '%s'.\n" % library)
                 finally:
                     xml_doc.original_close()
-            except DataError, e:
+            except DataError as e:
                 failed.append(library)
                 sys.stderr.write('%s: Remote error: %s\n' % (os.path.basename(__file__),
                                                       e.message))
@@ -221,7 +221,7 @@ Content-Disposition: form-data; name="%(name)s"
         with closing(HTTPConnection(self.url.netloc)) as connection:
             try:
                 response = self._post_multipart(connection, xml_doc, override_name, override_version)
-            except Exception, message:
+            except Exception as message:
                 if 'Connection refused' in message:
                     message = "connection refused to '%s', " % self.url.netloc
                     message += 'check that the host responds and is reachable.'

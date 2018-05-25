@@ -64,7 +64,7 @@ class UploadFileForm(forms.Form):
                 lib.init_set.create(doc=init.doc, args=init.args)
             for kw in libdata.kws:
                 lib.keyword_set.create(name=kw.name, doc=kw.doc, args=kw.args)
-        except InvalidXmlError, err:
+        except InvalidXmlError as err:
             self._errors['file'] = ErrorList([str(err)])
             return None
         return lib
