@@ -43,8 +43,8 @@ SECRET_KEY = 'pmst_958#g=ks#i+(ci!pnf5=1b73@nf(c%h8)p&sc7wongki6'
 ROOT_URLCONF = 'rfdoc.urls'
 STATIC_URL = '/static/'
 STATIC_ROOT = join(_PROJECT_DIR, 'rfdocapp', 'static')
-TEMPLATE_DIRS = (
-    join(_PROJECT_DIR, 'rfdocapp', 'templates').replace('\\', '/')
+TEMPLATE_DIRS = (tuple(
+    join(_PROJECT_DIR, 'rfdocapp', 'templates').replace('\\', '/'))
 )
 INSTALLED_APPS = (
     'django.contrib.auth',

@@ -17,7 +17,7 @@ from django import forms
 from django.db.models import Q
 from django.shortcuts import render_to_response
 
-from rfdocapp.models import Keyword
+from rfdoc.rfdocapp.models import Keyword
 
 
 def search(request):

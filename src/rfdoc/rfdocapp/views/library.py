@@ -17,7 +17,7 @@ from django.shortcuts import render_to_response, get_list_or_404
 from django.http import Http404
 from django.utils.http import unquote
 
-from rfdoc.rfdocapp import utils
+from rfdocapp import utils
 from rfdoc.rfdocapp.models import Library
 
 

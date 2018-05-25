@@ -1,8 +1,8 @@
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
 
-from rfdoc import settings
-from rfdoc.rfdocapp import views
+import settings
+from rfdocapp import views
 
 admin.autodiscover()
 

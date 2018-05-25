@@ -3,7 +3,7 @@
 try:
     from setuptools import setup
     requires = {
-        'install_requires': ['django >= 1.5, < 1.7'],
+        'install_requires': ['django >= 1.5'],
     }
 except ImportError:
     from distutils.core import setup
