@@ -11,7 +11,8 @@ except ImportError:
 
 from os.path import abspath, dirname, join
 
-execfile(join(dirname(abspath(__file__)), 'src', 'rfdoc', 'version.py'))
+with open(join(dirname(abspath(__file__)), 'src', 'rfdoc', 'version.py')) as f:
+    exec(f.read())
 
 # Maximum width in Windows installer seems to be 70 characters -------|
 DESCRIPTION = """
