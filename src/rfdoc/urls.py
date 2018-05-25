@@ -9,8 +9,10 @@ from rfdoc.rfdocapp import views
 
 admin.autodiscover()
 
+app_name = "rfdocapp"
+
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls), name='admin'),
+    url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^upload/?$', views.upload, name='upload'),
     url(r'^search/?$', views.search, name='search'),
     url(r'^lib/([^/]*)$', views.library, name='library'),
