@@ -22,7 +22,8 @@ def index(request):
     libs = None
     versions = None
     if request.GET.get('sort') == 'version':
-        versions = Library.objects.values('version').distinct()
+        versions = list(Library.objects.values('version').distinct())
+        versions.sort(key=lambda s: s['version'].split('.'), reverse=True)
         for version in versions:
             version['libs'] = [lib.name for lib in Library.objects.filter(version=version['version'])]
     else:
