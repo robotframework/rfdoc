@@ -15,16 +15,16 @@
 import re
 from django.shortcuts import render_to_response, get_list_or_404
 from django.http import Http404
-from django.utils.http import unquote
+from django.utils.http import urlunquote
 
-from rfdocapp import utils
+from rfdoc.rfdocapp import utils
 from rfdoc.rfdocapp.models import Library
 
 
 def library(request, libname, version=None):
-    libname = unquote(libname)
+    libname = urlunquote(libname)
     if version:
-        version = unquote(version)
+        version = urlunquote(version)
         lib = Library.objects.filter(name=libname, version=version).get()
     else:
         lib = Library.objects.filter(name=libname).order_by('id')[0:1].get()
