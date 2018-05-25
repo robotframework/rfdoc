@@ -32,6 +32,7 @@ def library(request, libname, version=None):
         raise Http404('No library matches the given query.')
     libdoc = LibraryDoc(lib)
     versions = [x.version for x in Library.objects.filter(name=libname) if x.version != lib.version]
+    versions.sort(key=lambda s: s.split('.'), reverse=True)
     return render_to_response('library.html', {'lib': libdoc, 'versions': versions})
 
 
