@@ -24,6 +24,11 @@ Running RFDoc
 For getting RFDoc to run locally, see
 https://github.com/robotframework/rfdoc/blob/wiki/DevelopmentEnvironment.md
 
+**Note:** In section 'Set up the database' replace
+``python -m rfdoc.manage syncdb``
+with
+``python -m rfdoc.manage migrate --run-syncdb``
+
 For setting up a public production server, see
 https://github.com/robotframework/rfdoc/blob/wiki/ProductionEnvironment.md
 
