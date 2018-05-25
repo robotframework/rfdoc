@@ -12,7 +12,7 @@
 PRODUCTION = False
 
 # If DEBUG is True, stack traces are shown instead of normal 404 and 500 pages.
-DEBUG = False
+DEBUG = True
 
 # Path to the SQLite3 database file. The default location is in system temporary
 # directory which can be automatically cleared. You should therefore always

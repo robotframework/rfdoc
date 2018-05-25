@@ -24,7 +24,6 @@ def localsetting(name):
 
 PRODUCTION = localsetting('PRODUCTION')
 DEBUG = localsetting('DEBUG')
-TEMPLATE_DEBUG = DEBUG
 TIME_ZONE = localsetting('TIME_ZONE')
 DATABASES = {
     'default': {
@@ -43,9 +42,30 @@ SECRET_KEY = 'pmst_958#g=ks#i+(ci!pnf5=1b73@nf(c%h8)p&sc7wongki6'
 ROOT_URLCONF = 'rfdoc.urls'
 STATIC_URL = '/static/'
 STATIC_ROOT = join(_PROJECT_DIR, 'rfdocapp', 'static')
-TEMPLATE_DIRS = (tuple(
-    join(_PROJECT_DIR, 'rfdocapp', 'templates').replace('\\', '/'))
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            join(_PROJECT_DIR, 'rfdocapp', 'templates').replace('\\', '/')
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.admin',
