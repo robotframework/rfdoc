@@ -15,7 +15,7 @@
 from django.shortcuts import render_to_response
 
 from rfdoc.rfdocapp.models import Library
-from search import SearchForm
+from rfdoc.rfdocapp.views.search import SearchForm
 
 
 def index(request):
