@@ -2,7 +2,9 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.static import serve
 
+
 import rfdoc.settings as settings
+
 from rfdoc.rfdocapp import views
 
 admin.autodiscover()

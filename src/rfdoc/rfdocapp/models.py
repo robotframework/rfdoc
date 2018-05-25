@@ -25,7 +25,7 @@ class Library(models.Model):
 
 
 class Keyword(models.Model):
-    library = models.ForeignKey(Library)
+    library = models.ForeignKey(Library, on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
     doc = models.TextField(verbose_name='Documentation')
     args = models.CharField(max_length=200, verbose_name='Arguments',
@@ -36,7 +36,7 @@ class Keyword(models.Model):
 
 
 class Init(models.Model):
-    library = models.ForeignKey(Library)
+    library = models.ForeignKey(Library, on_delete=models.CASCADE)
     name = '<init>'
     doc = models.TextField(verbose_name='Documentation')
     args = models.CharField(max_length=200, verbose_name='Arguments',
