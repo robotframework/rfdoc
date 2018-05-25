@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from robot_htmlutils import html_escape
+from rfdoc.rfdocapp.utils.robot_htmlutils import html_escape
 
 
 def normalize(string):

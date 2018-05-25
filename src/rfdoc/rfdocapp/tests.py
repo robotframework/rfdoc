@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import unittest
-from StringIO import StringIO
+from io import StringIO
 
 from rfdoc.rfdocapp.views.upload import LibraryData, InvalidXmlError
 
