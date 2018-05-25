@@ -13,7 +13,7 @@
 # limitations under the License.
 
 from django import forms
-from django.forms.util import ErrorList
+from django.forms.utils import ErrorList
 from django.shortcuts import render_to_response
 from xml.etree import cElementTree as ET
 
