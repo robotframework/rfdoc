@@ -5,7 +5,7 @@
 
 from os.path import dirname, join
 
-import rfdocsettings_defaults
+import rfdoc.rfdocsettings_defaults as rfdocsettings_defaults
 try:
     import rfdocsettings
 except ImportError:

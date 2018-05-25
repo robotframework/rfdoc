@@ -20,12 +20,12 @@ import os
 import sys
 
 from contextlib import closing
-from HTMLParser import HTMLParser
-from httplib import HTTPConnection
+from html.parser import HTMLParser
+from http.client import HTTPConnection
 from optparse import OptionParser
 from re import match
-from StringIO import StringIO
-from urlparse import urlsplit
+from io import StringIO
+from urllib.parse import urlsplit
 
 from robot.errors import DataError
 from robot.libdocpkg import LibraryDocumentation
