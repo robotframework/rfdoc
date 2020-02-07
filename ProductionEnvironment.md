@@ -112,6 +112,9 @@ WSGIProcessGroup rfdoc
 WSGIScriptAlias ${rfdoc_url} ${rfdoc_path}/rfdoc_wsgi.py
 Alias /static/ ${rfdoc_path}/rfdocapp/static/
 BrowserMatch "RFDoc uploader" downgrade-1.0
+<Directory ${rfdoc_path}>                                   
+    Require all granted
+</Directory>
 ```
 
 Set `rfdoc_path` to the path on your clipboard. If you have not used different paths and are using RFDoc 0.4, you likely don't need to change anything in this file.
