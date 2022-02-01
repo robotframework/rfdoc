@@ -5,9 +5,9 @@ Introduction
 ------------
 
 RFDoc is a web application for storing and searching `Robot Framework
-<http://robotframework.org>`_ test library and resource file documentations.
+<http://robotframework.org>` test library and resource file documentations.
 
-RFDoc is implemented using `Django web framework <http://djangoproject.com>`_.
+RFDoc is implemented using `Django web framework <http://djangoproject.com>` version 4.0 or higher.
 
 **Note:** This project is currently not actively maintained.
 
@@ -30,10 +30,10 @@ https://github.com/robotframework/rfdoc/blob/wiki/DevelopmentEnvironment.md
 python -m rfdoc.manage syncdb
 ```
 with
-
 ```
 python -m rfdoc.manage migrate --run-syncdb
 ```
+
 For setting up a public production server, see
 https://github.com/robotframework/rfdoc/blob/wiki/ProductionEnvironment.md
 

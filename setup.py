@@ -3,7 +3,7 @@
 try:
     from setuptools import setup
     requires = {
-        'install_requires': ['django >= 1.5'],
+        'install_requires': ['django >= 4.0'],
     }
 except ImportError:
     from distutils.core import setup
@@ -20,7 +20,7 @@ RFDoc is a web application for storing and searching Robot Framework
 test library and resource file documentations.
 
 Required packages:
-    django >= 1.5
+    django >= 4.0
 """[1:-1]
 
 CLASSIFIERS = """
