@@ -55,3 +55,12 @@ Running the Acceptance Tests
 Acceptance tests are run using ``atest/run_atests.py``.
 
 Run the script without any arguments for help.
+
+TL;DR
+----------------------------
+1. execute ``python setup.py install``
+2. execute ``python -m rfdoc.rfdocsettings_defaults /your/path/here`` to create a **rfdocsettings.py**
+3. edit **rfdocsettings.py** to your needs
+4. add */your/path/here* to **PYTHONPATH**
+5. execute ``python -m rfdoc.manage migrate --run-syncdb``
+6. execute ``python -m rfdoc.manage runserver``

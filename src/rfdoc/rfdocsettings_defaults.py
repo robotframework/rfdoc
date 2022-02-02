@@ -16,7 +16,11 @@ DEBUG = True
 
 # Path to the SQLite3 database file. The default location is in system temporary
 # directory which can be automatically cleared. You should therefore always
-# change the path unless using RFDoc for testing purposes.
+# change the path unless using RFDoc for testing purposes. 
+# Django accepts other DB format than sql3 and in this case, it is the name of 
+# the database to use. For SQLite, it’s the full path to the database file. 
+# When specifying the path, always use forward slashes, even on Windows 
+# (e.g. C:/homes/user/mysite/sqlite3.db).
 import os, tempfile
 DATABASE_NAME = os.path.join(tempfile.gettempdir(), 'rfdoc.db')
 
