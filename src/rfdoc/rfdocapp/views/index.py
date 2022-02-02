@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 from rfdoc.rfdocapp.models import Library
 from rfdoc.rfdocapp.views.search import SearchForm
@@ -32,7 +32,7 @@ def index(request):
             versioned_libs = Library.objects.filter(name=lib['name'])
             if len(versioned_libs) > 1:
                 lib['versions'] = [library.version for library in versioned_libs]
-    return render_to_response('index.html', {
+    return render(request, 'index.html', {
         'libs': libs,
         'versions': versions,
         'form': SearchForm()

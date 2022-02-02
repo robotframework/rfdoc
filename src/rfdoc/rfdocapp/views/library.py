@@ -13,18 +13,19 @@
 # limitations under the License.
 
 import re
-from django.shortcuts import render_to_response, get_list_or_404
+from django.shortcuts import render, get_list_or_404
+
 from django.http import Http404
-from django.utils.http import urlunquote
+from urllib.parse import unquote
 
 from rfdoc.rfdocapp import utils
 from rfdoc.rfdocapp.models import Library
 
 
 def library(request, libname, version=None):
-    libname = urlunquote(libname)
+    libname = unquote(libname)
     if version:
-        version = urlunquote(version)
+        version = unquote(version)
         lib = Library.objects.filter(name=libname, version=version).get()
     else:
         lib = Library.objects.filter(name=libname).order_by('id')[0:1].get()
@@ -33,7 +34,7 @@ def library(request, libname, version=None):
     libdoc = LibraryDoc(lib)
     versions = [x.version for x in Library.objects.filter(name=libname) if x.version != lib.version]
     versions.sort(key=lambda s: s.split('.'), reverse=True)
-    return render_to_response('library.html', {'lib': libdoc, 'versions': versions})
+    return render(request, 'library.html', {'lib': libdoc, 'versions': versions})
 
 
 class _DocHelper:

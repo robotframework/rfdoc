@@ -14,7 +14,7 @@
 
 from django import forms
 from django.forms.utils import ErrorList
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from xml.etree import cElementTree as ET
 
 from rfdoc.rfdocapp.models import Library
@@ -31,7 +31,7 @@ def upload(request):
                                          form.cleaned_data['override_version'].strip())
     else:
         form = UploadFileForm()
-    return render_to_response('upload.html', {
+    return render(request, 'upload.html', {
             'form': form,
             'lib': lib
         }
