@@ -12,17 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 from rfdoc.rfdocapp.models import Library
-from search import SearchForm
+from rfdoc.rfdocapp.views.search import SearchForm
 
 
 def index(request):
     libs = None
     versions = None
     if request.GET.get('sort') == 'version':
-        versions = Library.objects.values('version').distinct()
+        versions = list(Library.objects.values('version').distinct())
+        versions.sort(key=lambda s: s['version'].split('.'), reverse=True)
         for version in versions:
             version['libs'] = [lib.name for lib in Library.objects.filter(version=version['version'])]
     else:
@@ -31,7 +32,7 @@ def index(request):
             versioned_libs = Library.objects.filter(name=lib['name'])
             if len(versioned_libs) > 1:
                 lib['versions'] = [library.version for library in versioned_libs]
-    return render_to_response('index.html', {
+    return render(request, 'index.html', {
         'libs': libs,
         'versions': versions,
         'form': SearchForm()

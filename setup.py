@@ -3,7 +3,7 @@
 try:
     from setuptools import setup
     requires = {
-        'install_requires': ['django >= 1.5, < 1.7'],
+        'install_requires': ['django >= 4.0'],
     }
 except ImportError:
     from distutils.core import setup
@@ -11,7 +11,8 @@ except ImportError:
 
 from os.path import abspath, dirname, join
 
-execfile(join(dirname(abspath(__file__)), 'src', 'rfdoc', 'version.py'))
+with open(join(dirname(abspath(__file__)), 'src', 'rfdoc', 'version.py')) as f:
+    exec(f.read())
 
 # Maximum width in Windows installer seems to be 70 characters -------|
 DESCRIPTION = """
@@ -19,7 +20,7 @@ RFDoc is a web application for storing and searching Robot Framework
 test library and resource file documentations.
 
 Required packages:
-    django >= 1.5
+    django >= 4.0
 """[1:-1]
 
 CLASSIFIERS = """

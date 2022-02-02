@@ -13,8 +13,8 @@
 # limitations under the License.
 
 from django import forms
-from django.forms.util import ErrorList
-from django.shortcuts import render_to_response
+from django.forms.utils import ErrorList
+from django.shortcuts import render
 from xml.etree import cElementTree as ET
 
 from rfdoc.rfdocapp.models import Library
@@ -31,7 +31,7 @@ def upload(request):
                                          form.cleaned_data['override_version'].strip())
     else:
         form = UploadFileForm()
-    return render_to_response('upload.html', {
+    return render(request, 'upload.html', {
             'form': form,
             'lib': lib
         }
@@ -64,7 +64,7 @@ class UploadFileForm(forms.Form):
                 lib.init_set.create(doc=init.doc, args=init.args)
             for kw in libdata.kws:
                 lib.keyword_set.create(name=kw.name, doc=kw.doc, args=kw.args)
-        except InvalidXmlError, err:
+        except InvalidXmlError as err:
             self._errors['file'] = ErrorList([str(err)])
             return None
         return lib

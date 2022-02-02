@@ -15,9 +15,9 @@
 import re
 from django import forms
 from django.db.models import Q
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
-from rfdocapp.models import Keyword
+from rfdoc.rfdocapp.models import Keyword
 
 
 def search(request):
@@ -46,7 +46,7 @@ def search(request):
             search_performed = True
     else:
         form = SearchForm()
-    return render_to_response('search.html', {
+    return render(request, 'search.html', {
             'form': form,
             'kws': kws,
             'search_performed': search_performed

@@ -54,7 +54,7 @@ except OSError:
 class DevelopmentRunner(object):
 
     def run_tests(self, options):
-        command = ['pybot', '-d', ATEST_RESULTS_PATH] + options + [ATEST_PATH]
+        command = ['robot', '-d', ATEST_RESULTS_PATH] + options + [ATEST_PATH]
         process = Popen(command, shell=SHELL)
         return process.wait()
 
@@ -76,10 +76,10 @@ class RegressionRunner(DevelopmentRunner):
         return process.pid
 
     def run_tests(self, options):
-        DevelopmentRunner.run_tests(self, options)
+        super().run_tests(options)
 
     def finalize(self):
-        DevelopmentRunner.finalize(self)
+        super().finalize()
         self._stop_rfdoc()
 
     def _stop_rfdoc(self):
@@ -112,7 +112,7 @@ if __name__ == '__main__':
     except (IndexError, KeyError):
         sys.stdout.write(__doc__)
         sys.exit(-1)
-    except Exception, message:
+    except Exception as message:
         sys.stderr.write('error: %s\n' % message)
         sys.exit(-1)
     rc = runner.run_tests(sys.argv[2:])

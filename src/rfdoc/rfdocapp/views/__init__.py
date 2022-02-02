@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from index import index
-from library import library
-from search import search
-from upload import upload
+from rfdoc.rfdocapp.views.index import index
+from rfdoc.rfdocapp.views.library import library
+from rfdoc.rfdocapp.views.search import search
+from rfdoc.rfdocapp.views.upload import upload
