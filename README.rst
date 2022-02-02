@@ -61,6 +61,6 @@ TL;DR
 1. execute ``python setup.py install``
 2. execute ``python -m rfdoc.rfdocsettings_defaults /your/path/here`` to create a **rfdocsettings.py**
 3. edit **rfdocsettings.py** to your needs
-4. add */your/path/here* to **PYTHONPATH**
+4. add */your/path/here* to **PYTHONPATH** or use parameter **--pythonpath=/your/path/here** in the command below:
 5. execute ``python -m rfdoc.manage migrate --run-syncdb``
 6. execute ``python -m rfdoc.manage runserver``
